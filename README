@@ -16,8 +16,6 @@ say for sourcefile.cc
 clang++ sourcefile.cc -o sourcefile -std=c++11 -stdlib=libc++
 
 For Linux use libstdc++ instead of libc++ and g++ 4.8 or greater
-You will need to modify the Makefiles to compile these examples
-on Linux since they are all designed to use clang.
 Each program only requires one line to compile it. 
 
 g++ sourcefile.cc -o sourcefile -std=c++11 
