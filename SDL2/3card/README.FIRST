@@ -1,0 +1,2 @@
+Be sure to Set the path to your install location of SDL2 and SDL2_ttf
+in Makefile SDL_PATH variable

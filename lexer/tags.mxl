@@ -1,0 +1,8 @@
+tag "Map.inner" { "Val1" = "Val2" }
+tag "Map.inner.second" { "tagged" = "valueof" }
+tag "Map" { "text" = "one" }
+tag "Map" { "two " = "two" }
+tag "Map" { "value 1" = "Value 2" }
+tag "Pointer" { "x" = "100" }
+tag "Pointer" { "y" = "200" }
+tag "test" { "value" = "value2" }

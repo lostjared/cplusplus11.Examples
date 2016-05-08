@@ -1,0 +1,134 @@
+Simple Calculator
+
+will parse a simple expression 
+built in functions are: 
+
+sqrt 
+abs
+print
+cos
+sin
+tan
+log
+rand
+exit
+
+functions contain 1 argument a double and return a double.
+
+
+- Jared Bruni
+If your using Clang and my little Makefile than you should of typed something like:
+
+$ make
+
+output would be the program expr-test
+
+You can either run the program or pipe the output of another program to it.
+Example:
+
+$ echo "42091+421*2;" | ./expr-test
+
+or run the program
+
+$ ./expr-test
+
+Example Session
+
+Enter Expression: 
+=)> 2+2;
+Expression  Value: 4
+=)> 4*4;
+Expression  Value: 16
+=)> 4*4/4;
+Expression  Value: 4
+=)> (4*4)+(4+4);
+Expression  Value: 24
+=)> x = 100;
+Expression  Value: 100
+x:100
+=)> y = 100;
+Expression  Value: 100
+y:100
+x:100
+=)> x*y;
+Expression  Value: 10000
+y:100
+x:100
+=)> z = x*y+x;
+Expression  Value: 10100
+z:10100
+y:100
+x:100
+=)> print(cos(x));
+Expression  Value: value of variable: 0.862319
+0.862319
+z:10100
+y:100
+x:100
+=)> print(cos(x)*sin(y)*tan(z));
+Expression  Value: value of variable: 0.097818
+0.097818
+z:10100
+y:100
+x:100
+=)> x += 100;
+Expression  Value: 200
+z:10100
+y:100
+x:200
+=)> y += 100;
+Expression  Value: 200
+z:10100
+y:200
+x:200
+=)> theNumber1 = rand(100);
+Expression  Value: 83
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> theNumber2 = rand(100);
+Expression  Value: 27
+theNumber2:27
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> print(theNumber1*theNumber2)*x;
+Expression  Value: value of variable: 2241
+448200
+theNumber2:27
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> rand(100)*rand(100)/4;
+Expression  Value: 171.5
+theNumber2:27
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> tan(100);
+Expression  Value: -0.587214
+theNumber2:27
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> tan(100)*100+200;
+Expression  Value: 141.279
+theNumber2:27
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> (1+3)*2;
+Expression  Value: 8
+theNumber2:27
+theNumber1:83
+z:10100
+y:200
+x:200
+=)> exit(0);
+Expression  Value: Exit called, Quiting...
