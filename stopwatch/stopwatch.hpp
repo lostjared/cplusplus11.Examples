@@ -40,7 +40,8 @@ public:
 	}
 	
 	unsigned long timePassed() {
-		return std::chrono::duration_cast<std::chrono::milliseconds>(stop_time-start_time).count();
+        auto now = std::chrono::system_clock::now();
+		return std::chrono::duration_cast<std::chrono::milliseconds>(now-start_time).count();
 	}
 	
 private:
@@ -66,7 +67,8 @@ public:
 	}
 	
 	unsigned long timePassed() {
-		return std::chrono::duration_cast<std::chrono::microseconds>(stop_time-start_time).count();
+        auto now = std::chrono::high_resolution_clock::now();
+		return std::chrono::duration_cast<std::chrono::microseconds>(now-start_time).count();
 	}
 	
 private:
