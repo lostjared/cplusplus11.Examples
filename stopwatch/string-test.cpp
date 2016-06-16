@@ -29,7 +29,7 @@ void op_RemoveSpace(std::string &result, const std::string &search) {
 void testRemoveSpace(std::string s) {
     unsigned long timedValues[100];
     for(unsigned int i = 0; i < 100; ++i) {
-        StopWatch<HighResolutionClock> timer_clock("Unoptimized Remove Tab");
+        StopWatch<HighResolutionClock> timer_clock("Unoptimized Remove Space");
         unop_RemoveSpace(s);
         timedValues[i] = timer_clock.TimePassed();
     }
@@ -45,7 +45,7 @@ void op_testRemoveSpace(std::string s) {
     unsigned long timedValues[100];
     std::string result;
     for(unsigned int i = 0; i < 100; ++i) {
-        StopWatch<HighResolutionClock> timer_clock("Optimized Remove Tab");
+        StopWatch<HighResolutionClock> timer_clock("Optimized Remove Space");
         op_RemoveSpace(result, s);
         timedValues[i] = timer_clock.TimePassed();
     }
