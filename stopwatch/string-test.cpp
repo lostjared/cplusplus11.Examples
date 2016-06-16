@@ -7,30 +7,30 @@
 #include"stopwatch.hpp"
 
 // unoptimized function
-std::string unop_RemoveTab(std::string search) {
+std::string unop_RemoveSpace(std::string search) {
     std::string result;
     for(size_t i = 0; i < search.length(); ++i) {
-        if(search[i] != '\t') {
+        if(search[i] != ' ') {
             result = result + search[i];
         }
     }
     return result;
 }
 
-void op_RemoveTab(std::string &result, const std::string &search) {
+void op_RemoveSpace(std::string &result, const std::string &search) {
     // the book says reserve is faster but slows down
     // with clang
     //result.reserve(search.length());
     for(auto i=search.begin(), stop=search.end(); i != stop; ++i) {
-        if(*i != '\t') result += *i;
+        if(*i != ' ') result += *i;
     }
 }
 
-void testRemoveTab(std::string s) {
+void testRemoveSpace(std::string s) {
     unsigned long timedValues[100];
     for(unsigned int i = 0; i < 100; ++i) {
         StopWatch<HighResolutionClock> timer_clock("Unoptimized Remove Tab");
-        unop_RemoveTab(s);
+        unop_RemoveSpace(s);
         timedValues[i] = timer_clock.TimePassed();
     }
     double average = 0;
@@ -41,12 +41,12 @@ void testRemoveTab(std::string s) {
     std::cout << "Average time for unoptimized function call: " << average << " nanoseconds\n";
 }
 
-void op_testRemoveTab(std::string s) {
+void op_testRemoveSpace(std::string s) {
     unsigned long timedValues[100];
     for(unsigned int i = 0; i < 100; ++i) {
         std::string result;
         StopWatch<HighResolutionClock> timer_clock("Optmized Remove Tab");
-        op_RemoveTab(result, s);
+        op_RemoveSpace(result, s);
         timedValues[i] = timer_clock.TimePassed();
     }
     double average = 0;
@@ -74,7 +74,7 @@ int main() {
     delete [] value;
     file.close();
     
-    testRemoveTab(value);
-    op_testRemoveTab(value);
+    testRemoveSpace(value);
+    op_testRemoveSpace(value);
     return 0;
 }
