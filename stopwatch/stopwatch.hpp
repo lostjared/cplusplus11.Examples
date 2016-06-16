@@ -65,18 +65,19 @@ public:
     // echo difference
     void echo(std::string name) {
         std::cout << "Stopwatch [" << name << "]\n";
-        std::cout << "Timer was active for : " << std::chrono::duration_cast<std::chrono::microseconds>(stop_time-start_time).count() << " Microseconds\n";
+        std::cout << "Timer was active for : " << std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time-start_time).count() << " Nanoseconds\n";
     }
     
     unsigned long timePassed() {
     	auto now = std::chrono::high_resolution_clock::now();
-        return std::chrono::duration_cast<std::chrono::microseconds>(now-start_time).count();
+        return std::chrono::duration_cast<std::chrono::nanoseconds>(now-start_time).count();
     }
     
 private:
     std::chrono::high_resolution_clock::time_point start_time, stop_time;
     
 };
+
 
 // other clock interfaces here..
 
