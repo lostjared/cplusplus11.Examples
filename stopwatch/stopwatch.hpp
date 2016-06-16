@@ -19,6 +19,7 @@
 #include<chrono>
 
 
+// Uses System Clock
 class SystemClock {
 public:
 	// add any system clock specifics
@@ -48,6 +49,7 @@ private:
 	std::chrono::system_clock::time_point start_time, stop_time;
 };
 
+// Uses High Resolution Clock
 class HighResolutionClock {
 public:
 	// add any resolution clock specifics
