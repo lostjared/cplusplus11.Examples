@@ -1,0 +1,80 @@
+/* String Test using Stop Watch template class */
+
+#include<iostream>
+#include<string>
+#include<cstdlib>
+#include<fstream>
+#include"stopwatch.hpp"
+
+// unoptimized function
+std::string unop_RemoveTab(std::string search) {
+    std::string result;
+    for(size_t i = 0; i < search.length(); ++i) {
+        if(search[i] != '\t') {
+            result = result + search[i];
+        }
+    }
+    return result;
+}
+
+void op_RemoveTab(std::string &result, const std::string &search) {
+    // the book says reserve is faster but slows down
+    // with clang
+    //result.reserve(search.length());
+    for(auto i=search.begin(), stop=search.end(); i != stop; ++i) {
+        if(*i != '\t') result += *i;
+    }
+}
+
+void testRemoveTab(std::string s) {
+    unsigned long timedValues[100];
+    for(unsigned int i = 0; i < 100; ++i) {
+        StopWatch<HighResolutionClock> timer_clock("Unoptimized Remove Tab");
+        unop_RemoveTab(s);
+        timedValues[i] = timer_clock.TimePassed();
+    }
+    double average = 0;
+    for(unsigned int i = 0; i < 100; ++i) {
+        average += timedValues[i];
+    }
+    average /= 100;
+    std::cout << "Average time for unoptimized function call: " << average << " nanoseconds\n";
+}
+
+void op_testRemoveTab(std::string s) {
+    unsigned long timedValues[100];
+    for(unsigned int i = 0; i < 100; ++i) {
+        std::string result;
+        StopWatch<HighResolutionClock> timer_clock("Optmized Remove Tab");
+        op_RemoveTab(result, s);
+        timedValues[i] = timer_clock.TimePassed();
+    }
+    double average = 0;
+    for(unsigned int i = 0; i < 100; ++i) {
+        average += timedValues[i];
+    }
+    average /= 100;
+    std::cout << "Average time for optimized function call: " << average << " nanoseconds\n";
+}
+
+
+int main() {
+    std::fstream file;
+    file.open("string-test.cpp", std::ios::in|std::ios::binary);
+    if(!file.is_open()) {
+        std::cerr << "Could not open file string-test.cpp\n";
+        exit(0);
+    }
+    file.seekg(0, std::ios::end);
+    size_t len = file.tellg();
+    file.seekg(0, std::ios::beg);
+    char *value = new char[len+1];
+    file.read(value, len);
+    std::string temp(value);
+    delete [] value;
+    file.close();
+    
+    testRemoveTab(value);
+    op_testRemoveTab(value);
+    return 0;
+}
