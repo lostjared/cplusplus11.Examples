@@ -19,6 +19,7 @@ std::string unop_RemoveSpace(std::string search) {
 
 // optimized function
 void op_RemoveSpace(std::string &result, const std::string &search) {
+    result.clear();
     result.reserve(search.length());
     for(auto i=search.begin(), stop=search.end(); i != stop; ++i) {
         if(*i != ' ') result += *i;
@@ -42,8 +43,8 @@ void testRemoveSpace(std::string s) {
 
 void op_testRemoveSpace(std::string s) {
     unsigned long timedValues[100];
+    std::string result;
     for(unsigned int i = 0; i < 100; ++i) {
-        std::string result;
         StopWatch<HighResolutionClock> timer_clock("Optimized Remove Tab");
         op_RemoveSpace(result, s);
         timedValues[i] = timer_clock.TimePassed();
