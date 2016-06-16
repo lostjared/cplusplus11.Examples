@@ -74,7 +74,7 @@ int main() {
     delete [] value;
     file.close();
     
-    testRemoveSpace(value);
-    op_testRemoveSpace(value);
+    testRemoveSpace(temp);
+    op_testRemoveSpace(temp);
     return 0;
 }
