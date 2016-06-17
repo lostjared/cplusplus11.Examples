@@ -26,21 +26,21 @@ public:
     SystemClock() {}
     
     // start the timer
-    void start() {
+    inline void start() {
         start_time = std::chrono::system_clock::now();
     }
     // stop the timer
-    void stop() {
+    inline void stop() {
         stop_time = std::chrono::system_clock::now();
         
     }
     // echo time difference
-    void echo(std::string name) {
+    inline void echo(std::string name) {
         std::cout << "Stopwatch [" << name << "]\n";
         std::cout << "Timer was active for : " << std::chrono::duration_cast<std::chrono::milliseconds>(stop_time-start_time).count() << " Milliseconds\n";
     }
-    
-    unsigned long timePassed() {
+    // how much time has passed since start was called?
+    inline unsigned long timePassed() {
         auto now = std::chrono::system_clock::now();
         return std::chrono::duration_cast<std::chrono::milliseconds>(now-start_time).count();
     }
@@ -55,20 +55,20 @@ public:
     // add any resolution clock specifics
     HighResolutionClock() {}
     // start the timer
-    void start() {
+    inline void start() {
         start_time = std::chrono::high_resolution_clock::now();
     }
     // sto the timer
-    void stop() {
+    inline void stop() {
         stop_time = std::chrono::high_resolution_clock::now();
     }
     // echo difference
-    void echo(std::string name) {
+    inline void echo(std::string name) {
         std::cout << "Stopwatch [" << name << "]\n";
         std::cout << "Timer was active for : " << std::chrono::duration_cast<std::chrono::nanoseconds>(stop_time-start_time).count() << " Nanoseconds\n";
     }
-    
-    unsigned long timePassed() {
+    // how much time has passed since start was called?
+    inline unsigned long timePassed() {
     	auto now = std::chrono::high_resolution_clock::now();
         return std::chrono::duration_cast<std::chrono::nanoseconds>(now-start_time).count();
     }
