@@ -34,7 +34,7 @@ void move_Test(std::vector<int> &&v) {
 
 int main() {
     
-    
+    std::cout << "Please wait ....\n";
     std::srand(static_cast<unsigned int>(std::time(0)));
     
     std::vector<int> test_vector;
