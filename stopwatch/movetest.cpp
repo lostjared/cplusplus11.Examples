@@ -43,7 +43,7 @@ int main() {
     
     copy_Test(test_vector);
     move_Test(std::move(test_vector));
-
+    std::cout << "Container has: " << mv.size() << " elements\n";
     
     
     return 0;
