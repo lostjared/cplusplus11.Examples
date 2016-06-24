@@ -38,7 +38,7 @@ int main() {
     std::srand(static_cast<unsigned int>(std::time(0)));
     
     std::vector<int> test_vector;
-    for(unsigned int i = 0; i < 999999; ++i) test_vector.push_back(rand()%255);
+    for(unsigned long i = 0; i < rand()%255+99999999; ++i) test_vector.push_back(rand()%255);
     
     copy_Test(test_vector);
     move_Test(std::move(test_vector));
