@@ -19,16 +19,14 @@ void concat_Values(std::vector<int> &v) {
 
 void copy_Test(std::vector<int> &v) {
     StopWatch<SystemClock> clock("copy");
-    std::vector<int> mv;
-    mv = v;
+    std::vector<int> mv(v); // temporary to test operation
     concat_Values(mv);
 }
 
 
 void move_Test(std::vector<int> &&v) {
     StopWatch<SystemClock> clock("move");
-    std::vector<int> mv;
-    mv = std::move(v);
+    std::vector<int> mv(std::move(v)); // temporary to test operation
     concat_Values(mv);
 }
 
