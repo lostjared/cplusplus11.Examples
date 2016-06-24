@@ -24,12 +24,13 @@ void copy_Test(std::vector<int> &v) {
 }
 
 
+std::vector<int> mv;
+
 void move_Test(std::vector<int> &&v) {
     StopWatch<SystemClock> clock("move");
-    std::vector<int> mv(std::move(v)); // temporary to test operation
+    mv = v;
     concat_Values(mv);
 }
-
 
 
 int main() {
@@ -42,6 +43,8 @@ int main() {
     
     copy_Test(test_vector);
     move_Test(std::move(test_vector));
+
+    
     
     return 0;
 }
