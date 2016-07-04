@@ -25,16 +25,16 @@ all:
 #	$(CXX) $(CFLAGS) ./boost/asio/filesend/server.cpp -o build/server
 #	$(CXX) $(CFLAGS) ./boost/asio/fileserv/file-server.cpp -o build/file-server
 #	$(CXX) $(CFLAGS) ./boost/asio/whiteboard/whiteboard.cpp -o build/whiteboard
-	$(CXX) $(CFLAGS) ./calculator/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./calculator/main.cpp -o build/calc-main
 	$(CXX) $(CFLAGS) ./cgi/sourcefile.cpp -o build/sourcefile
 	$(CXX) $(CFLAGS) ./cgi/tokenize-c++/sourcefile.cpp -o build/sourcefile
 	$(CXX) $(CFLAGS) ./compile_test/compile-test.cpp -o build/compile-test
 	$(CXX) $(CFLAGS) ./compress_code/format.cpp -o build/format
-	$(CXX) $(CFLAGS) ./compress_code/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./compress_code/main.cpp -o build/compress-main
 	$(CXX) $(CFLAGS) ./constexpr/constexpr_example.cpp -o build/constexpr_example
-	$(CXX) $(CFLAGS) ./databyte/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./databyte/main.cpp -o build/databyte-main
 	$(CXX) $(CFLAGS) ./db/db.cpp -o build/db
-	$(CXX) $(CFLAGS) ./download/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./download/main.cpp -o build/download-main
 	$(CXX) $(CFLAGS) ./enum/enum_class.cpp -o build/enum_class
 	$(CXX) $(CFLAGS) ./function_objects/func1.cpp -o build/func1
 	$(CXX) $(CFLAGS) ./function_objects/func2.cpp -o build/func2
@@ -45,29 +45,29 @@ all:
 	$(CXX) $(CFLAGS) ./iterator/it.cpp -o build/it
 	$(CXX) $(CFLAGS) ./iterator/it2.cpp -o build/it2
 	$(CXX) $(CFLAGS) ./iterator/it3.cpp -o build/it3
-	$(CXX) $(CFLAGS) ./join/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./join/main.cpp -o build/join-main
 	$(CXX) $(CFLAGS) ./karma.cpp -o build/karma
 	$(CXX) $(CFLAGS) ./lambda/lambda-test.cpp -o build/lambda-test
-	$(CXX) $(CFLAGS) ./lexer/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./lexer/main.cpp -o build/lexer-main
 #	$(CXX) $(CFLAGS) ./lexer/main.cpp.html -o build/main.cpp
 	$(CXX) $(CFLAGS) ./lexer/mxl-test.cpp -o build/mxl-test
 	$(CXX) $(CFLAGS) ./lexer/program-test1.cpp -o build/program-test1
 	$(CXX) $(CFLAGS) ./lexer/program-test2.cpp -o build/program-test2
 	$(CXX) $(CFLAGS) ./list_to_array/list_to_array.cpp -o build/list_to_array
-	$(CXX) $(CFLAGS) ./main/main.cpp -o build/main
-	$(CXX) $(CFLAGS) ./member_fun_pointer/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./main/main.cpp -o build/main-main
+	$(CXX) $(CFLAGS) ./member_fun_pointer/main.cpp -o build/fun_main
 	$(CXX) $(CFLAGS) ./misc/forward.cpp -o build/forward
 	$(CXX) $(CFLAGS) ./namespace/namespace2.cpp -o build/namespace2
 	$(CXX) $(CFLAGS) ./namespace/namespace3.cpp -o build/namespace3
 	$(CXX) $(CFLAGS) ./operator/equal.cpp -o build/equal
 	$(CXX) $(CFLAGS) ./operator_new/new.cpp -o build/new
-	$(CXX) $(CFLAGS) ./override/ptr/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./override/ptr/main.cpp -o build/override-main
 	$(CXX) $(CFLAGS) ./printdir/printdir.cpp -o build/printdir
 	$(CXX) $(CFLAGS) ./rar_extract/unrar_extract.cpp -o build/unrar_extract
 	$(CXX) $(CFLAGS) ./readfast_textscroll/linescroll.cpp -o build/linescroll
 	$(CXX) $(CFLAGS) ./readfast_textscroll/scroll.cpp -o build/scroll
 	$(CXX) $(CFLAGS) ./readfast_textscroll/textscroll.cpp -o build/textscroll
-	$(CXX) $(CFLAGS) ./replace/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./replace/main.cpp -o build/replace-main
 	$(CXX) $(CFLAGS) ./rvalue/rvalue1.cpp -o build/rvalue1
 	$(CXX) $(CFLAGS) ./rvalue/rvalue2.cpp -o build/rvalue2
 	$(CXX) $(CFLAGS) ./rvalue/rvalue3.cpp -o build/rvalue3
@@ -88,12 +88,12 @@ all:
 	$(CXX) $(CFLAGS) ./smart_pointer/smart.cpp -o build/smart
 	$(CXX) $(CFLAGS) ./sort/sort1.cpp -o build/sort1
 	$(CXX) $(CFLAGS) ./sort/sort2.cpp -o build/sort2
-	$(CXX) $(CFLAGS) ./sort_files/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./sort_files/main.cpp -o build/sort-files-main
 	$(CXX) $(CFLAGS) ./static/static1.cpp -o build/static1
 	$(CXX) $(CFLAGS) ./static/static2.cpp -o build/static2
 #	$(CXX) $(CFLAGS) ./stopwatch/cv-test.cpp -o build/cv-test
 	$(CXX) $(CFLAGS) ./stopwatch/looptest.cpp -o build/looptest
-	$(CXX) $(CFLAGS) ./stopwatch/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./stopwatch/main.cpp -o build/stopwatch-main
 	$(CXX) $(CFLAGS) ./stopwatch/movetest.cpp -o build/movetest
 	$(CXX) $(CFLAGS) ./stopwatch/string-test.cpp -o build/string-test
 	$(CXX) $(CFLAGS) ./stream_insert_iterators/insert_iterator.cpp -o build/insert_iterator
@@ -111,7 +111,7 @@ all:
 	$(CXX) $(CFLAGS) ./thread/async_test4.cpp -o build/async_test4
 	$(CXX) $(CFLAGS) ./thread/atomic.cpp -o build/atomic
 	$(CXX) $(CFLAGS) ./thread/detach.cpp -o build/detach
-	$(CXX) $(CFLAGS) ./tilemap/main.cpp -o build/main
+	$(CXX) $(CFLAGS) ./tilemap/main.cpp -o build/tilemap-main
 #	$(CXX) $(CFLAGS) ./tilemap/newtilemap/newtilemap/newtilemap/main.cpp -o build/main
 #	$(CXX) $(CFLAGS) ./tilemap/newtilemap/newtilemap/newtilemap/sdltest/test.cpp -o build/test
 #	$(CXX) $(CFLAGS) ./tilemap/TileMap2/main.cpp -o build/main
@@ -140,15 +140,15 @@ all:
 	$(CXX) $(CFLAGS) ./function_syntax/test1.cc -o build/test1
 	$(CXX) $(CFLAGS) ./generic/temp1.cc -o build/temp1
 	$(CXX) $(CFLAGS) ./generic/temp2.cc -o build/temp2
-	$(CXX) $(CFLAGS) ./hero/main.cc -o build/main
+	$(CXX) $(CFLAGS) ./hero/main.cc -o build/hero-main
 	$(CXX) $(CFLAGS) ./init/init_list.cc -o build/init_list
 	$(CXX) $(CFLAGS) ./lambda/lambda.cc -o build/lambda
 	$(CXX) $(CFLAGS) ./lambda/lambda2.cc -o build/lambda2
 	$(CXX) $(CFLAGS) ./lambda/lambda_capture.cc -o build/lambda_capture
-	$(CXX) $(CFLAGS) ./lambda/main.cc -o build/main
+	$(CXX) $(CFLAGS) ./lambda/main.cc -o build/lambda-main
 	$(CXX) $(CFLAGS) ./lambda/source.cc -o build/source
 	$(CXX) $(CFLAGS) ./lambda/test.cc -o build/test
-	$(CXX) $(CFLAGS) ./m3ugen/main.cc -o build/main
+	$(CXX) $(CFLAGS) ./m3ugen/main.cc -o build/m3ugen-main
 	$(CXX) $(CFLAGS) ./member/memberdecl.cc -o build/memberdecl
 	$(CXX) $(CFLAGS) ./move/move_test.cc -o build/move_test
 	$(CXX) $(CFLAGS) ./move/move_test2.cc -o build/move_test2
