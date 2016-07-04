@@ -1,0 +1,8 @@
+PRINTDIR_SOURCE=printdir.cpp
+PRINTDIR_OUTPUT=printdir-test
+CFLAGS=-std=c++11
+
+all:
+	$(CXX) $(CFLAGS) $(PRINTDIR_SOURCE) -o $(PRINTDIR_OUTPUT)
+clean:
+	rm -f printdir-test
