@@ -1,0 +1,8 @@
+PTHREAD_TEST_SOURCE=pthread-test.cpp
+PTHREAD_TEST_OUTPUT=pthread-test
+CFLAGS=-std=c++11
+
+all:
+	$(CXX) $(CFLAGS) $(PTHREAD_TEST_SOURCE) -o $(PTHREAD_TEST_OUTPUT)
+clean:
+	rm -f $(PTHREAD_TEST_OUTPUT)
