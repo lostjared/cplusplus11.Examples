@@ -161,6 +161,7 @@ all:
 	$(CXX) $(CFLAGS) ./override/override_test.cc -o build/override_test
 	$(CXX) $(CFLAGS) ./override/virtual_base.cc -o build/virtual_base
 	$(CXX) $(CFLAGS) ./persist/persist.cc -o build/persist
+	$(CXX) $(CFLAGS) ./persist/persist-vector-main.cpp -o build/persist-vec-test
 	$(CXX) $(CFLAGS) ./pool/driver.cc -o build/driver
 	$(CXX) $(CFLAGS) ./random/r.cc -o build/r
 	$(CXX) $(CFLAGS) ./random/shuffle.cc -o build/shuffle
