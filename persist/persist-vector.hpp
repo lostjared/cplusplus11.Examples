@@ -71,7 +71,7 @@ namespace persist {
         }
         
         Vector<T,Read,Write> &operator=(const Vector<T,Read,Write> &&cv) {
-            vec = std::move(cv);
+            vec = std::move(cv.vec);
             file_n = cv.file_n;
         }
         
