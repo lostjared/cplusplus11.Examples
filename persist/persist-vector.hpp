@@ -60,7 +60,7 @@ namespace persist {
             
         }
         
-        Vector(Vector<T,Read,Write> &&cv) : vec(std::move(cv.vec)), file_n(cv.file_n) {
+        Vector(const Vector<T,Read,Write> &&cv) : vec(std::move(cv.vec)), file_n(cv.file_n) {
             
         }
         
