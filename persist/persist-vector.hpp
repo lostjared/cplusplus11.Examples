@@ -55,6 +55,26 @@ namespace persist {
             writeFile(file_n);
         }
         
+        // connstructors
+        Vector(const Vector<T,Read,Write> &cv) : vec(cv.vec), file_n(cv.file_n) {
+            
+        }
+        
+        Vector(Vector<T,Read,Write> &&cv) : vec(std::move(cv.vec)), file_n(cv.file_n) {
+            
+        }
+        
+        // overloaded = operators
+        Vector<T,Read,Write> &operator=(const Vector<T,Read,Write> &cv) {
+            vec = cv.vec;
+            file_n = cv.file_n;
+        }
+        
+        Vector<T,Read,Write> &operator=(const Vector<T,Read,Write> &&cv) {
+            vec = std::move(cv);
+            file_n = cv.file_n;
+        }
+        
         // read vector from file
         void readFile(std::string filename) {
             std::fstream file;
