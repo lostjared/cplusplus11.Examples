@@ -26,7 +26,7 @@ namespace persist {
     class DefaultRead {
     public:
         void operator()(T &type, std::fstream &file) {
-            file.read((char*)&type, sizeof(T));
+            file.read(reinterpret_cast<char*>(&type), sizeof(T));
             
         }
     };
@@ -35,7 +35,7 @@ namespace persist {
     class DefaultWrite {
     public:
         void operator()(T &type, std::fstream &file) {
-            file.write((char*)&type, sizeof(T));
+            file.write(reinterpret_cast<char*>(&type), sizeof(T));
         }
     };
     
@@ -104,10 +104,14 @@ namespace persist {
             file.close();
         }
         
+        T &operator[](size_t pos) {
+            return vec[pos];
+        }
+        
         // use -> operator to access the vector
         inline std::vector<T> *operator->() { return &vec; }
         // use 'getvector' to get reference to vector
-        inline std::vector<T> &getvector() { return vec; }
+        inline std::vector<T> &operator*() { return vec; }
     protected:
         std::vector<T> vec;
         std::string file_n;
