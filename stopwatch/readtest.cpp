@@ -24,7 +24,7 @@ void read_read(const std::string &text) {
     
     StopWatch<HighResolutionClock> timer("read with read member function");
     std::fstream file;
-    file.open(text, std::ios::in);
+    file.open(text, std::ios::in|std::ios::binary);
     if(!file.is_open()) {
         std::cerr << "Error opening file: " << text << "\n";
         exit(0);
@@ -47,7 +47,7 @@ int main(int argc, char **argv) {
     
 
     if(argc != 2) {
-        std::cerr << "argument required file to read.\n";
+        std::cerr << "argument required text file to read.\n";
         exit(0);
     }
     
