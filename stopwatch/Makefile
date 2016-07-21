@@ -13,4 +13,4 @@ all:
 	$(CXX) $(CXXFLAGS) $(READ_TEST) -o read-test
 
 clean:
-	rm -f stopwatch-test stopwatch-string stopwatch-move loop-test
+	rm -f stopwatch-test stopwatch-string stopwatch-move loop-test read-test
