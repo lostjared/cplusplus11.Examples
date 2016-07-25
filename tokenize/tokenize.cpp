@@ -8,7 +8,7 @@ void outputToken(std::ostream &out, const lex::Token &token) {
         std::cout << "Quit token read from stream exiting...\n";
         exit(0);
     }
-    std::cout << "Token: " << token.getToken() << " of Type: " << token.getType() << "\n";
+    std::cout << "Token: [" << token.getToken() << "] of Type: [" << token.getType() << "]\n";
 }
 
 int main() {
@@ -19,9 +19,12 @@ int main() {
         std::getline(std::cin, line);
         std::istringstream input(line);
         lex::Scanner scan(input);
+        unsigned int index = 0;
         while(scan.valid()) {
             lex::Token token;
             scan >> token;
+            ++index;
+            std::cout << "Token Index: #" << index << ": ";
             outputToken(std::cout, token);
         }
     }
