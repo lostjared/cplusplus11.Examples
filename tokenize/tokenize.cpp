@@ -8,7 +8,13 @@ void outputToken(std::ostream &out, const lex::Token &token) {
         out << "Quit token read from stream exiting...\n";
         exit(0);
     }
-    out << "Token: [" << token.getToken() << "] of Type: [" << token.getType() << "]\n";
+    
+    if(!token.isKeyword()) {
+        out << "Token: [" << token.getToken() << "] of Type: [" << token.getType() << "]\n";
+    }
+    else {
+        out << "Token: [" << token.getToken() << "] of Type: [Keyword]\n";
+    }
 }
 
 int main() {

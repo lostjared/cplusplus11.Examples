@@ -63,8 +63,7 @@ KEY_NULL
             return false;
         }
         
-        bool isKeyword() {
-            
+        bool isKeyword() const {
             for(unsigned int i = 0; keywords[i] != 0; ++i) {
                 if(keywords[i] == text) return true;
             }
