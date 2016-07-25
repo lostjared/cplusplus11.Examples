@@ -13,26 +13,26 @@
 
 namespace lex {
     
-    static const char *keywords[] = {"alignof", "and", "and_eq", "asm", 
-"auto", "bitand", "bitor", "bool", "break", "case", "catch", "char", 
-"char16_t", "char32_t", "class", "compl", "const", "constexpr", 
-"const_cast", "continue", "decltype", "default", "delete", "do", 
-"double", "dynamic_cast", "else", "enum", "explicit", "export", 
-"extern", "false", "float", "for", "friend", "goto", "if", "inline", 
-"int", "long", "mutable", "namespace", "new", "noexcept", "not", 
-"not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected", 
-"public", "register", "reinterpret_cast", "return", "short", "signed", 
-"sizeof", "static", "static_assert", "static_cast", "struct", "switch", 
-"template", "this", "thread_local", "throw", "true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq", "import","abstract","final","interface", "extends", "implements", 0 };
+    static const char *keywords[] = {"alignof", "and", "and_eq", "asm",
+        "auto", "bitand", "bitor", "bool", "break", "case", "catch", "char",
+        "char16_t", "char32_t", "class", "compl", "const", "constexpr",
+        "const_cast", "continue", "decltype", "default", "delete", "do",
+        "double", "dynamic_cast", "else", "enum", "explicit", "export",
+        "extern", "false", "float", "for", "friend", "goto", "if", "inline",
+        "int", "long", "mutable", "namespace", "new", "noexcept", "not",
+        "not_eq", "nullptr", "operator", "or", "or_eq", "private", "protected",
+        "public", "register", "reinterpret_cast", "return", "short", "signed",
+        "sizeof", "static", "static_assert", "static_cast", "struct", "switch",
+        "template", "this", "thread_local", "throw", "true", "try", "typedef", "typeid", "typename", "union", "unsigned", "using", "virtual", "void", "volatile", "wchar_t", "while", "xor", "xor_eq", "import","abstract","final","interface", "extends", "implements", 0 };
     
     enum Keyword_type {
-          KEY_ALIGNOF, KEY_AND, KEY_AND_EQ, KEY_ASM, KEY_AUTO, KEY_BITAND, KEY_BITOR, KEY_BOOL, KEY_BREAK, KEY_CASE, KEY_CATCH, KEY_CHAR, KEY_CHAR16_T, KEY_CHAR32_T, KEY_CLASS, KEY_COMPL, KEY_CONST, KEY_CONSTEXPR, KEY_CONST_CAST, KEY_CONTINUE, KEY_DECLTYPE, KEY_DEFAULT, KEY_DELETE, KEY_DO, KEY_DOUBLE, KEY_DYNAMIC_CAST, KEY_ELSE, KEY_ENUM, KEY_EXPLICIT, 
-KEY_EXPORT, KEY_EXTERN, KEY_FALSE, KEY_FLOAT, KEY_FOR, KEY_FRIEND, KEY_GOTO, KEY_IF, KEY_INLINE, KEY_INT, KEY_LONG, KEY_MUTABLE, KEY_NAMESPACE, KEY_NEW, KEY_NOEXCEPT, KEY_NOT, KEY_NOT_EQ, KEY_NULLPTR, KEY_OPERATOR, KEY_OR, KEY_OR_EQ, KEY_PRIVATE, KEY_PROTECTED, KEY_PUBLIC, KEY_REGISTER, KEY_REINTERPRET_CAST, KEY_RETURN, KEY_SHORT, KEY_SIGNED, 
-KEY_SIZEOF, KEY_STATIC, KEY_STATIC_ASSERT, KEY_STATIC_CAST, KEY_STRUCT, KEY_SWITCH, KEY_TEMPLATE, KEY_THIS, KEY_THREAD_LOCAL, KEY_THROW, KEY_TRUE, KEY_TRY, KEY_TYPEDEF, KEY_TYPEID, KEY_TYPENAME, KEY_UNION, KEY_UNSIGNED, KEY_USING, KEY_VIRTUAL, KEY_VOID, KEY_VOLATILE, KEY_WCHAR_T, KEY_WHILE, KEY_XOR, 
-KEY_XOR_EQ,KEY_IMPORT,KEY_ABSTRACT,KEY_FINAL,KEY_INTERFACE,KEY_EXENDS,KEY_IMPLEMENTS, 
-KEY_NULL
+        KEY_ALIGNOF, KEY_AND, KEY_AND_EQ, KEY_ASM, KEY_AUTO, KEY_BITAND, KEY_BITOR, KEY_BOOL, KEY_BREAK, KEY_CASE, KEY_CATCH, KEY_CHAR, KEY_CHAR16_T, KEY_CHAR32_T, KEY_CLASS, KEY_COMPL, KEY_CONST, KEY_CONSTEXPR, KEY_CONST_CAST, KEY_CONTINUE, KEY_DECLTYPE, KEY_DEFAULT, KEY_DELETE, KEY_DO, KEY_DOUBLE, KEY_DYNAMIC_CAST, KEY_ELSE, KEY_ENUM, KEY_EXPLICIT,
+        KEY_EXPORT, KEY_EXTERN, KEY_FALSE, KEY_FLOAT, KEY_FOR, KEY_FRIEND, KEY_GOTO, KEY_IF, KEY_INLINE, KEY_INT, KEY_LONG, KEY_MUTABLE, KEY_NAMESPACE, KEY_NEW, KEY_NOEXCEPT, KEY_NOT, KEY_NOT_EQ, KEY_NULLPTR, KEY_OPERATOR, KEY_OR, KEY_OR_EQ, KEY_PRIVATE, KEY_PROTECTED, KEY_PUBLIC, KEY_REGISTER, KEY_REINTERPRET_CAST, KEY_RETURN, KEY_SHORT, KEY_SIGNED,
+        KEY_SIZEOF, KEY_STATIC, KEY_STATIC_ASSERT, KEY_STATIC_CAST, KEY_STRUCT, KEY_SWITCH, KEY_TEMPLATE, KEY_THIS, KEY_THREAD_LOCAL, KEY_THROW, KEY_TRUE, KEY_TRY, KEY_TYPEDEF, KEY_TYPEID, KEY_TYPENAME, KEY_UNION, KEY_UNSIGNED, KEY_USING, KEY_VIRTUAL, KEY_VOID, KEY_VOLATILE, KEY_WCHAR_T, KEY_WHILE, KEY_XOR,
+        KEY_XOR_EQ,KEY_IMPORT,KEY_ABSTRACT,KEY_FINAL,KEY_INTERFACE,KEY_EXENDS,KEY_IMPLEMENTS,
+        KEY_NULL
     };
-
+    
     static const char *operators[] = {"==", "!=", "<<", ">>", "+=", "-=", "*=", "/=", "&=", "|=", "^=", ";", ":", ".", "-", "(", ")", "[", "]", "{", "}", "!", "@", "#", "$", "%", "^", "&", "*", "=", "+", "~", "\"", "`", ",",  "/", ",", ">", "->","?", 0 };
     
     enum Symbol_type { SYM_EEQUAL, SYM_NOTEQUAL, SYM_STREAM_LEFT, SYM_STREAM_RIGHT, SYM_PLUS_EQUAL, SYM_MINUS_EQUAL,SYM_MUL_EQUAL, SYM_DIV_EQUAL, SYM_AND_EUAL, SYM_OR_EQUAL, SYM_XOR_EQUAL,SYM_SEMICOLON, SYM_COLON, SYM_DOT, SYM_MINUS, SYM_POPEN, SYM_PCLOSE, SYM_BOPEN, SYM_BCLOSE, SYM_COPEN, SYM_CCLOSE, SYM_EXCLAMATION, SYM_AT, SYM_POUND, SYM_DOLLAR, SYM_MOD, SYM_XOR, SYM_AND, SYM_MUL, SYM_EQUAL, SYM_PLUS, SYM_TIDLE, SYM_QUOTE, SYM_ANGLE, SYM_CLASS_POINTER, SYM_QUESTION, SYM_NULL };
@@ -43,7 +43,7 @@ KEY_NULL
     class Scanner_EOF {};
     class Scanner_Error {};
     class Exit_Exception {};
-
+    
     
     class Token {
     public:
@@ -114,7 +114,7 @@ KEY_NULL
         Token_type type;
         int keyword_type;
         int symbol_type;
-      
+        
     };
     
     class Token_map {
@@ -127,7 +127,7 @@ KEY_NULL
             for(i = 0; i < 0xFF; ++i) {
                 token_map[i] = TOKEN_NOTHING;
             }
-
+            
             for(i = 0; i < 0xFF; ++i)
                 if(isOperator(i) == true)
                     token_map[i] = TOKEN_OPERATOR;
@@ -149,7 +149,7 @@ KEY_NULL
             setToken(' ', TOKEN_WHITESPACE);
             setToken('\t', TOKEN_WHITESPACE);
         }
-
+        
         void setToken(signed int pos, Token_type token) {
             token_map[pos] = token;
         }
@@ -169,15 +169,15 @@ KEY_NULL
             
             return false;
         }
-    
+        
     };
-
+    
     class LexInput {
     private:
         bool owns;
         static Token_map token_map;
     public:
-         LexInput(std::istream *s) : owns(true), input(s), offset(0), line(1) {
+        LexInput(std::istream *s) : owns(true), input(s), offset(0), line(1) {
             initMap();
         }
         LexInput(std::istream &s) : owns(false), input(&s), offset(0), line(1) {
@@ -189,10 +189,10 @@ KEY_NULL
                 delete input;
         }
         
-     
+        
         
         void initMap() {
-
+            
         }
         
         Token_type characterToType(const unsigned char &c) {
@@ -235,7 +235,7 @@ KEY_NULL
         }
         
         const unsigned char &curChar() const { return current; }
-
+        
         void putBack(const unsigned char &c) {
             input->putback(c);
         }
@@ -244,7 +244,7 @@ KEY_NULL
             Token tok;
             unsigned char c;
             if(input && input->eof()) {
-              //  throw Scanner_EOF();
+                //  throw Scanner_EOF();
                 tok = Token("", TOKEN_EOF);
                 return tok;
             }
@@ -290,7 +290,7 @@ KEY_NULL
                     
                     break;
                 case TOKEN_NOTHING:
-                   // std::cout << "Warning unrecognized character: " << c << "\n";
+                    // std::cout << "Warning unrecognized character: " << c << "\n";
                     return GetToken();
                     break;
                 default:
@@ -309,7 +309,7 @@ KEY_NULL
         Token &GetCurrent() {
             return ctoken;
         }
-  
+        
     private:
         std::istream *input;
         unsigned int offset, line;
@@ -325,12 +325,12 @@ KEY_NULL
             while(((characterToType(cc) == TOKEN_DIGIT) || cc == '.') && *input) {
                 if(cc == '.') ++count;
                 if(count < 2)
-                tok += cc;
+                    tok += cc;
                 else { trunc = true; }
                 cc = getChar();
             }
             if(characterToType(cc) !=  TOKEN_CHAR)
-            putBack(cc);
+                putBack(cc);
             if(trunc == true) std::cout << tok << " truncated.\n";
             token.setToken(tok, TOKEN_DIGIT, soffset, sline);
         }
@@ -347,7 +347,7 @@ KEY_NULL
             }
             putBack(cc);
             token.setToken(tok, TOKEN_CHAR, soffset, sline);
-         }
+        }
         
         void GetStringToken(Token &token) {
             std::string tok;
@@ -411,8 +411,8 @@ KEY_NULL
         static const char *strz[] = {"Nothing","Id Token","Whitespace","String","Character", "Digit","Symbol","Identifier", "\\"};
         signed int num = static_cast<signed int>(t);
         if(num >= 0 && num <= TOKEN_IDENTIFIER)
-        out << strz[num];
-     
+            out << strz[num];
+        
         
         
         
@@ -425,13 +425,13 @@ KEY_NULL
             out << "[" << t.getToken() << "] of type: [" << t.getType() << " #: " << t.getSymbolType() << " ] Line:" << t.line <<":" << t.offset;
         }
         else
-        if(t.getKeywordType() == -1)
-            out << "[" << t.getToken() << "] of type: [" << t.getType() << "] Line:" << t.line <<":" << t.offset;
-        else
-            out << "[" << t.getToken() << "] of type: [ keyword #: " << t.getKeywordType() << "] Line: " << t.line << ":" << t.offset;;
+            if(t.getKeywordType() == -1)
+                out << "[" << t.getToken() << "] of type: [" << t.getType() << "] Line:" << t.line <<":" << t.offset;
+            else
+                out << "[" << t.getToken() << "] of type: [ keyword #: " << t.getKeywordType() << "] Line: " << t.line << ":" << t.offset;;
         return out;
     }
-            
+    
     class Scanner {
         
     public:
@@ -457,8 +457,8 @@ KEY_NULL
             std::cerr << s << "\n";
             throw Scanner_Error();
         }
-
-    
+        
+        
         bool valid() {
             return input.valid();
         }

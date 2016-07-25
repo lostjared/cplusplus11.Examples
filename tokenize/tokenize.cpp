@@ -20,6 +20,7 @@ void outputToken(std::ostream &out, const lex::Token &token) {
 int main() {
     bool active = true;
     while(active == true) {
+        
         std::string line;
         std::cout << "Input Text: ";
         std::getline(std::cin, line);
@@ -27,11 +28,20 @@ int main() {
         lex::Scanner scan(input);
         unsigned int index = 0;
         while(scan.valid()) {
-            lex::Token token;
-            scan >> token;
-            ++index;
-            std::cout << "Token Index: #" << index << ": ";
-            outputToken(std::cout, token);
+            try {
+                lex::Token token;
+                scan >> token;
+                ++index;
+                std::cout << "Token Index: #" << index << ": ";
+                outputToken(std::cout, token);
+            }
+            catch(lex::Scanner_EOF) {
+                std::cerr << "Scanner End of File.\n";
+                
+            }
+            catch(lex::Scanner_Error) {
+                std::cerr << "Scanner Error..\n";
+            }
         }
     }
     return 0;
