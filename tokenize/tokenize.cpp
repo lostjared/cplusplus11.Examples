@@ -5,10 +5,10 @@
 
 void outputToken(std::ostream &out, const lex::Token &token) {
     if(token.getToken() == "quit") {
-        std::cout << "Quit token read from stream exiting...\n";
+        out << "Quit token read from stream exiting...\n";
         exit(0);
     }
-    std::cout << "Token: [" << token.getToken() << "] of Type: [" << token.getType() << "]\n";
+    out << "Token: [" << token.getToken() << "] of Type: [" << token.getType() << "]\n";
 }
 
 int main() {
