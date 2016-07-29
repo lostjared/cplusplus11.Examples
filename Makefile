@@ -148,7 +148,7 @@ all:
 	$(CXX) $(CFLAGS) ./lambda/main.cc -o build/lambda-main
 	$(CXX) $(CFLAGS) ./lambda/source.cc -o build/source
 	$(CXX) $(CFLAGS) ./lambda/test.cc -o build/test
-	$(CXX) $(CFLAGS) ./m3ugen/main.cc -o build/m3ugen-main
+#	$(CXX) $(CFLAGS) ./m3ugen/main.cc -o build/m3ugen-main
 	$(CXX) $(CFLAGS) ./member/memberdecl.cc -o build/memberdecl
 	$(CXX) $(CFLAGS) ./move/move_test.cc -o build/move_test
 	$(CXX) $(CFLAGS) ./move/move_test2.cc -o build/move_test2
