@@ -4,6 +4,7 @@
 #include<string>
 #include<vector>
 #include<fstream>
+#include<algorithm>
 
 namespace db {
     class PhoneRecord {
