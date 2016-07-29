@@ -6,6 +6,8 @@
 #include<iostream>
 #include<thread>
 #include<unistd.h>
+#include<atomic>
+
 
 std::atomic<int> value; // value can be used by both threads without worry
 
