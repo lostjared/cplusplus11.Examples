@@ -1,5 +1,7 @@
+CXXFLAGS=-O2
+
 all:
-	g++ sourcefile.cpp -o sourcetest
-	chmod 755 sourcetest
+	$(CXX)  $(CXXFLAGS) sourcefile.cpp -o cpp_tokenize
+	chmod 755 cpp_tokenize
 clean:
-	rm -f sourcetest
+	rm -f cpp_tokenize
