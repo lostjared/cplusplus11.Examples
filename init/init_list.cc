@@ -4,6 +4,7 @@
 #include<vector>
 #include<string>
 #include<initializer_list>
+#include<algorithm>
 
 template<typename T>
 class VectorWrapper {
