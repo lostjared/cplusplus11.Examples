@@ -3,6 +3,7 @@
 #include<unordered_map>
 #include "mxl.hpp"
 #include<fstream>
+#include<algorithm>
 
 int main(int argc, char **argv) {
     
