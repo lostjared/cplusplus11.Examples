@@ -4,7 +4,7 @@ all:
 	$(CXX) $(CFLAGS) ./algorithm/find_if.cpp -o build/find_if
 	$(CXX) $(CFLAGS) ./algorithm/for_each.cpp -o build/for_each
 	$(CXX) $(CFLAGS) ./algorithm/sort.cpp -o build/sort
-	$(CXX) $(CFLAGS) ./algorithm/transform.cpp -o build/transform
+#	$(CXX) $(CFLAGS) ./algorithm/transform.cpp -o build/transform
 	$(CXX) $(CFLAGS) ./arraybyte/main.cpp -o build/main
 	$(CXX) $(CFLAGS) ./assert/main.cpp -o build/main
 	$(CXX) $(CFLAGS) ./auto/autotest2.cpp -o build/autotest2
