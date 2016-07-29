@@ -1,6 +1,6 @@
 #include<iostream>
 #include<string>
-#incldue<typeinfo>
+#include<typeinfo>
 
 class Id {
 public:
