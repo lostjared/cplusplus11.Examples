@@ -4,6 +4,9 @@
 
 #include<iostream>
 #include<sstream>
+#include<mutex>
+#include<cstdlib>
+#include<cstdio>
 #include "socket.hpp"
 #include<thread>
 
