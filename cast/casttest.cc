@@ -8,6 +8,7 @@
 #include<iostream>
 #include<string>
 #include<fstream>
+#include<cstring>
 
 class Modify {
 public:
