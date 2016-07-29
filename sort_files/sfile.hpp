@@ -5,7 +5,7 @@
 #include<fstream>
 #include<vector>
 #include<string>
-
+#include<algorithm>
 
 class FileSort {
 public:
