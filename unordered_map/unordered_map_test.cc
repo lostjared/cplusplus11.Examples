@@ -3,7 +3,7 @@
 
 #include<iostream>
 #include<unordered_map>
-
+#include<algorithm>
 // Simple class
 
 class Id {

@@ -5,6 +5,7 @@
 #include<unordered_map>
 #include<string>
 #include<sstream>
+#include<algorithm>
 
 void PrintMap(std::unordered_map<std::string, std::string> &m, std::unordered_map<std::string, std::string>::iterator map_iterator) {
 
