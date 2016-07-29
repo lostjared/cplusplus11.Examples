@@ -37,7 +37,7 @@ all:
 	$(CXX) $(CFLAGS) ./download/main.cpp -o build/download-main -pthread
 	$(CXX) $(CFLAGS) ./enum/enum_class.cpp -o build/enum_class
 	$(CXX) $(CFLAGS) ./function_objects/func1.cpp -o build/func1
-	$(CXX) $(CFLAGS) ./function_objects/func2.cpp -o build/func2
+	$(CXX) $(CFLAGS) ./function_objects/func2.cpp -o build/func2 -pthread
 	$(CXX) $(CFLAGS) ./hash/hash1.cpp -o build/hash1
 	$(CXX) $(CFLAGS) ./hash/hash2.cpp -o build/hash2
 	$(CXX) $(CFLAGS) ./hash/hash3.cpp -o build/hash3
@@ -108,9 +108,9 @@ all:
 	$(CXX) $(CFLAGS) ./templates/template-template.cpp -o build/template-template
 	$(CXX) $(CFLAGS) ./templates/template-type.cpp -o build/template-type
 	$(CXX) $(CFLAGS) ./templates/template-union.cpp -o build/template-union
-	$(CXX) $(CFLAGS) ./thread/async_test4.cpp -o build/async_test4
-	$(CXX) $(CFLAGS) ./thread/atomic.cpp -o build/atomic
-	$(CXX) $(CFLAGS) ./thread/detach.cpp -o build/detach
+	$(CXX) $(CFLAGS) ./thread/async_test4.cpp -o build/async_test4 -pthread
+	$(CXX) $(CFLAGS) ./thread/atomic.cpp -o build/atomic -pthread
+	$(CXX) $(CFLAGS) ./thread/detach.cpp -o build/detach -pthread
 	$(CXX) $(CFLAGS) ./tilemap/main.cpp -o build/tilemap-main
 #	$(CXX) $(CFLAGS) ./tilemap/newtilemap/newtilemap/newtilemap/main.cpp -o build/main
 #	$(CXX) $(CFLAGS) ./tilemap/newtilemap/newtilemap/newtilemap/sdltest/test.cpp -o build/test
@@ -119,7 +119,7 @@ all:
 #	$(CXX) $(CFLAGS) ./trim_lines/triml.cpp.txt -o build/triml.cpp
 	$(CXX) $(CFLAGS) ./typeid/typeid_test2.cpp -o build/typeid_test2
 	$(CXX) $(CFLAGS) ./UNIX/forktest/forktest.cpp -o build/forktest
-	$(CXX) $(CFLAGS) ./UNIX/pthread/pthread-test.cpp -o build/pthread-test
+	$(CXX) $(CFLAGS) ./UNIX/pthread/pthread-test.cpp -o build/pthread-test -pthread
 	$(CXX) $(CFLAGS) ./allocator/al.cc -o build/al
 	$(CXX) $(CFLAGS) ./array/ar.cc -o build/ar
 	$(CXX) $(CFLAGS) ./array/ar2.cc -o build/ar2
@@ -180,12 +180,12 @@ all:
 	$(CXX) $(CFLAGS) ./test/test2.cc -o build/test2
 	$(CXX) $(CFLAGS) ./test/typearr.cc -o build/typearr
 	$(CXX) $(CFLAGS) ./thought.cc -o build/thought
-	$(CXX) $(CFLAGS) ./thread/async_test.cc -o build/async_test
-	$(CXX) $(CFLAGS) ./thread/async_test2.cc -o build/async_test2
-	$(CXX) $(CFLAGS) ./thread/async_test3.cc -o build/async_test3
-	$(CXX) $(CFLAGS) ./thread/promise.cc -o build/promise
-	$(CXX) $(CFLAGS) ./thread/thread_test.cc -o build/thread_test
-	$(CXX) $(CFLAGS) ./transfer/transfer.cc -o build/transfer
+	$(CXX) $(CFLAGS) ./thread/async_test.cc -o build/async_test -pthread
+	$(CXX) $(CFLAGS) ./thread/async_test2.cc -o build/async_test2 -pthread
+	$(CXX) $(CFLAGS) ./thread/async_test3.cc -o build/async_test3 -pthread
+	$(CXX) $(CFLAGS) ./thread/promise.cc -o build/promise -pthread
+	$(CXX) $(CFLAGS) ./thread/thread_test.cc -o build/thread_test -pthread
+	$(CXX) $(CFLAGS) ./transfer/transfer.cc -o build/transfer -pthread
 	$(CXX) $(CFLAGS) ./try/try.cc -o build/try
 	$(CXX) $(CFLAGS) ./try/try2.cc -o build/try2
 	$(CXX) $(CFLAGS) ./tuple/t.cc -o build/t
