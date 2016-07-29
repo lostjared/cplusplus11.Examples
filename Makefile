@@ -34,7 +34,7 @@ all:
 	$(CXX) $(CFLAGS) ./constexpr/constexpr_example.cpp -o build/constexpr_example
 	$(CXX) $(CFLAGS) ./databyte/main.cpp -o build/databyte-main
 	$(CXX) $(CFLAGS) ./db/db.cpp -o build/db
-	$(CXX) $(CFLAGS) ./download/main.cpp -o build/download-main
+	$(CXX) $(CFLAGS) ./download/main.cpp -o build/download-main -pthread
 	$(CXX) $(CFLAGS) ./enum/enum_class.cpp -o build/enum_class
 	$(CXX) $(CFLAGS) ./function_objects/func1.cpp -o build/func1
 	$(CXX) $(CFLAGS) ./function_objects/func2.cpp -o build/func2
