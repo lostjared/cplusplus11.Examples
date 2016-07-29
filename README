@@ -2,7 +2,6 @@ Jared Bruni's C++11 Examples
 I am just going through and writing stuff to help me remember and practice
 some of the new features of C++11. I will create a new repo for C++14.
 
-
 Most of the examples have a driver just to test the code. Do not do anything 
 useful except to demonstrate those specific features.
 
@@ -13,12 +12,13 @@ Note:
 To compile make sure your compiler supports C++11 with clang I use:
 say for sourcefile.cc
 
-clang++ sourcefile.cc -o sourcefile -std=c++11 -stdlib=libc++
+clang++ -std=c++11 sourcefile.cc -o sourcefile 
 
 For Linux use libstdc++ instead of libc++ and g++ 4.8 or greater
 Each program only requires one line to compile it. 
 
-g++ sourcefile.cc -o sourcefile -std=c++11 
+g++ -std=c++11 sourcefile.cc -o sourcefile 
+
 
 - Jared Bruni
 
