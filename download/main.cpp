@@ -7,6 +7,7 @@
 #include<mutex>
 #include<cstdlib>
 #include<cstdio>
+#include<cstring>
 #include "socket.hpp"
 #include<thread>
 
