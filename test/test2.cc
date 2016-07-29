@@ -7,7 +7,7 @@
 #include<iostream>
 #include<fstream>
 #include<vector>
-#include<alogrithm>
+#include<algorithm>
 
 bool readFile(std::string fname, std::vector<std::string> &v);
 bool writeFile(std::string fname, std::vector<std::string> &v);
