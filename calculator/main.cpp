@@ -5,6 +5,7 @@
 #include<sstream>
 #include<cstdlib>
 #include<ctime>
+#include<cmath>
 #include "lexer.h"
 
 

@@ -18,6 +18,7 @@
 #include<sstream>
 #include<cstdio>
 #include<cstdlib>
+#define PATH_MAX        4096
 
 // the compile function
 bool compile(std::string cxx, std::string sources, std::string output, std::string cxxflags, std::string ldflags, std::string &return_text) {
