@@ -3,6 +3,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<algorithm>
 
 class C {
     std::vector<std::string> &vec;
