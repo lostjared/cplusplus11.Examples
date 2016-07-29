@@ -12,7 +12,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
-
+#include<typeinfo>
 
 template<typename T>
 class MyVector : public std::vector<T> {
