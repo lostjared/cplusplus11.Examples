@@ -164,8 +164,8 @@ all:
 	$(CXX) $(CFLAGS) ./persist/persist-vector-main.cpp -o build/persist-vec-test
 	$(CXX) $(CFLAGS) ./pool/driver.cc -o build/driver
 	$(CXX) $(CFLAGS) ./random/r.cc -o build/r
-	$(CXX) $(CFLAGS) ./random/shuffle.cc -o build/shuffle
-	$(CXX) $(CFLAGS) ./random/shuffle2.cc -o build/shuffle2
+#	$(CXX) $(CFLAGS) ./random/shuffle.cc -o build/shuffle
+#	$(CXX) $(CFLAGS) ./random/shuffle2.cc -o build/shuffle2
 	$(CXX) $(CFLAGS) ./regex/regex_test.cc -o build/regex_test
 	$(CXX) $(CFLAGS) ./rename_files/file_rename.cc -o build/file_rename
 	$(CXX) $(CFLAGS) ./smart_pointer/unique.cc -o build/unique
