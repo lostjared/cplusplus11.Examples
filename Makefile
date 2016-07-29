@@ -96,8 +96,8 @@ all:
 	$(CXX) $(CFLAGS) ./stopwatch/main.cpp -o build/stopwatch-main
 	$(CXX) $(CFLAGS) ./stopwatch/movetest.cpp -o build/movetest
 	$(CXX) $(CFLAGS) ./stopwatch/string-test.cpp -o build/string-test
-	$(CXX) $(CFLAGS) ./stream_insert_iterators/insert_iterator.cpp -o build/insert_iterator
-	$(CXX) $(CFLAGS) ./stream_insert_iterators/stream_iterator.cpp -o build/stream_iterator
+#	$(CXX) $(CFLAGS) ./stream_insert_iterators/insert_iterator.cpp -o build/insert_iterator
+#	$(CXX) $(CFLAGS) ./stream_insert_iterators/stream_iterator.cpp -o build/stream_iterator
 	$(CXX) $(CFLAGS) ./templates/template-class.cpp -o build/template-class
 	$(CXX) $(CFLAGS) ./templates/template-class2.cpp -o build/template-class2
 	$(CXX) $(CFLAGS) ./templates/template-class3.cpp -o build/template-class3
