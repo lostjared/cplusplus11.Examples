@@ -10,6 +10,8 @@
 #include<fstream>
 #include<cstring>
 #include<exception>
+#include<typeinfo>
+
 
 class Modify {
 public:
@@ -54,7 +56,7 @@ void castTest(Modify &m) {
         ModifyPrint &p = dynamic_cast<ModifyPrint&>(m);
         p.output();
         std::cout << "Cast succeded.\n";
-    } catch(const std::bad_cast &e) {
+    } catch(std::bad_cast &e) {
         std::cout << "Cast test:\n";
         std::cerr <<  "Exception: " << e.what() << "\n";
         std::cerr << "Cast is not of type ModifyPrint..\n";
