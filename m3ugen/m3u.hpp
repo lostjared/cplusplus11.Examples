@@ -10,7 +10,8 @@
 #include<sys/types.h>
 #include<sys/stat.h>
 #include<random>
-
+#include<ctime>
+#include<algorithm>
 
 namespace m3u {
     
