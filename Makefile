@@ -178,7 +178,7 @@ all:
 	$(CXX) $(CFLAGS) ./test/temp_test2.cc -o build/temp_test2
 	$(CXX) $(CFLAGS) ./test/test.cc -o build/test
 	$(CXX) $(CFLAGS) ./test/test2.cc -o build/test2
-	$(CXX) $(CFLAGS) ./test/typearr.cc -o build/typearr
+#	$(CXX) $(CFLAGS) ./test/typearr.cc -o build/typearr
 	$(CXX) $(CFLAGS) ./thought.cc -o build/thought
 	$(CXX) $(CFLAGS) ./thread/async_test.cc -o build/async_test -pthread
 	$(CXX) $(CFLAGS) ./thread/async_test2.cc -o build/async_test2 -pthread
