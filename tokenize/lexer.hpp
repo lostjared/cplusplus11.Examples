@@ -541,10 +541,11 @@ namespace lex {
                             
                             input.GetToken();
                             
-                            if(function[var_name].func != 0)
-                                return function[var_name].func(d);
                             
-                            stream << var_name << " " << d << "\n";
+                            if(function[var_name].func != 0) {
+                                stream << var_name << " " << d << "\n";
+                                return function[var_name].func(d);
+                            }
                             
                             err("Error function not found.\n");
                         } else err("Unknown function");
