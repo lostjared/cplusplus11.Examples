@@ -10,6 +10,9 @@
 #include<vector>
 #include<cstdlib>
 #include<map>
+#include<unordered_map>
+#include<string>
+#include<sstream>
 
 namespace lex {
     
@@ -466,6 +469,222 @@ namespace lex {
     protected:
         LexInput input;
         Token cur_token;
+    };
+    
+    struct Func { //use default constuctor
+        std::string name;
+        double (*func)(double d);
+    };
+    
+    class Parser : public Scanner {
+    private:
+        std::unordered_map<std::string, double> &vars;
+        std::unordered_map<std::string, Func> &function;
+        std::ostringstream stream;
+    public:
+        explicit Parser(std::istream *stream, std::unordered_map<std::string, double> &v, std::unordered_map<std::string, Func> &f) : Scanner{stream}, vars(v), function(f) {}
+        explicit Parser(std::istream &stream, std::unordered_map<std::string, double> &v, std::unordered_map<std::string, Func> &f) : Scanner{stream}, vars{v}, function{f} {}
+        
+        void print() {
+            std::cout << stream.str() << "\n";
+        }
+        
+        bool eval() {
+            try {
+                while(1) {
+                    Token t = input.GetToken();
+                    if(t.getType() == TOKEN_EOF) {
+                        return true;
+                    }
+                    
+                    std::cout << "Expression  Value: " << expr(false) << "\n";
+                    
+                    if(input.GetCurrent().getToken() == ";")
+                        continue;// eat token
+                    
+                }
+            }
+            catch (Scanner_EOF) {
+                std::cout << "end of evalulation.\n";
+            }
+            catch(Scanner_Error) {
+                std::cout << " A error has occoured.\n";
+            }
+            return false;
+        }
+        
+        std::string cur_var;
+        
+        double prim(bool get) {
+            
+            if(get) input.GetToken();
+            switch(input.GetCurrent().getType()) {
+                case TOKEN_EOF:
+                    throw lex::Scanner_EOF();
+                    break;
+                case TOKEN_DIGIT: {
+                    double v = atof(input.GetCurrent().getToken().c_str());
+                    input.GetToken();
+                    return v;
+                }
+                    break;
+                case TOKEN_CHAR: {
+                    std::string var_name = input.GetCurrent().getToken();
+                    input.GetToken();
+                    if(input.GetCurrent().getToken() == "(") {
+                        if (function.find(var_name) != function.end()) {
+                            double d = expr(true);
+                            if(input.GetCurrent().getToken() != ")") {
+                                err("missing closing ).");
+                                
+                            }
+                            
+                            input.GetToken();
+                            
+                            if(function[var_name].func != 0)
+                                return function[var_name].func(d);
+                            
+                            stream << var_name << " " << d << "\n";
+                            
+                            err("Error function not found.\n");
+                        } else err("Unknown function");
+                    }
+                    
+                    double &v = vars[var_name];
+                    cur_var = var_name;
+                    if(input.GetCurrent().getToken() == "=")  {
+                        double d = expr(true);
+                        stream << var_name << " EQUALS " << d << "\n";
+                        v = d;
+                        
+                    } else if(input.GetCurrent().getToken() == "+=") {
+                        double d = expr(true);
+                        stream << "ADD " << var_name << ", " << d << "\n";
+                        v += d;
+                        
+                        
+                    } else if(input.GetCurrent().getToken() == "-=") {
+                        double d = expr(true);
+                        stream << "SUB " << var_name << ", " << d << "\n";
+                        v -= d;
+                        
+                    } else if(input.GetCurrent().getToken() == "*=") {
+                        double d = expr(true);
+                        stream << "MUL " << var_name << ", " << d << "\n";
+                        v *= d;
+                        
+                    } else if(input.GetCurrent().getToken() == "/=") {
+                        double d = expr(true);
+                        if(d == 0) err("Divide by zero");
+                        stream << "DIV " << var_name << ", " << d << "\n";
+                        v /= d;
+                    }
+                    return v;
+                    
+                }
+                    break;
+                case TOKEN_OPERATOR: {
+                    if(input.GetCurrent().getToken() == "-") {
+                        return -prim(true);
+                        
+                    } else if (input.GetCurrent().getToken() == "(") {
+                        auto e = expr(true);
+                        if(input.GetCurrent().getToken() != ")") err("Expected )");
+                        input.GetToken();
+                        return e;
+                    }
+                }
+                    break;
+                default:
+                    return 0;
+            }
+            
+            
+            if(input.GetCurrent().getToken() == ")")
+                err("No argument");
+            return 0;
+        }
+        
+        double term(bool get) {
+            double left = prim(get);
+            while(1) {
+                std::string temp=input.GetCurrent().getToken();
+                Token_type tok_type = input.GetCurrent().getType();
+                if(tok_type == TOKEN_CHAR || tok_type == TOKEN_DIGIT) {
+                    err("Invalid type expected operator");
+                }
+                switch(tok_type) {
+                    case TOKEN_OPERATOR: {
+                        switch(temp[0]) {
+                            case '*': {
+                                double p = prim(true);
+                                stream << "MUL " << cur_var << ", " << left << ", " << p << "\n";
+                                left *= p;//prim(true);
+                                
+                            }
+                                break;
+                            case '/': {
+                                if(auto d = prim(true)) {
+                                    stream << "DIV " << cur_var << ", "<< left << ", " << d << "\n";
+                                    left /= d;
+                                    
+                                    break;
+                                }
+                                err("Divide by Zero");
+                            }
+                                break;
+                            default:
+                                return left;
+                        }
+                        break;
+                    default:
+                        break;
+                        
+                    }
+                }
+            }
+            return 0;
+        }
+        
+        double expr(bool get) {
+            double left = term(get);
+            while(1) {
+                switch(input.GetCurrent().getType()) {
+                    case TOKEN_EOF:
+                        throw lex::Scanner_EOF();
+                        break;
+                    case TOKEN_OPERATOR:
+                    {
+                        std::string temp=input.GetCurrent().getToken();
+                        
+                        if(temp == "++") err("No ++ right now\n");
+                        if(temp == "--") err("No -- right now\n");
+                        
+                        switch(temp[0]) {
+                            case '+': {
+                                double t = term(true);
+                                stream << "ADD " << cur_var << ", " << left << ", " << t << "\n";
+                                left += t;
+                                
+                            }
+                                break;
+                            case '-': {
+                                double t = term(true);
+                                stream << "SUB " << cur_var << ", " << left << ", " << t << "\n";
+                                left -= t;
+                            }
+                                break;
+                            default:
+                                return left;
+                        }
+                        
+                    }
+                        break;
+                    default:
+                        return 0;
+                }
+            }
+        }
     };
     
 }
