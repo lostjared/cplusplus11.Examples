@@ -619,14 +619,14 @@ namespace lex {
                         switch(temp[0]) {
                             case '*': {
                                 double p = prim(true);
-                                stream << "MUL " << cur_var << ", " << left << ", " << p << "\n";
+                                stream << "MUL " << left << ", " << p << "\n";
                                 left *= p;//prim(true);
                                 
                             }
                                 break;
                             case '/': {
                                 if(auto d = prim(true)) {
-                                    stream << "DIV " << cur_var << ", "<< left << ", " << d << "\n";
+                                    stream << "DIV " << left << ", " << d << "\n";
                                     left /= d;
                                     
                                     break;
@@ -664,14 +664,14 @@ namespace lex {
                         switch(temp[0]) {
                             case '+': {
                                 double t = term(true);
-                                stream << "ADD " << cur_var << ", " << left << ", " << t << "\n";
+                                stream << "ADD " <<  left << ", " << t << "\n";
                                 left += t;
                                 
                             }
                                 break;
                             case '-': {
                                 double t = term(true);
-                                stream << "SUB " << cur_var << ", " << left << ", " << t << "\n";
+                                stream << "SUB " << left << ", " << t << "\n";
                                 left -= t;
                             }
                                 break;
