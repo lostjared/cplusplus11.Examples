@@ -1,6 +1,8 @@
 #include<iostream>
 #include<string>
 #include<sstream>
+#include<ctime>
+#include<cmath>
 #include"lexer.hpp"
 
 std::unordered_map<std::string, double> variables;
