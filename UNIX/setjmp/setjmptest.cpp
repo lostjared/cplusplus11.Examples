@@ -11,20 +11,22 @@ int testF1(int x) {
 
 int rtVal(int val) {
     int x_val = testF1(val);
-    ++x_val;
+    if(x_val == 1) {
+        std::cout << "Value is: 1\n";
+    }
     return x_val;
 }
 
 
 int main(int argc, char **argv) {
-    std::cout << "Pass no arguments to test longjmp zero to complete function\n\nEnter test: ";
+    std::cout << "Pass no arguments to test longjmp pass at least 1 to complete function\nEnter test: ";
     switch(setjmp(j_val)) { // first call retuns 0 after that value passed to longjmp
         case 0: {
             std::cout << "Returned after inital call.\n";
-            if(rtVal(argc) == 2) {
-                std::cout << "value is 2\n";
+            if(rtVal(argc) == 3) {
+                std::cout << "value is 3\n";
             } else {
-                std::cout << "value is not 2\n";
+                std::cout << "value is not 3\n";
             }
         }
             break;
