@@ -30,6 +30,7 @@ int main() {
             }
             
         }
+            break;
         case 1: {
             std::cout << "We jumped back from testF1.\n";
         }
