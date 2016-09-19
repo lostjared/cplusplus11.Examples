@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cstdio>
 #include<cstdlib>
+#include<cstring>
 
 struct Point { int x, y; };
 
