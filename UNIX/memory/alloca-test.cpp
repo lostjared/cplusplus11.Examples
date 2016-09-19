@@ -2,7 +2,8 @@
 #include<alloca.h>
 
 
-void averageNumbers(int *values, int s);
+int averageNumbers(int *values, int s);
+void printAverage(int *values, int s);
 void calcAverage();
 
 int main(int argc, char **argv) {
@@ -10,7 +11,7 @@ int main(int argc, char **argv) {
     return 0;
 }
 
-void averageNumbers(int *values, int s) {
+int averageNumbers(int *values, int s) {
     std::cout << "Enter values: ";
     int total = 0;
     for(int i = 0; i < s; ++i) {
@@ -19,6 +20,20 @@ void averageNumbers(int *values, int s) {
     }
     total /= s;
     std::cout << "Average is: " << total << "\n";
+    return total;
+}
+
+void printAverage(int *values, int s) {
+    int total = averageNumbers(values, s);
+    std::cout << "(";
+    for(unsigned int i = 0; i < s; ++i) {
+        if(i == s-1) {
+            std::cout << values[i];
+        } else {
+            std::cout << values[i]  << "+";
+        }
+    }
+    std::cout << ")/" << s << " = " << total << "\n";
 }
 
 void calcAverage() {
@@ -31,5 +46,5 @@ void calcAverage() {
         std::cerr << "Error allocating numbers..\n";
         exit(0);
     }
-    averageNumbers(av, num_values);
+    printAverage(av, num_values);
 }
