@@ -1,0 +1,9 @@
+all:
+	make -C environment/
+	make -C forktest/
+	make -C io/
+	make -C memory/
+	make -C pthread/
+	make -C setjmp/
+	make -C time/
+	cd user && make -f Makefile.linux && cd ../
