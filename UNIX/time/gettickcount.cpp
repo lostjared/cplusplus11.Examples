@@ -1,5 +1,6 @@
 #include<iostream>
 #include<ctime>
+#include<cstdint>
 #include<unistd.h>
 #include<sys/time.h>
 
