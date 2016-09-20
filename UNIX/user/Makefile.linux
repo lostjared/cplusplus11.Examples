@@ -1,0 +1,10 @@
+CXX_FLAGS=-std=c++11
+
+all: users-test crypt-test
+
+users-test: users.cpp
+	$(CXX) $(CXX_FLAGS) users.cpp -o users-test
+crypt-test: crypt.cpp
+	$(CXX) $(CXX_FLAGS) crypt.cpp -o crypt-test -lcrypt
+clean:
+	rm -f users-test crypt-test
