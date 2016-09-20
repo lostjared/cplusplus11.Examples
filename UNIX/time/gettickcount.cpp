@@ -13,10 +13,9 @@ uint32_t getTickCount() {
 
 
 int main(int argc, char **argv) {
-    
-    unsigned long stop = 0, diff = 0;
+    uint32_t stop = 0, diff = 0;
     std::cout << "Sleeping for 1 second..\n";
-    unsigned long start = getTickCount();
+    uint32_t start = getTickCount();
     sleep(1);
     stop = getTickCount();
     diff = stop-start;
