@@ -3,7 +3,8 @@ all:
 	make -C forktest/
 	make -C io/
 	make -C memory/
+	make -C proc/ -f Makefile.linux
 	make -C pthread/
 	make -C setjmp/
 	make -C time/
-	cd user && make -f Makefile.linux && cd ../
+	make -C user/ -f Makefile.linux
