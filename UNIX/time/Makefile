@@ -6,7 +6,7 @@ gettime-test: gettime.cpp
 	$(CXX) $(CXX_FLAGS) gettime.cpp -o gettime-test
 
 tick-test: gettickcount.cpp
-	$(CXX) $(CXX_FALGS) gettickcount.cpp -o tick-test
+	$(CXX) $(CXX_FLAGS) gettickcount.cpp -o tick-test
 
 clean:
 	rm -f gettime-test tick-test
