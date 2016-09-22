@@ -7,7 +7,7 @@ int main() {
     utsname uts;
     
     if(uname(&uts) == -1) {
-        std::cerr << "Error on uname: \n";
+        std::cerr << "Error on uname: " << strerror(errno) << "\n";
         exit(EXIT_FAILURE);
     }
     
