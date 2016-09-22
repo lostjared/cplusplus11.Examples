@@ -1,6 +1,7 @@
 #include<iostream>
 #include<sys/utsname.h>
 #include<unistd.h>
+#include<cstring>
 
 int main() {
     
