@@ -2,6 +2,7 @@
 #include<sys/utsname.h>
 #include<unistd.h>
 #include<cstring>
+#include<errno.h>
 
 int main() {
     
