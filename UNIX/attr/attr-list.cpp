@@ -32,7 +32,7 @@ int main(int argc, char **argv) {
         std::cout << "name = " << &attr_list[cur_pos] << "\n";
 #if defined(__APPLE__)
         value_len = getxattr(argv[1], &attr_list[cur_pos], attr_value,LIST_SIZE, 0, XATTR_NOFOLLOW);
-#elif defined__linux__)
+#elif defined(__linux__)
         value_len = getxattr(argv[1], &attr_list[cur_pos], attr_value,LIST_SIZE);
 #endif
         
