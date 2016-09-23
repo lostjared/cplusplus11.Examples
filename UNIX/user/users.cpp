@@ -8,7 +8,8 @@ int main() {
     passwd *pwd;
     
     while((pwd = getpwent()) != NULL) {
-        std::cout << "user: " << pwd->pw_name << " id: " << pwd->pw_uid << "\n";
+        std::cout << "user: " << pwd->pw_name << " id: " << pwd->pw_uid <<  " shell: " << pwd->pw_shell << "\n";
+        
     }
     
     endpwent();
