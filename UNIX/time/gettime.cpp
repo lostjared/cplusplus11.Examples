@@ -6,7 +6,7 @@
 int main() {
     
     time_t passed = time(0);
-    std::cout << passed << " seconds since 1970\n";
+    std::cout << "Unix Epoch: " << passed << " seconds since Thursday January 1, 1970\n";
     
     timeval t;
     gettimeofday(&t, 0);
