@@ -7,7 +7,7 @@ constexpr int LIST_SIZE=10000;
 int main(int argc, char **argv) {
     
     if(argc != 2) {
-        std::cerr << "Error requires on argument\n" << argv[0] << " file\n";
+        std::cerr << "Error requires an argument\n" << argv[0] << " file\n";
         exit(EXIT_FAILURE);
     }
     
