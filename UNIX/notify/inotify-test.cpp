@@ -1,5 +1,17 @@
 
-/* Adapted from "The Linux Programming Interface" Chapter 19 Listing 19-1 on page 382 */
+/* 
+ 	Adapted from "The Linux Programming Interface" Chapter 19 Listing 19-1 on page 382
+ 	This is for Linux only so does not work on MacOS X.
+ 
+ 	To use this program
+ 	use
+ 	$ ./notify-example-test directory &
+ 	then once the program is running in the background change something in the directory you 
+ 	specified. Then to stop the preogram type
+ 
+ 	$ sudo killall notify-example-test
+ 
+*/
 
 
 #include<iostream>
