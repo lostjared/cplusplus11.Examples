@@ -1,0 +1,9 @@
+CXX_FLAGS=-std=gnu++11
+
+all: notify-example-test
+
+notify-example-test: inotify-test.cpp
+	$(CXX) $(CXX_FLAGS) inotify-test.cpp -o notify-example-test
+
+clean:
+	rm -f notify-example-test
