@@ -1,4 +1,6 @@
 all:
+	make -C attr/
+	make -C directory/
 	make -C environment/
 	make -C forktest/
 	make -C info/
@@ -9,6 +11,8 @@ all:
 	make -C time/
 	make -C user/
 clean:
+	make -C attr/ clean
+	make -C directory/ clean
 	make -C environment/ clean
 	make -C forktest/ clean
 	make -C info/ clean

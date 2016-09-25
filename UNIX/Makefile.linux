@@ -1,4 +1,6 @@
 all:
+	make -C attr/
+	make -C directory/
 	make -C environment/
 	make -C forktest/
 	make -C info/
@@ -11,7 +13,9 @@ all:
 	make -C user/ -f Makefile.linux
 
 clean:
+	make -C attr/ clean
 	make -C environment/ clean
+	make -C directory/ clean
 	make -C forktest/ clean
 	make -C info/ clean
 	make -C io/ clean
