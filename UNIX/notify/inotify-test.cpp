@@ -1,3 +1,7 @@
+
+/* Adapted from "The Linux Programming Interface" Chapter 19 Listing 19-1 on page 382 */
+
+
 #include<iostream>
 #include<string>
 #include<sys/inotify.h>
