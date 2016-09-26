@@ -1,3 +1,4 @@
+
 all:
 	make -C attr/
 	make -C directory/
@@ -6,9 +7,11 @@ all:
 	make -C info/
 	make -C io/
 	make -C memory/
+	make -C notify/ -f Makefile.linux
 	make -C proc/ -f Makefile.linux
 	make -C pthread/
 	make -C setjmp/
+	make -C signal/
 	make -C time/
 	make -C user/ -f Makefile.linux
 
@@ -20,8 +23,10 @@ clean:
 	make -C info/ clean
 	make -C io/ clean
 	make -C memory/ clean
+	make -C notify/ -f Makefile.linux clean 
 	make -C proc/ -f Makefile.linux clean
 	make -C pthread/ clean
 	make -C setjmp/ clean
+	make -C signal/ clean
 	make -C time/ clean
 	make -C user/ -f Makefile.linux clean

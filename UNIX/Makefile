@@ -8,6 +8,7 @@ all:
 	make -C memory/
 	make -C pthread/
 	make -C setjmp/
+	make -C signal/
 	make -C time/
 	make -C user/
 clean:
@@ -20,5 +21,6 @@ clean:
 	make -C memory/ clean
 	make -C pthread/ clean
 	make -C setjmp/ clean
+	make -C signal/ clean
 	make -C time/ clean
 	make -C user/ clean
