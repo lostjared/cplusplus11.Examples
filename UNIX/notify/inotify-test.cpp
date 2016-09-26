@@ -21,6 +21,8 @@
 #include<limits.h>
 #include<cstdint>
 #include<unistd.h>
+#include<sstream>
+
 constexpr int BUFFER_LENGTH = (10 * ( sizeof(struct inotify_event) + NAME_MAX + 1));
 
 void printNotify(inotify_event *e);
@@ -91,22 +93,22 @@ void printNotify(inotify_event *e) {
 }
 
 std::string maskToString(uint32_t mask) {
-    if(mask & IN_ACCESS) return "IN_ACCESS";
-    if(mask & IN_ATTRIB) return "IN_ATTRIB";
-    if(mask & IN_CLOSE_NOWRITE) return "IN_CLOSENOWRITE";
-    if(mask & IN_CLOSE_WRITE) return "IN_CLOSEWRITE";
-    if(mask & IN_CREATE) return "IN_CREATE";
-    if(mask & IN_DELETE) return "IN_DELETE";
-    if(mask & IN_DELETE_SELF) return "IN_DELETE_SELF";
-    if(mask & IN_IGNORED) return "IN_IGNORED";
-    if(mask & IN_ISDIR) return "IN_ISDIR";
-    if(mask & IN_MODIFY) return "IN_MODIFY";
-    if(mask & IN_MOVE_SELF) return "IN_MOVE_SELF";
-    if(mask & IN_MOVED_FROM) return "IN_MOVE_FROM";
-    if(mask & IN_MOVED_TO) return "IN_MOVED_TO";
-    if(mask & IN_OPEN) return "IN_OPEN";
-    if(mask & IN_Q_OVERFLOW) return "IN_Q_OVERFLOW";
-    if(mask & IN_UNMOUNT) return "IN_UNMOUNT";
-       
-    return "Unknown..";
+    std::ostringstream stream;
+    if(mask & IN_ACCESS) stream <<  "IN_ACCESS ";
+    if(mask & IN_ATTRIB) stream <<  "IN_ATTRIB ";
+    if(mask & IN_CLOSE_NOWRITE) stream <<  "IN_CLOSENOWRITE ";
+    if(mask & IN_CLOSE_WRITE) stream <<  "IN_CLOSEWRITE ";
+    if(mask & IN_CREATE) stream <<  "IN_CREATE ";
+    if(mask & IN_DELETE) stream <<  "IN_DELETE ";
+    if(mask & IN_DELETE_SELF) stream <<  "IN_DELETE_SELF ";
+    if(mask & IN_IGNORED) stream <<  "IN_IGNORED ";
+    if(mask & IN_ISDIR) stream <<  "IN_ISDIR ";
+    if(mask & IN_MODIFY) stream <<  "IN_MODIFY ";
+    if(mask & IN_MOVE_SELF) stream <<  "IN_MOVE_SELF ";
+    if(mask & IN_MOVED_FROM) stream <<  "IN_MOVE_FROM ";
+    if(mask & IN_MOVED_TO) stream <<  "IN_MOVED_TO ";
+    if(mask & IN_OPEN) stream <<  "IN_OPEN ";
+    if(mask & IN_Q_OVERFLOW) stream <<  "IN_Q_OVERFLOW ";
+    if(mask & IN_UNMOUNT) stream <<  "IN_UNMOUNT ";
+    return stream.str();
 }
