@@ -9,7 +9,7 @@
  	then once the program is running in the background change something in the directory you 
  	specified. Then to stop the preogram type
  
- 	$ sudo killall notify-example-test
+ 	$ killall notify-example-test
  
 */
 
