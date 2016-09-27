@@ -10,6 +10,7 @@ all:
 	make -C setjmp/
 	make -C signal/
 	make -C time/
+	make -C timer/
 	make -C user/
 clean:
 	make -C attr/ clean
@@ -23,4 +24,5 @@ clean:
 	make -C setjmp/ clean
 	make -C signal/ clean
 	make -C time/ clean
+	make -C timer/ clean
 	make -C user/ clean
