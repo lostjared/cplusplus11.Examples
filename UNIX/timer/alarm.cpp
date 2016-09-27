@@ -4,6 +4,7 @@
 #include<sys/time.h>
 #include<ctime>
 #include<errno.h>
+#include<cstring>
 
 void alarmHandler(int sig) {
     std::cout << "Got alarm..\n";

@@ -4,6 +4,8 @@
 #include<ctime>
 #include<unistd.h>
 #include<errno.h>
+#include<cstring>
+
 
 static volatile sig_atomic_t alarmSet = 0;
 
