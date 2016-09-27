@@ -1,4 +1,8 @@
 Jared Bruni's C++11 Examples 
+
+I have created a series of C++ Tutorials in video form on YouTube
+You can find them here: https://www.youtube.com/playlist?list=PLUgo--lX2kmqPQ5C8jRfy6RZVKHFqN7Zz
+
 I am just going through and writing stuff to help me remember and practice
 some of the new features of C++11. I will create a new repo for C++14.
 
@@ -18,7 +22,6 @@ For Linux use libstdc++ instead of libc++ and g++ 4.8 or greater
 Each program only requires one line to compile it. 
 
 g++ -std=c++11 sourcefile.cc -o sourcefile 
-
 
 - Jared Bruni
 
