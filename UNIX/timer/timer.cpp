@@ -16,7 +16,6 @@ void timerHandler(int sig) {
 int main(int argc, char **argv) {
     
     struct itimerval time_val;
-    clock_t previous;
     int max_timeouts = 0;
     int timeouts = 0;
     
@@ -44,7 +43,6 @@ int main(int argc, char **argv) {
         exit(EXIT_FAILURE);
     }
     
-    previous = clock();
     timeouts = 0;
     
     while(1) {
@@ -59,7 +57,6 @@ int main(int argc, char **argv) {
             }
         }
         
-        previous = clock();
     }
     
     return 0;
