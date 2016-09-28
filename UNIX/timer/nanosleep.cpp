@@ -14,6 +14,7 @@
 #include<iostream>
 #include<ctime>
 #include<signal.h>
+#include<sys/time.h>
 
 
 void handler(int sig) {
