@@ -31,13 +31,19 @@ int main(int argc, char **argv) {
             sleep(3);
             std::cout << "index: " << index << "\n";
         }
-        
+    }
+    else if(id == -1) {
+        std::cerr << "Error on fork..\n";
+        exit(EXIT_FAILURE);
     }
     else {
     
         sleep(2);
         std::cout << "Sending SIGINT to pid: " << id << "\n";
         kill(id, SIGINT);
+        int status = 0;
+        waitpid(id, &status, 0);
+        std::cout << "Success..\n";
     }
     return 0;
 }

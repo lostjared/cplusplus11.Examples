@@ -18,8 +18,12 @@ int main() {
             break;
         default:
             std::cout << "In Parent..\n";
-            exit(EXIT_SUCCESS);
+            
             break;
     }
+    int status = 0;
+    waitpid(id, &status, 0);
+    std::cout << "Program complete..\n";
+    exit(EXIT_SUCCESS);
     return EXIT_SUCCESS;
 }

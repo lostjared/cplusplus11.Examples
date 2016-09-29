@@ -18,6 +18,7 @@ int main() {
             std::cout << "In Child process. \n";
         }
         std::cout << "Child process done.\n";
+        _exit(EXIT_SUCCESS);
         
     } else {
         std::cout << "In Parent..\n";
@@ -27,5 +28,8 @@ int main() {
         std::cout << "Parent process done..\n";
     }
     
+    int status = 0;
+    waitpid(rt_value, &status, 0);
+    std::cout << "Suceess!\n";
     return 0;
 }
