@@ -3,6 +3,8 @@
 #include<iostream>
 #include<string>
 #include<cstring>
+#include<sys/types.h>
+#include<sys/wait.h>
 
 void writeOutput(const char *src) {
     write(1, src, strlen(src)); // printf is not reentrant and not safe
