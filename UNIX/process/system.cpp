@@ -12,7 +12,6 @@
 #include<errno.h>
 
 int System(const char *command) {
-    
     sigset_t bmask, omask;
     struct sigaction sa_ignore, sa_oquit, sa_origint, sa_default;
     pid_t id;
@@ -23,7 +22,6 @@ int System(const char *command) {
     sigemptyset(&bmask);
     sigaddset(&bmask, SIGCHLD);
     sigprocmask(SIG_BLOCK, &bmask, &omask);
-    
     sa_ignore.sa_handler = SIG_IGN;
     sa_ignore.sa_flags = 0;
     sigemptyset(&sa_ignore.sa_mask);
@@ -47,14 +45,12 @@ int System(const char *command) {
             _exit(127);
             break;
         default:
-            
             while(waitpid(id, &status, 0) == -1) {
                 if(errno != EINTR) {
                     status = -1;
                     break;
                 }
             }
-            
             break;
     }
     serrno = errno;
