@@ -9,7 +9,11 @@ void err(const char *e) {
 }
 
 int main() {
-    execve("/bin/bash", NULL, NULL);
+    
+    const char *argv[] = { "execve", NULL };
+    const char *env[] = { NULL };
+    
+    execve("/bin/bash", (char**)argv, (char**)env);
     err("An Error as Occoured..\n");
     return 0;
 }
