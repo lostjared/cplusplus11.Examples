@@ -11,13 +11,13 @@
 #include<sys/types.h>
 #include<errno.h>
 
-int System(const char *command) {
+int System(const std::string &command) {
     sigset_t bmask, omask;
     struct sigaction sa_ignore, sa_oquit, sa_origint, sa_default;
     pid_t id;
     int status, serrno;
     
-    if(command == NULL) return System(":") == 0;
+    if(command == "") return System(":") == 0;
     
     sigemptyset(&bmask);
     sigaddset(&bmask, SIGCHLD);
@@ -41,7 +41,7 @@ int System(const char *command) {
             if(sa_oquit.sa_handler != SIG_IGN)
                 sigaction(SIGQUIT, &sa_default, NULL);
             
-            execl("/bin/sh", "sh", "-c", command, (char*)NULL);
+            execl("/bin/sh", "sh", "-c", command.c_str(), (char*)NULL);
             _exit(127);
             break;
         default:
