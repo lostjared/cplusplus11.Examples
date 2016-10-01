@@ -26,7 +26,7 @@ void error(std::string text) {
 int main() {
     std::cout << "Program started...\n";
     pid_t id;
-    switch ((id = vfork())) { // do not inherit from parent
+    switch ((id = vfork())) { // do not inherit address space from parent
         case -1:
             std::cerr << "Error on vfork..\n";
             break;
