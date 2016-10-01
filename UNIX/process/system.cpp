@@ -1,7 +1,8 @@
 /*
- From the Linux Programming Interface
+ Modeled (Converted to C++ and modified) From
+ "The Linux Programming Interface"
  Listing 27-9 on page 586-587
- */
+*/
 
 #include<iostream>
 #include<string>
