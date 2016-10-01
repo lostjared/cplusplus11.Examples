@@ -11,9 +11,7 @@
 #include<thread>
 #include<chrono>
 
-
 int main(int argc, char **argv) {
-    
     if(argc == 3) {
         std::fstream input;
         input.open(argv[1], std::ios::in);
@@ -26,7 +24,6 @@ int main(int argc, char **argv) {
             std::cerr << "Error invalid delay\n";
             exit(0);
         }
-        
         while(!input.eof()) {
             std::string text;
             std::getline(input, text);
@@ -36,18 +33,13 @@ int main(int argc, char **argv) {
                     fflush(stdout);
                     std::this_thread::sleep_for(std::chrono::milliseconds(mill));
                  }
-                
             }
             std::cout << "\n";
         }
-        
         input.close();
-        
-        
     } else {
         std::cerr << "Requires two arguments...\nlinescroll source delay\n";
         exit(0);
     }
-
     return 0;
 }
