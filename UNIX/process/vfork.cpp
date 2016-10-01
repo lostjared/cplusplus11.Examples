@@ -15,6 +15,7 @@
 #include<cstring>
 #include<unistd.h>
 #include<sys/types.h>
+#include<sys/wait.h>
 #include<errno.h>
 
 void error(std::string text) {
