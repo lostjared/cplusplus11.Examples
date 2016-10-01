@@ -69,7 +69,7 @@ int main() {
         std::string command;
         std::getline(std::cin, command);
         if(command=="Quit") exit(EXIT_SUCCESS);
-        System(command.c_str());
+        System(command);
     }
     return EXIT_SUCCESS;
 }
