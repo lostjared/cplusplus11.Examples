@@ -35,7 +35,7 @@ public:
     }
     
     ~ThreadInfo() {
-        delete [] info;
+        if(info != nullptr) delete [] info;
     }
     
     void setInfo(unsigned int index, STATE s, pthread_t i, int sl) {
