@@ -46,7 +46,7 @@ namespace driver {
         
         if(!std::cin) return;
         
-        if(s.find(";")  == -1) {
+        if(s.find(";") == std::string::npos) {
             std::cerr << "Error missing semi-colon\n";
             return grabInput();
         }
