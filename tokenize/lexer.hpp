@@ -397,7 +397,7 @@ namespace lex {
             tok += cc;
             unsigned char oc = cc;
             cc = getChar();
-            if(oc == cc && (cc != '{' && cc != '[' && cc != '(' && cc != ']' && cc != ')' & cc != '}')) {
+            if(oc == cc && (cc != '{' && cc != '[' && cc != '(' && cc != ']' && cc != ')' && cc != '}')) {
                 tok += cc;
             } else if(cc == '=' || (cc == '>' && oc != '?') || cc == '*') {
                 tok += cc;
