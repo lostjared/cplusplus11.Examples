@@ -1,0 +1,12 @@
+CXX_FLAGS=-std=c++11
+
+all: sched-get sched-set
+
+
+sched-get: get.cpp
+	$(CXX) $(CXX_FLAGS) get.cpp -o sched-get
+sched-set: set.cpp
+	$(CXX) $(CXX_FLAGS) set.cpp -o sched-set
+clean:
+	rm -f sched-get sched-set
+

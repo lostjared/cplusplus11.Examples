@@ -3,13 +3,14 @@ all:
 	make -C attr/
 	make -C directory/
 	make -C environment/
-	make -C forktest/
+	make -C process/
 	make -C info/
 	make -C io/
 	make -C memory/
 	make -C notify/ -f Makefile.linux
 	make -C proc/ -f Makefile.linux
 	make -C pthread/
+	make -C sched/ -f Makefile.linux
 	make -C setjmp/
 	make -C signal/
 	make -C time/
@@ -20,13 +21,14 @@ clean:
 	make -C attr/ clean
 	make -C environment/ clean
 	make -C directory/ clean
-	make -C forktest/ clean
+	make -C process/ clean
 	make -C info/ clean
 	make -C io/ clean
 	make -C memory/ clean
 	make -C notify/ -f Makefile.linux clean 
 	make -C proc/ -f Makefile.linux clean
 	make -C pthread/ clean
+	make -C sched/ -f Makefile.linux clean
 	make -C setjmp/ clean
 	make -C signal/ clean
 	make -C time/ clean

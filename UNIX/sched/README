@@ -1,0 +1,23 @@
+How to test these programs:
+ 
+jared@lostvm /mnt/hgfs/newcode/cplusplus11.Examples/UNIX/sched $ su
+Password: 
+
+lostvm sched # 
+lostvm sched # sleep 100 &
+[1] 42746
+lostvm sched # ./sched-get 42746
+42746: OTHER 0 0
+lostvm sched # ./sched-set f 25 42746
+lostvm sched # ./sched-get 42746
+42746: FIFO 1 0
+
+
+sched-set params:
+
+f stands for FIFO
+r stands for Round Robin
+b stands for BATCH
+i stands for IDLE
+
+must has privlages to increase 
