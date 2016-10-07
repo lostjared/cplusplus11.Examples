@@ -1,7 +1,9 @@
 CXX=c++
 CXX_FLAGS=-std=c++11
 
-all:
+all: data-test
+
+data-test:
 	$(CXX) $(CXX_FLAGS) main.cpp -o data-test 
 clean:
 	rm -f data-test
