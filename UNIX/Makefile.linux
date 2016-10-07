@@ -13,6 +13,7 @@ all:
 	make -C sched/ -f Makefile.linux
 	make -C setjmp/
 	make -C signal/
+	make -C syslog/
 	make -C time/
 	make -C timer/
 	make -C user/ -f Makefile.linux
@@ -31,6 +32,7 @@ clean:
 	make -C sched/ -f Makefile.linux clean
 	make -C setjmp/ clean
 	make -C signal/ clean
+	make -C syslog/ clean
 	make -C time/ clean
 	make -C timer/ clean
 	make -C user/ -f Makefile.linux clean
