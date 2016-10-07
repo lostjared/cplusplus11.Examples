@@ -1,6 +1,6 @@
 CXX=c++
 CXXFLAGS= -I/usr/include -I/usr/local/include  -std=c++11  -Wall `sdl2-config --cflags`
-LDFLAGS= `sdl2-config --static-libs` -lGL -lGLU  -lGLEW
+LDFLAGS= `sdl2-config --static-libs` -framework OpenGL  -lGLEW
 
 all: gltest
 
