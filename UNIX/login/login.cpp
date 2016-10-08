@@ -23,6 +23,8 @@ int main(int argc, char **argv) {
 
     utmpx *u;
     
+    std::cout << "User           type           PID            line           id             host           Date           \n";
+    
     while ((u = getutxent()) != NULL) {
         std::cout << std::left << std::setw(space) << ((strlen(u->ut_user)>0) ? u->ut_user : "none");
         std::cout << std::setw(space) << ut_type(u);
