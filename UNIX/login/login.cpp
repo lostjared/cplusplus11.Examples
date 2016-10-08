@@ -11,7 +11,7 @@
 void error(const std::string &text);
 std::string ut_type(utmpx *u);
 
-const int space = 10;
+const int space = 15;
 
 int main(int argc, char **argv) {
     
@@ -20,18 +20,15 @@ int main(int argc, char **argv) {
             error("utmpxname");
     
     setutxent();
-    
-    std::cout << std::setw(space) << "User" << std::setw(space) << "type" << std::setw(space) << "PID" <<
-    std::setw(space) << "line" << std::setw(space) << "id" << std::setw(space*3) << "host" << std::setw(space*3) << "Date/Time\n";
-    
+
     utmpx *u;
     
     while ((u = getutxent()) != NULL) {
-        std::cout << std::setw(space) << u->ut_user;
+        std::cout << std::left << std::setw(space) << ((strlen(u->ut_user)>0) ? u->ut_user : "none");
         std::cout << std::setw(space) << ut_type(u);
         std::cout << std::setw(space) << (long) u->ut_pid <<
-        std::setw(space) << u->ut_line << std::setw(space) << u->ut_id << std::setw(space*3) << u->ut_host <<
-        std::setw(space*3) << ctime((time_t *) &(u->ut_tv.tv_sec));
+        std::setw(space) << ((strlen(u->ut_line)>0) ? u->ut_line : "none")  << std::setw(space) << u->ut_id << std::setw(space)
+        << ((strlen(u->ut_host)>0) ? u->ut_host : "none") << ctime((time_t *) &(u->ut_tv.tv_sec));
     }
     endutxent();
     
