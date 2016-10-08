@@ -1,0 +1,8 @@
+to run on Linux use:
+
+$ LD_LIBRARY_PATH=. ./program
+
+OS X should just be
+
+$ ./program
+

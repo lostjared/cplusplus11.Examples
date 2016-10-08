@@ -1,0 +1,4 @@
+all:
+	make -C simple_lib -f Makefile.linux
+clean:
+	make -C simple_lib -f Makefile.linux  clean
