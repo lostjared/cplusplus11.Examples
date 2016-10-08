@@ -3,6 +3,7 @@ all:
 	make -C directory/
 	make -C environment/
 	make -C process/
+	make -C getopt/
 	make -C info/
 	make -C io/
 	make -C memory/
@@ -19,6 +20,7 @@ clean:
 	make -C environment/ clean
 	make -C process/ clean
 	make -C info/ clean
+	make -C getopt/ clean
 	make -C io/ clean
 	make -C memory/ clean
 	make -C pthread/ clean
