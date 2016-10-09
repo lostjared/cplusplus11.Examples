@@ -1,4 +1,8 @@
 all:
 	make -C simple_lib -f Makefile.linux
+	make -C simple_lib2 -f Makefile.linux
+	make -C dynamic_load -f Makefile.linux
 clean:
 	make -C simple_lib -f Makefile.linux  clean
+	make -C simple_lib2 -f Makefile.linux clean
+	make -C dynamic_load  -f Makefile.linux clean
