@@ -12,6 +12,16 @@ useful except to demonstrate those specific features.
 There is also a calculator for parsing expressions that is similar to
 the one from "The C++ Programming Language" 4th Edition. 
 
+To build from Makefiles use 
+
+on MacOS X:
+
+$ make
+
+on Linux:
+
+$ make -f Makefile.linux
+
 Note:
 To compile make sure your compiler supports C++11 with clang I use:
 say for sourcefile.cc
