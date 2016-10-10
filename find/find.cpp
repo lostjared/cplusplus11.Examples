@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<algorithm>
 
 std::vector<int> values;
 
@@ -10,7 +11,7 @@ int main() {
         values.push_back(rand()%100);
     }
     
-    auto it = find(values.begin(), values.end(), 57);
+    auto it = std::find(values.begin(), values.end(), 57);
     
     if(it != values.end()) {
         std::cout << "Found 57 in values\n";
