@@ -1,5 +1,3 @@
-CXX=c++
-
 
 
 all: tile-test
