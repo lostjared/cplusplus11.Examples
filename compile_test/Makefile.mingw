@@ -2,7 +2,9 @@ CXX_FLAGS= -std=c++11
 LD_FLAGS= -static-libgcc -static-libstdc++ 
 CXX=x86_64-w64-mingw32-g++
 
-all:
+all: compile-test
+
+compile-test: compile-test.cpp
 	$(CXX) $(CXX_FLAGS) compile-test.cpp -o compile-test.exe $(LD_FLAGS)
 clean:
-	rm -f compile-test.cpp
+	rm -f compile-test
