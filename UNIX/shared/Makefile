@@ -2,7 +2,7 @@ all:
 	make -C simple_lib
 	make -C simple_lib2
 	make -C dynamic_load
-	make -C dyanic_init
+	make -C dynamic_init
 clean:
 	make -C simple_lib clean
 	make -C simple_lib2 clean
