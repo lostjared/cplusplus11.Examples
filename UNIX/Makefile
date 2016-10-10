@@ -10,6 +10,7 @@ all:
 	make -C memory/
 	make -C pthread/
 	make -C setjmp/
+	make -C shared/
 	make -C signal/
 	make -C syslog/
 	make -C time/
@@ -27,6 +28,7 @@ clean:
 	make -C memory/ clean
 	make -C pthread/ clean
 	make -C setjmp/ clean
+	make -C shared/ clean
 	make -C signal/ clean
 	make -C syslog/ clean
 	make -C time/ clean

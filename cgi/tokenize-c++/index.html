@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html><head><title>C++ Tokenizer </title></head>
+<body>
+<style>
+.linenumber { background-color: rgb(0,100,200); }
+.lineindex_color { color: rgb(255,255,255); background-color: #000000; }
+.linetype { color: rgb(100,0,255); background-color: rgb(25,255,100); }
+.linenum { color: rgb(50,255,50); background-color: #888888; }
+.codetext { color: #000000; background-color: rgb(255,254,208);}
+.codekeyword { color: rgb(0,0,255); font-weight: bold; }
+.codestring { color: rgb(255,0,255);background-color: rgb(200, 200,200); }
+.codesymbol { color: rgb(76,255,198); background-color: rgb(100,100,100); }
+.codedigit { color: rgb(0,255,186); background-color: rgb(0,0,0); }
+.codechar { color: rgb(187,212,249); background-color: rgb(94,0,167); }
+</style>
+<a href="http://lostsidedead.com"><img src="http://lostsidedead.com/img/logo.png"></a><br><br>
+
+<table border="1" cellspacing="4" cellpadding="4"><tr style="background-color: rgb(150, 150, 150);"><td class="linenumber"><b>Index</b></td><td class="linenumber"><b>Token</b></td><td class="linenumber"><b>Type</b></td><td class="linenumber"><b>Line Number</b></td></tr>
+<tr><td class="lineindex_color">1</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">1</td></tr>
+<tr><td class="lineindex_color">2</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">1</td></tr>
+<tr><td class="lineindex_color">3</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">1</td></tr>
+<tr><td class="lineindex_color">4</td><td class="codetext">iostream</td><td class="linetype">Id Token</td><td class="linenum">1</td></tr>
+<tr><td class="lineindex_color">5</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">1</td></tr>
+<tr><td class="lineindex_color">6</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">2</td></tr>
+<tr><td class="lineindex_color">7</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">2</td></tr>
+<tr><td class="lineindex_color">8</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">2</td></tr>
+<tr><td class="lineindex_color">9</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">2</td></tr>
+<tr><td class="lineindex_color">10</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">2</td></tr>
+<tr><td class="lineindex_color">11</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">3</td></tr>
+<tr><td class="lineindex_color">12</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">3</td></tr>
+<tr><td class="lineindex_color">13</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">3</td></tr>
+<tr><td class="lineindex_color">14</td><td class="codetext">cstdio</td><td class="linetype">Id Token</td><td class="linenum">3</td></tr>
+<tr><td class="lineindex_color">15</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">3</td></tr>
+<tr><td class="lineindex_color">16</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">4</td></tr>
+<tr><td class="lineindex_color">17</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">4</td></tr>
+<tr><td class="lineindex_color">18</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">4</td></tr>
+<tr><td class="lineindex_color">19</td><td class="codetext">cstdlib</td><td class="linetype">Id Token</td><td class="linenum">4</td></tr>
+<tr><td class="lineindex_color">20</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">4</td></tr>
+<tr><td class="lineindex_color">21</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">5</td></tr>
+<tr><td class="lineindex_color">22</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">5</td></tr>
+<tr><td class="lineindex_color">23</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">5</td></tr>
+<tr><td class="lineindex_color">24</td><td class="codetext">sstream</td><td class="linetype">Id Token</td><td class="linenum">5</td></tr>
+<tr><td class="lineindex_color">25</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">5</td></tr>
+<tr><td class="lineindex_color">26</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">6</td></tr>
+<tr><td class="lineindex_color">27</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">6</td></tr>
+<tr><td class="lineindex_color">28</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">6</td></tr>
+<tr><td class="lineindex_color">29</td><td class="codetext">cstring</td><td class="linetype">Id Token</td><td class="linenum">6</td></tr>
+<tr><td class="lineindex_color">30</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">6</td></tr>
+<tr><td class="lineindex_color">31</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">7</td></tr>
+<tr><td class="lineindex_color">32</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">7</td></tr>
+<tr><td class="lineindex_color">33</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">7</td></tr>
+<tr><td class="lineindex_color">34</td><td class="codetext">fstream</td><td class="linetype">Id Token</td><td class="linenum">7</td></tr>
+<tr><td class="lineindex_color">35</td><td class="codesymbol">&gt;</td><td class="linetype">Symbol</td><td class="linenum">7</td></tr>
+<tr><td class="lineindex_color">36</td><td class="codesymbol">#</td><td class="linetype">Symbol</td><td class="linenum">8</td></tr>
+<tr><td class="lineindex_color">37</td><td class="codetext">include</td><td class="linetype">Id Token</td><td class="linenum">8</td></tr>
+<tr><td class="lineindex_color">38</td><td class="codestring">lexer&#46;hpp</td><td class="linetype">String</td><td class="linenum">8</td></tr>
+<tr><td class="lineindex_color">39</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">40</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">41</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">42</td><td class="codetext">urldecode</td><td class="linetype">Id Token</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">43</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">44</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">45</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">46</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">47</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">48</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">49</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">12</td></tr>
+<tr><td class="lineindex_color">50</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">51</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">52</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">53</td><td class="codetext">toHTML</td><td class="linetype">Id Token</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">54</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">55</td><td class="codekeyword">const</b></td><td class="linetype">Keyword</td><td class="linenum">19</td></tr><tr><td class="lineindex_color">56</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">57</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">58</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">59</td><td class="codesymbol">&</td><td class="linetype">Symbol</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">60</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">61</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">62</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">19</td></tr>
+<tr><td class="lineindex_color">63</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">20</td></tr>
+<tr><td class="lineindex_color">64</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">20</td></tr>
+<tr><td class="lineindex_color">65</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">20</td></tr>
+<tr><td class="lineindex_color">66</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">20</td></tr>
+<tr><td class="lineindex_color">67</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">20</td></tr>
+<tr><td class="lineindex_color">68</td><td class="codekeyword">for</b></td><td class="linetype">Keyword</td><td class="linenum">21</td></tr><tr><td class="lineindex_color">69</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">70</td><td class="codekeyword">unsigned</b></td><td class="linetype">Keyword</td><td class="linenum">21</td></tr><tr><td class="lineindex_color">71</td><td class="codekeyword">int</b></td><td class="linetype">Keyword</td><td class="linenum">21</td></tr><tr><td class="lineindex_color">72</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">73</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">74</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">75</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">76</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">77</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">78</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">79</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">80</td><td class="codetext">length</td><td class="linetype">Id Token</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">81</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">82</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">83</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">84</td><td class="codesymbol">++</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">85</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">86</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">87</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">21</td></tr>
+<tr><td class="lineindex_color">88</td><td class="codekeyword">switch</b></td><td class="linetype">Keyword</td><td class="linenum">22</td></tr><tr><td class="lineindex_color">89</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">90</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">91</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">92</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">93</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">94</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">95</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">22</td></tr>
+<tr><td class="lineindex_color">96</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">23</td></tr><tr><td class="lineindex_color">97</td><td class="codechar">&lt;</td><td class="linetype">Character</td><td class="linenum">23</td></tr>
+<tr><td class="lineindex_color">98</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">23</td></tr>
+<tr><td class="lineindex_color">99</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">24</td></tr>
+<tr><td class="lineindex_color">100</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">24</td></tr>
+<tr><td class="lineindex_color">101</td><td class="codestring">&lt&#59;</td><td class="linetype">String</td><td class="linenum">24</td></tr>
+<tr><td class="lineindex_color">102</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">24</td></tr>
+<tr><td class="lineindex_color">103</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">25</td></tr><tr><td class="lineindex_color">104</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">25</td></tr>
+<tr><td class="lineindex_color">105</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">26</td></tr><tr><td class="lineindex_color">106</td><td class="codechar">&gt;</td><td class="linetype">Character</td><td class="linenum">26</td></tr>
+<tr><td class="lineindex_color">107</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">26</td></tr>
+<tr><td class="lineindex_color">108</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">27</td></tr>
+<tr><td class="lineindex_color">109</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">27</td></tr>
+<tr><td class="lineindex_color">110</td><td class="codestring">&gt&#59;</td><td class="linetype">String</td><td class="linenum">27</td></tr>
+<tr><td class="lineindex_color">111</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">27</td></tr>
+<tr><td class="lineindex_color">112</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">28</td></tr><tr><td class="lineindex_color">113</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">28</td></tr>
+<tr><td class="lineindex_color">114</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">29</td></tr><tr><td class="lineindex_color">115</td><td class="codechar">&#40;</td><td class="linetype">Character</td><td class="linenum">29</td></tr>
+<tr><td class="lineindex_color">116</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">29</td></tr>
+<tr><td class="lineindex_color">117</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">30</td></tr>
+<tr><td class="lineindex_color">118</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">30</td></tr>
+<tr><td class="lineindex_color">119</td><td class="codestring">&#40&#59;</td><td class="linetype">String</td><td class="linenum">30</td></tr>
+<tr><td class="lineindex_color">120</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">30</td></tr>
+<tr><td class="lineindex_color">121</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">31</td></tr><tr><td class="lineindex_color">122</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">31</td></tr>
+<tr><td class="lineindex_color">123</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">32</td></tr><tr><td class="lineindex_color">124</td><td class="codechar">&#41;</td><td class="linetype">Character</td><td class="linenum">32</td></tr>
+<tr><td class="lineindex_color">125</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">32</td></tr>
+<tr><td class="lineindex_color">126</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">33</td></tr>
+<tr><td class="lineindex_color">127</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">33</td></tr>
+<tr><td class="lineindex_color">128</td><td class="codestring">&#41&#59;</td><td class="linetype">String</td><td class="linenum">33</td></tr>
+<tr><td class="lineindex_color">129</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">33</td></tr>
+<tr><td class="lineindex_color">130</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">34</td></tr><tr><td class="lineindex_color">131</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">34</td></tr>
+<tr><td class="lineindex_color">132</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">35</td></tr><tr><td class="lineindex_color">133</td><td class="codechar">&#46;</td><td class="linetype">Character</td><td class="linenum">35</td></tr>
+<tr><td class="lineindex_color">134</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">35</td></tr>
+<tr><td class="lineindex_color">135</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">36</td></tr>
+<tr><td class="lineindex_color">136</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">36</td></tr>
+<tr><td class="lineindex_color">137</td><td class="codestring">&#46&#59;</td><td class="linetype">String</td><td class="linenum">36</td></tr>
+<tr><td class="lineindex_color">138</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">36</td></tr>
+<tr><td class="lineindex_color">139</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">37</td></tr><tr><td class="lineindex_color">140</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">37</td></tr>
+<tr><td class="lineindex_color">141</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">38</td></tr><tr><td class="lineindex_color">142</td><td class="codechar">&#59;</td><td class="linetype">Character</td><td class="linenum">38</td></tr>
+<tr><td class="lineindex_color">143</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">38</td></tr>
+<tr><td class="lineindex_color">144</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">39</td></tr>
+<tr><td class="lineindex_color">145</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">39</td></tr>
+<tr><td class="lineindex_color">146</td><td class="codestring">&#59&#59;</td><td class="linetype">String</td><td class="linenum">39</td></tr>
+<tr><td class="lineindex_color">147</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">39</td></tr>
+<tr><td class="lineindex_color">148</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">40</td></tr><tr><td class="lineindex_color">149</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">40</td></tr>
+<tr><td class="lineindex_color">150</td><td class="codekeyword">default</b></td><td class="linetype">Keyword</td><td class="linenum">41</td></tr><tr><td class="lineindex_color">151</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">41</td></tr>
+<tr><td class="lineindex_color">152</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">153</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">154</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">155</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">156</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">157</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">158</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">42</td></tr>
+<tr><td class="lineindex_color">159</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">43</td></tr><tr><td class="lineindex_color">160</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">43</td></tr>
+<tr><td class="lineindex_color">161</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">44</td></tr>
+<tr><td class="lineindex_color">162</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">45</td></tr>
+<tr><td class="lineindex_color">163</td><td class="codekeyword">return</b></td><td class="linetype">Keyword</td><td class="linenum">46</td></tr><tr><td class="lineindex_color">164</td><td class="codetext">temp</td><td class="linetype">Id Token</td><td class="linenum">46</td></tr>
+<tr><td class="lineindex_color">165</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">46</td></tr>
+<tr><td class="lineindex_color">166</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">47</td></tr>
+<tr><td class="lineindex_color">167</td><td class="codekeyword">void</b></td><td class="linetype">Keyword</td><td class="linenum">53</td></tr><tr><td class="lineindex_color">168</td><td class="codetext">outputToken</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">169</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">170</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">171</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">172</td><td class="codetext">ostringstream</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">173</td><td class="codesymbol">&</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">174</td><td class="codetext">out</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">175</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">176</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">177</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">178</td><td class="codetext">Token</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">179</td><td class="codesymbol">&</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">180</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">181</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">182</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">53</td></tr>
+<tr><td class="lineindex_color">183</td><td class="codekeyword">static</b></td><td class="linetype">Keyword</td><td class="linenum">55</td></tr><tr><td class="lineindex_color">184</td><td class="codekeyword">unsigned</b></td><td class="linetype">Keyword</td><td class="linenum">55</td></tr><tr><td class="lineindex_color">185</td><td class="codekeyword">int</b></td><td class="linetype">Keyword</td><td class="linenum">55</td></tr><tr><td class="lineindex_color">186</td><td class="codetext">counter</td><td class="linetype">Id Token</td><td class="linenum">55</td></tr>
+<tr><td class="lineindex_color">187</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">55</td></tr>
+<tr><td class="lineindex_color">188</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">55</td></tr>
+<tr><td class="lineindex_color">189</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">55</td></tr>
+<tr><td class="lineindex_color">190</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">57</td></tr><tr><td class="lineindex_color">191</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">192</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">193</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">194</td><td class="codetext">isKeyword</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">195</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">196</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">197</td><td class="codesymbol">&&</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">198</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">199</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">200</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">201</td><td class="codetext">getTokenType</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">202</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">203</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">204</td><td class="codesymbol">!=</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">205</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">206</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">207</td><td class="codetext">TOKEN_STRING</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">208</td><td class="codesymbol">&&</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">209</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">210</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">211</td><td class="codetext">getTokenType</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">212</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">213</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">214</td><td class="codesymbol">!=</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">215</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">216</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">217</td><td class="codetext">TOKEN_SINGLE</td><td class="linetype">Id Token</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">218</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">219</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">220</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">57</td></tr>
+<tr><td class="lineindex_color">221</td><td class="codetext">out</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">222</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">223</td><td class="codestring">&lt;tr&gt;&lt;td class=\"lineindex_color\"&gt;</td><td class="linetype">String</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">224</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">225</td><td class="codesymbol">++</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">226</td><td class="codetext">counter</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">227</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">228</td><td class="codestring">&lt;/td&gt;&lt;td class=\"codekeyword\"&gt;</td><td class="linetype">String</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">229</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">230</td><td class="codetext">toHTML</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">231</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">232</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">233</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">234</td><td class="codetext">getToken</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">235</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">236</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">237</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">238</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">239</td><td class="codestring">&lt;/b&gt;&lt;/td&gt;&lt;td class=\"linetype\"&gt;Keyword&lt;/td&gt;&lt;td class=\"linenum\"&gt;</td><td class="linetype">String</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">240</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">241</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">242</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">243</td><td class="codetext">line</td><td class="linetype">Id Token</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">244</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">245</td><td class="codestring">&lt;/td&gt;&lt;/tr&gt;</td><td class="linetype">String</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">246</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">58</td></tr>
+<tr><td class="lineindex_color">247</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">60</td></tr>
+<tr><td class="lineindex_color">248</td><td class="codekeyword">else</b></td><td class="linetype">Keyword</td><td class="linenum">60</td></tr><tr><td class="lineindex_color">249</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">60</td></tr>
+<tr><td class="lineindex_color">250</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">62</td></tr>
+<tr><td class="lineindex_color">251</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">62</td></tr>
+<tr><td class="lineindex_color">252</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">62</td></tr>
+<tr><td class="lineindex_color">253</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">62</td></tr>
+<tr><td class="lineindex_color">254</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">62</td></tr>
+<tr><td class="lineindex_color">255</td><td class="codekeyword">switch</b></td><td class="linetype">Keyword</td><td class="linenum">63</td></tr><tr><td class="lineindex_color">256</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">257</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">258</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">259</td><td class="codetext">getTokenType</td><td class="linetype">Id Token</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">260</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">261</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">262</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">263</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">63</td></tr>
+<tr><td class="lineindex_color">264</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">64</td></tr><tr><td class="lineindex_color">265</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">64</td></tr>
+<tr><td class="lineindex_color">266</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">64</td></tr>
+<tr><td class="lineindex_color">267</td><td class="codetext">TOKEN_STRING</td><td class="linetype">Id Token</td><td class="linenum">64</td></tr>
+<tr><td class="lineindex_color">268</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">64</td></tr>
+<tr><td class="lineindex_color">269</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">65</td></tr>
+<tr><td class="lineindex_color">270</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">65</td></tr>
+<tr><td class="lineindex_color">271</td><td class="codestring">codestring</td><td class="linetype">String</td><td class="linenum">65</td></tr>
+<tr><td class="lineindex_color">272</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">65</td></tr>
+<tr><td class="lineindex_color">273</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">66</td></tr><tr><td class="lineindex_color">274</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">66</td></tr>
+<tr><td class="lineindex_color">275</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">67</td></tr><tr><td class="lineindex_color">276</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">67</td></tr>
+<tr><td class="lineindex_color">277</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">67</td></tr>
+<tr><td class="lineindex_color">278</td><td class="codetext">TOKEN_OPERATOR</td><td class="linetype">Id Token</td><td class="linenum">67</td></tr>
+<tr><td class="lineindex_color">279</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">67</td></tr>
+<tr><td class="lineindex_color">280</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">68</td></tr>
+<tr><td class="lineindex_color">281</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">68</td></tr>
+<tr><td class="lineindex_color">282</td><td class="codestring">codesymbol</td><td class="linetype">String</td><td class="linenum">68</td></tr>
+<tr><td class="lineindex_color">283</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">68</td></tr>
+<tr><td class="lineindex_color">284</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">69</td></tr><tr><td class="lineindex_color">285</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">69</td></tr>
+<tr><td class="lineindex_color">286</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">70</td></tr><tr><td class="lineindex_color">287</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">70</td></tr>
+<tr><td class="lineindex_color">288</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">70</td></tr>
+<tr><td class="lineindex_color">289</td><td class="codetext">TOKEN_DIGIT</td><td class="linetype">Id Token</td><td class="linenum">70</td></tr>
+<tr><td class="lineindex_color">290</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">70</td></tr>
+<tr><td class="lineindex_color">291</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">71</td></tr>
+<tr><td class="lineindex_color">292</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">71</td></tr>
+<tr><td class="lineindex_color">293</td><td class="codestring">codedigit</td><td class="linetype">String</td><td class="linenum">71</td></tr>
+<tr><td class="lineindex_color">294</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">71</td></tr>
+<tr><td class="lineindex_color">295</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">72</td></tr><tr><td class="lineindex_color">296</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">72</td></tr>
+<tr><td class="lineindex_color">297</td><td class="codekeyword">case</b></td><td class="linetype">Keyword</td><td class="linenum">73</td></tr><tr><td class="lineindex_color">298</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">73</td></tr>
+<tr><td class="lineindex_color">299</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">73</td></tr>
+<tr><td class="lineindex_color">300</td><td class="codetext">TOKEN_SINGLE</td><td class="linetype">Id Token</td><td class="linenum">73</td></tr>
+<tr><td class="lineindex_color">301</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">73</td></tr>
+<tr><td class="lineindex_color">302</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">74</td></tr>
+<tr><td class="lineindex_color">303</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">74</td></tr>
+<tr><td class="lineindex_color">304</td><td class="codestring">codechar</td><td class="linetype">String</td><td class="linenum">74</td></tr>
+<tr><td class="lineindex_color">305</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">74</td></tr>
+<tr><td class="lineindex_color">306</td><td class="codekeyword">break</b></td><td class="linetype">Keyword</td><td class="linenum">75</td></tr><tr><td class="lineindex_color">307</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">75</td></tr>
+<tr><td class="lineindex_color">308</td><td class="codekeyword">default</b></td><td class="linetype">Keyword</td><td class="linenum">76</td></tr><tr><td class="lineindex_color">309</td><td class="codesymbol">:</td><td class="linetype">Symbol</td><td class="linenum">76</td></tr>
+<tr><td class="lineindex_color">310</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">77</td></tr>
+<tr><td class="lineindex_color">311</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">77</td></tr>
+<tr><td class="lineindex_color">312</td><td class="codestring">codetext</td><td class="linetype">String</td><td class="linenum">77</td></tr>
+<tr><td class="lineindex_color">313</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">77</td></tr>
+<tr><td class="lineindex_color">314</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">78</td></tr>
+<tr><td class="lineindex_color">315</td><td class="codetext">out</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">316</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">317</td><td class="codestring">&lt;tr&gt;&lt;td class=\"lineindex_color\"&gt;</td><td class="linetype">String</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">318</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">319</td><td class="codesymbol">++</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">320</td><td class="codetext">counter</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">321</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">322</td><td class="codestring">&lt;/td&gt;&lt;td class=\"</td><td class="linetype">String</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">323</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">324</td><td class="codetext">codecolor</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">325</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">326</td><td class="codestring">\"&gt;</td><td class="linetype">String</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">327</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">328</td><td class="codetext">toHTML</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">329</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">330</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">331</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">332</td><td class="codetext">getToken</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">333</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">334</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">335</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">336</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">337</td><td class="codestring">&lt;/td&gt;&lt;td class=\"linetype\"&gt;</td><td class="linetype">String</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">338</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">339</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">340</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">341</td><td class="codetext">getType</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">342</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">343</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">344</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">345</td><td class="codestring">&lt;/td&gt;&lt;td class=\"linenum\"&gt;</td><td class="linetype">String</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">346</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">347</td><td class="codetext">t</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">348</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">349</td><td class="codetext">line</td><td class="linetype">Id Token</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">350</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">351</td><td class="codestring">&lt;/td&gt;&lt;/tr&gt;\n</td><td class="linetype">String</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">352</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">80</td></tr>
+<tr><td class="lineindex_color">353</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">81</td></tr>
+<tr><td class="lineindex_color">354</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">82</td></tr>
+<tr><td class="lineindex_color">355</td><td class="codekeyword">int</b></td><td class="linetype">Keyword</td><td class="linenum">89</td></tr><tr><td class="lineindex_color">356</td><td class="codetext">main</td><td class="linetype">Id Token</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">357</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">358</td><td class="codekeyword">int</b></td><td class="linetype">Keyword</td><td class="linenum">89</td></tr><tr><td class="lineindex_color">359</td><td class="codetext">argc</td><td class="linetype">Id Token</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">360</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">361</td><td class="codekeyword">char</b></td><td class="linetype">Keyword</td><td class="linenum">89</td></tr><tr><td class="lineindex_color">362</td><td class="codesymbol">**</td><td class="linetype">Symbol</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">363</td><td class="codetext">argv</td><td class="linetype">Id Token</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">364</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">365</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">89</td></tr>
+<tr><td class="lineindex_color">366</td><td class="codekeyword">bool</b></td><td class="linetype">Keyword</td><td class="linenum">90</td></tr><tr><td class="lineindex_color">367</td><td class="codetext">standard_output</td><td class="linetype">Id Token</td><td class="linenum">90</td></tr>
+<tr><td class="lineindex_color">368</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">90</td></tr>
+<tr><td class="lineindex_color">369</td><td class="codekeyword">false</b></td><td class="linetype">Keyword</td><td class="linenum">90</td></tr><tr><td class="lineindex_color">370</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">90</td></tr>
+<tr><td class="lineindex_color">371</td><td class="codekeyword">char</b></td><td class="linetype">Keyword</td><td class="linenum">91</td></tr><tr><td class="lineindex_color">372</td><td class="codesymbol">*</td><td class="linetype">Symbol</td><td class="linenum">91</td></tr>
+<tr><td class="lineindex_color">373</td><td class="codetext">data</td><td class="linetype">Id Token</td><td class="linenum">91</td></tr>
+<tr><td class="lineindex_color">374</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">91</td></tr>
+<tr><td class="lineindex_color">375</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">91</td></tr>
+<tr><td class="lineindex_color">376</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">91</td></tr>
+<tr><td class="lineindex_color">377</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">92</td></tr>
+<tr><td class="lineindex_color">378</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">92</td></tr>
+<tr><td class="lineindex_color">379</td><td class="codetext">fstream</td><td class="linetype">Id Token</td><td class="linenum">92</td></tr>
+<tr><td class="lineindex_color">380</td><td class="codetext">ufile</td><td class="linetype">Id Token</td><td class="linenum">92</td></tr>
+<tr><td class="lineindex_color">381</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">92</td></tr>
+<tr><td class="lineindex_color">382</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">94</td></tr><tr><td class="lineindex_color">383</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">94</td></tr>
+<tr><td class="lineindex_color">384</td><td class="codetext">argc</td><td class="linetype">Id Token</td><td class="linenum">94</td></tr>
+<tr><td class="lineindex_color">385</td><td class="codesymbol">==</td><td class="linetype">Symbol</td><td class="linenum">94</td></tr>
+<tr><td class="lineindex_color">386</td><td class="codedigit">2</td><td class="linetype">Digit</td><td class="linenum">94</td></tr>
+<tr><td class="lineindex_color">387</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">94</td></tr>
+<tr><td class="lineindex_color">388</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">94</td></tr>
+<tr><td class="lineindex_color">389</td><td class="codetext">ufile</td><td class="linetype">Id Token</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">390</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">391</td><td class="codetext">open</td><td class="linetype">Id Token</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">392</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">393</td><td class="codetext">argv</td><td class="linetype">Id Token</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">394</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">395</td><td class="codedigit">1</td><td class="linetype">Digit</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">396</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">397</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">398</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">399</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">400</td><td class="codetext">ios</td><td class="linetype">Id Token</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">401</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">402</td><td class="codetext">in</td><td class="linetype">Id Token</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">403</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">404</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">95</td></tr>
+<tr><td class="lineindex_color">405</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">96</td></tr><tr><td class="lineindex_color">406</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">407</td><td class="codesymbol">!</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">408</td><td class="codetext">ufile</td><td class="linetype">Id Token</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">409</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">410</td><td class="codetext">is_open</td><td class="linetype">Id Token</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">411</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">412</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">413</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">414</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">96</td></tr>
+<tr><td class="lineindex_color">415</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">416</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">417</td><td class="codetext">cerr</td><td class="linetype">Id Token</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">418</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">419</td><td class="codestring">Could not open file: </td><td class="linetype">String</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">420</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">421</td><td class="codetext">argv</td><td class="linetype">Id Token</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">422</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">423</td><td class="codedigit">1</td><td class="linetype">Digit</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">424</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">425</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">426</td><td class="codestring">\n</td><td class="linetype">String</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">427</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">97</td></tr>
+<tr><td class="lineindex_color">428</td><td class="codekeyword">return</b></td><td class="linetype">Keyword</td><td class="linenum">98</td></tr><tr><td class="lineindex_color">429</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">98</td></tr>
+<tr><td class="lineindex_color">430</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">98</td></tr>
+<tr><td class="lineindex_color">431</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">99</td></tr>
+<tr><td class="lineindex_color">432</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">100</td></tr>
+<tr><td class="lineindex_color">433</td><td class="codekeyword">else</b></td><td class="linetype">Keyword</td><td class="linenum">100</td></tr><tr><td class="lineindex_color">434</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">100</td></tr>
+<tr><td class="lineindex_color">435</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">101</td></tr>
+<tr><td class="lineindex_color">436</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">101</td></tr>
+<tr><td class="lineindex_color">437</td><td class="codetext">cout</td><td class="linetype">Id Token</td><td class="linenum">101</td></tr>
+<tr><td class="lineindex_color">438</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">101</td></tr>
+<tr><td class="lineindex_color">439</td><td class="codestring">Content-type: text/html\n\n</td><td class="linetype">String</td><td class="linenum">101</td></tr>
+<tr><td class="lineindex_color">440</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">101</td></tr>
+<tr><td class="lineindex_color">441</td><td class="codetext">data</td><td class="linetype">Id Token</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">442</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">443</td><td class="codetext">getenv</td><td class="linetype">Id Token</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">444</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">445</td><td class="codestring">QUERY_STRING</td><td class="linetype">String</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">446</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">447</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">102</td></tr>
+<tr><td class="lineindex_color">448</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">103</td></tr><tr><td class="lineindex_color">449</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">450</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">451</td><td class="codetext">data</td><td class="linetype">Id Token</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">452</td><td class="codesymbol">==</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">453</td><td class="codetext">NULL</td><td class="linetype">Id Token</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">454</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">455</td><td class="codetext">strlen</td><td class="linetype">Id Token</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">456</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">457</td><td class="codetext">data</td><td class="linetype">Id Token</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">458</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">459</td><td class="codesymbol">==</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">460</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">461</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">462</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">103</td></tr>
+<tr><td class="lineindex_color">463</td><td class="codekeyword">return</b></td><td class="linetype">Keyword</td><td class="linenum">104</td></tr><tr><td class="lineindex_color">464</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">104</td></tr>
+<tr><td class="lineindex_color">465</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">104</td></tr>
+<tr><td class="lineindex_color">466</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">105</td></tr>
+<tr><td class="lineindex_color">467</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">106</td></tr>
+<tr><td class="lineindex_color">468</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">108</td></tr>
+<tr><td class="lineindex_color">469</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">108</td></tr>
+<tr><td class="lineindex_color">470</td><td class="codetext">ostringstream</td><td class="linetype">Id Token</td><td class="linenum">108</td></tr>
+<tr><td class="lineindex_color">471</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">108</td></tr>
+<tr><td class="lineindex_color">472</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">108</td></tr>
+<tr><td class="lineindex_color">473</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">109</td></tr>
+<tr><td class="lineindex_color">474</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">109</td></tr>
+<tr><td class="lineindex_color">475</td><td class="codetext">Scanner</td><td class="linetype">Id Token</td><td class="linenum">109</td></tr>
+<tr><td class="lineindex_color">476</td><td class="codesymbol">*</td><td class="linetype">Symbol</td><td class="linenum">109</td></tr>
+<tr><td class="lineindex_color">477</td><td class="codetext">scan</td><td class="linetype">Id Token</td><td class="linenum">109</td></tr>
+<tr><td class="lineindex_color">478</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">109</td></tr>
+<tr><td class="lineindex_color">479</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">110</td></tr><tr><td class="lineindex_color">480</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">110</td></tr>
+<tr><td class="lineindex_color">481</td><td class="codetext">argc</td><td class="linetype">Id Token</td><td class="linenum">110</td></tr>
+<tr><td class="lineindex_color">482</td><td class="codesymbol">==</td><td class="linetype">Symbol</td><td class="linenum">110</td></tr>
+<tr><td class="lineindex_color">483</td><td class="codedigit">2</td><td class="linetype">Digit</td><td class="linenum">110</td></tr>
+<tr><td class="lineindex_color">484</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">110</td></tr>
+<tr><td class="lineindex_color">485</td><td class="codetext">scan</td><td class="linetype">Id Token</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">486</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">487</td><td class="codekeyword">new</b></td><td class="linetype">Keyword</td><td class="linenum">111</td></tr><tr><td class="lineindex_color">488</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">489</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">490</td><td class="codetext">Scanner</td><td class="linetype">Id Token</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">491</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">492</td><td class="codetext">ufile</td><td class="linetype">Id Token</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">493</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">494</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">111</td></tr>
+<tr><td class="lineindex_color">495</td><td class="codekeyword">else</b></td><td class="linetype">Keyword</td><td class="linenum">112</td></tr><tr><td class="lineindex_color">496</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">112</td></tr>
+<tr><td class="lineindex_color">497</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">498</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">499</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">500</td><td class="codetext">codeText</td><td class="linetype">Id Token</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">501</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">502</td><td class="codetext">data</td><td class="linetype">Id Token</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">503</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">113</td></tr>
+<tr><td class="lineindex_color">504</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">505</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">506</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">507</td><td class="codetext">ctext</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">508</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">509</td><td class="codetext">codeText</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">510</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">511</td><td class="codetext">substr</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">512</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">513</td><td class="codetext">codeText</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">514</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">515</td><td class="codetext">find</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">516</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">517</td><td class="codestring">=</td><td class="linetype">String</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">518</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">519</td><td class="codesymbol">+</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">520</td><td class="codedigit">1</td><td class="linetype">Digit</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">521</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">522</td><td class="codetext">codeText</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">523</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">524</td><td class="codetext">length</td><td class="linetype">Id Token</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">525</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">526</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">527</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">528</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">114</td></tr>
+<tr><td class="lineindex_color">529</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">530</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">531</td><td class="codetext">istringstream</td><td class="linetype">Id Token</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">532</td><td class="codetext">input</td><td class="linetype">Id Token</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">533</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">534</td><td class="codetext">urldecode</td><td class="linetype">Id Token</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">535</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">536</td><td class="codetext">ctext</td><td class="linetype">Id Token</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">537</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">538</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">539</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">115</td></tr>
+<tr><td class="lineindex_color">540</td><td class="codetext">scan</td><td class="linetype">Id Token</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">541</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">542</td><td class="codekeyword">new</b></td><td class="linetype">Keyword</td><td class="linenum">116</td></tr><tr><td class="lineindex_color">543</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">544</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">545</td><td class="codetext">Scanner</td><td class="linetype">Id Token</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">546</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">547</td><td class="codetext">input</td><td class="linetype">Id Token</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">548</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">549</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">116</td></tr>
+<tr><td class="lineindex_color">550</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">117</td></tr>
+<tr><td class="lineindex_color">551</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">119</td></tr>
+<tr><td class="lineindex_color">552</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">119</td></tr>
+<tr><td class="lineindex_color">553</td><td class="codestring">&lt;!DOCTYPE html&gt;\n</td><td class="linetype">String</td><td class="linenum">119</td></tr>
+<tr><td class="lineindex_color">554</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">119</td></tr>
+<tr><td class="lineindex_color">555</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">556</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">557</td><td class="codestring">&lt;html&gt;&lt;head&gt;&lt;title&gt;</td><td class="linetype">String</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">558</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">559</td><td class="codestring">C++ Tokenizer </td><td class="linetype">String</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">560</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">561</td><td class="codestring">&lt;/title&gt;&lt;/head&gt;\n</td><td class="linetype">String</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">562</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">120</td></tr>
+<tr><td class="lineindex_color">563</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">121</td></tr>
+<tr><td class="lineindex_color">564</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">121</td></tr>
+<tr><td class="lineindex_color">565</td><td class="codestring">&lt;body&gt;\n</td><td class="linetype">String</td><td class="linenum">121</td></tr>
+<tr><td class="lineindex_color">566</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">121</td></tr>
+<tr><td class="lineindex_color">567</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">122</td></tr>
+<tr><td class="lineindex_color">568</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">122</td></tr>
+<tr><td class="lineindex_color">569</td><td class="codestring">&lt;style&gt;\n</td><td class="linetype">String</td><td class="linenum">122</td></tr>
+<tr><td class="lineindex_color">570</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">122</td></tr>
+<tr><td class="lineindex_color">571</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">123</td></tr>
+<tr><td class="lineindex_color">572</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">123</td></tr>
+<tr><td class="lineindex_color">573</td><td class="codestring">&#46;linenumber { background-color: rgb&#40;0,100,200&#41;&#59; }\n</td><td class="linetype">String</td><td class="linenum">123</td></tr>
+<tr><td class="lineindex_color">574</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">123</td></tr>
+<tr><td class="lineindex_color">575</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">124</td></tr>
+<tr><td class="lineindex_color">576</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">124</td></tr>
+<tr><td class="lineindex_color">577</td><td class="codestring">&#46;lineindex_color { color: rgb&#40;255,255,255&#41;&#59; background-color: #000000&#59; }\n</td><td class="linetype">String</td><td class="linenum">124</td></tr>
+<tr><td class="lineindex_color">578</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">124</td></tr>
+<tr><td class="lineindex_color">579</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">125</td></tr>
+<tr><td class="lineindex_color">580</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">125</td></tr>
+<tr><td class="lineindex_color">581</td><td class="codestring">&#46;linetype { color: rgb&#40;100,0,255&#41;&#59; background-color: rgb&#40;25,255,100&#41;&#59; }\n</td><td class="linetype">String</td><td class="linenum">125</td></tr>
+<tr><td class="lineindex_color">582</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">125</td></tr>
+<tr><td class="lineindex_color">583</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">126</td></tr>
+<tr><td class="lineindex_color">584</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">126</td></tr>
+<tr><td class="lineindex_color">585</td><td class="codestring">&#46;linenum { color: rgb&#40;50,255,50&#41;&#59; background-color: #888888&#59; }\n</td><td class="linetype">String</td><td class="linenum">126</td></tr>
+<tr><td class="lineindex_color">586</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">126</td></tr>
+<tr><td class="lineindex_color">587</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">127</td></tr>
+<tr><td class="lineindex_color">588</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">127</td></tr>
+<tr><td class="lineindex_color">589</td><td class="codestring">&#46;codetext { color: #000000&#59; background-color: rgb&#40;255,254,208&#41;&#59;}\n</td><td class="linetype">String</td><td class="linenum">127</td></tr>
+<tr><td class="lineindex_color">590</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">127</td></tr>
+<tr><td class="lineindex_color">591</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">128</td></tr>
+<tr><td class="lineindex_color">592</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">128</td></tr>
+<tr><td class="lineindex_color">593</td><td class="codestring">&#46;codekeyword { color: rgb&#40;0,0,255&#41;&#59; font-weight: bold&#59; }\n</td><td class="linetype">String</td><td class="linenum">128</td></tr>
+<tr><td class="lineindex_color">594</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">128</td></tr>
+<tr><td class="lineindex_color">595</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">129</td></tr>
+<tr><td class="lineindex_color">596</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">129</td></tr>
+<tr><td class="lineindex_color">597</td><td class="codestring">&#46;codestring { color: rgb&#40;255,0,255&#41;&#59;background-color: rgb&#40;200, 200,200&#41;&#59; }\n</td><td class="linetype">String</td><td class="linenum">129</td></tr>
+<tr><td class="lineindex_color">598</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">129</td></tr>
+<tr><td class="lineindex_color">599</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">130</td></tr>
+<tr><td class="lineindex_color">600</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">130</td></tr>
+<tr><td class="lineindex_color">601</td><td class="codestring">&#46;codesymbol { color: rgb&#40;76,255,198&#41;&#59; background-color: rgb&#40;100,100,100&#41;&#59; }\n</td><td class="linetype">String</td><td class="linenum">130</td></tr>
+<tr><td class="lineindex_color">602</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">130</td></tr>
+<tr><td class="lineindex_color">603</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">131</td></tr>
+<tr><td class="lineindex_color">604</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">131</td></tr>
+<tr><td class="lineindex_color">605</td><td class="codestring">&#46;codedigit { color: rgb&#40;0,255,186&#41;&#59; background-color: rgb&#40;0,0,0&#41;&#59; }\n</td><td class="linetype">String</td><td class="linenum">131</td></tr>
+<tr><td class="lineindex_color">606</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">131</td></tr>
+<tr><td class="lineindex_color">607</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">132</td></tr>
+<tr><td class="lineindex_color">608</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">132</td></tr>
+<tr><td class="lineindex_color">609</td><td class="codestring">&#46;codechar { color: rgb&#40;187,212,249&#41;&#59; background-color: rgb&#40;94,0,167&#41;&#59; }\n</td><td class="linetype">String</td><td class="linenum">132</td></tr>
+<tr><td class="lineindex_color">610</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">132</td></tr>
+<tr><td class="lineindex_color">611</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">133</td></tr>
+<tr><td class="lineindex_color">612</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">133</td></tr>
+<tr><td class="lineindex_color">613</td><td class="codestring">&lt;/style&gt;\n</td><td class="linetype">String</td><td class="linenum">133</td></tr>
+<tr><td class="lineindex_color">614</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">133</td></tr>
+<tr><td class="lineindex_color">615</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">134</td></tr>
+<tr><td class="lineindex_color">616</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">134</td></tr>
+<tr><td class="lineindex_color">617</td><td class="codestring">&lt;a href=\"http://lostsidedead&#46;com\"&gt;&lt;img src=\"http://lostsidedead&#46;com/img/logo&#46;png\"&gt;&lt;/a&gt;&lt;br&gt;&lt;br&gt;\n\n</td><td class="linetype">String</td><td class="linenum">134</td></tr>
+<tr><td class="lineindex_color">618</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">134</td></tr>
+<tr><td class="lineindex_color">619</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">135</td></tr>
+<tr><td class="lineindex_color">620</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">135</td></tr>
+<tr><td class="lineindex_color">621</td><td class="codestring">&lt;table border=\"1\" cellspacing=\"4\" cellpadding=\"4\"&gt;&lt;tr style=\"background-color: rgb&#40;150, 150, 150&#41;&#59;\"&gt;&lt;td class=\"linenumber\"&gt;&lt;b&gt;Index&lt;/b&gt;&lt;/td&gt;&lt;td class=\"linenumber\"&gt;&lt;b&gt;Token&lt;/b&gt;&lt;/td&gt;&lt;td class=\"linenumber\"&gt;&lt;b&gt;Type&lt;/b&gt;&lt;/td&gt;&lt;td class=\"linenumber\"&gt;&lt;b&gt;Line Number&lt;/b&gt;&lt;/td&gt;&lt;/tr&gt;\n</td><td class="linetype">String</td><td class="linenum">135</td></tr>
+<tr><td class="lineindex_color">622</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">135</td></tr>
+<tr><td class="lineindex_color">623</td><td class="codekeyword">try</b></td><td class="linetype">Keyword</td><td class="linenum">137</td></tr><tr><td class="lineindex_color">624</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">137</td></tr>
+<tr><td class="lineindex_color">625</td><td class="codekeyword">while</b></td><td class="linetype">Keyword</td><td class="linenum">138</td></tr><tr><td class="lineindex_color">626</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">627</td><td class="codetext">scan</td><td class="linetype">Id Token</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">628</td><td class="codesymbol">-&gt;</td><td class="linetype">Symbol</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">629</td><td class="codetext">valid</td><td class="linetype">Id Token</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">630</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">631</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">632</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">633</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">138</td></tr>
+<tr><td class="lineindex_color">634</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">139</td></tr>
+<tr><td class="lineindex_color">635</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">139</td></tr>
+<tr><td class="lineindex_color">636</td><td class="codetext">Token</td><td class="linetype">Id Token</td><td class="linenum">139</td></tr>
+<tr><td class="lineindex_color">637</td><td class="codetext">token</td><td class="linetype">Id Token</td><td class="linenum">139</td></tr>
+<tr><td class="lineindex_color">638</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">139</td></tr>
+<tr><td class="lineindex_color">639</td><td class="codesymbol">*</td><td class="linetype">Symbol</td><td class="linenum">140</td></tr>
+<tr><td class="lineindex_color">640</td><td class="codetext">scan</td><td class="linetype">Id Token</td><td class="linenum">140</td></tr>
+<tr><td class="lineindex_color">641</td><td class="codesymbol">&gt;&gt;</td><td class="linetype">Symbol</td><td class="linenum">140</td></tr>
+<tr><td class="lineindex_color">642</td><td class="codetext">token</td><td class="linetype">Id Token</td><td class="linenum">140</td></tr>
+<tr><td class="lineindex_color">643</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">140</td></tr>
+<tr><td class="lineindex_color">644</td><td class="codetext">outputToken</td><td class="linetype">Id Token</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">645</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">646</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">647</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">648</td><td class="codetext">token</td><td class="linetype">Id Token</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">649</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">650</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">141</td></tr>
+<tr><td class="lineindex_color">651</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">142</td></tr>
+<tr><td class="lineindex_color">652</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">653</td><td class="codekeyword">catch</b></td><td class="linetype">Keyword</td><td class="linenum">143</td></tr><tr><td class="lineindex_color">654</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">655</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">656</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">657</td><td class="codetext">Scanner_EOF</td><td class="linetype">Id Token</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">658</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">659</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">143</td></tr>
+<tr><td class="lineindex_color">660</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">661</td><td class="codekeyword">catch</b></td><td class="linetype">Keyword</td><td class="linenum">145</td></tr><tr><td class="lineindex_color">662</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">663</td><td class="codetext">lex</td><td class="linetype">Id Token</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">664</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">665</td><td class="codetext">Scanner_Error</td><td class="linetype">Id Token</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">666</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">667</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">145</td></tr>
+<tr><td class="lineindex_color">668</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">146</td></tr>
+<tr><td class="lineindex_color">669</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">146</td></tr>
+<tr><td class="lineindex_color">670</td><td class="codetext">cout</td><td class="linetype">Id Token</td><td class="linenum">146</td></tr>
+<tr><td class="lineindex_color">671</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">146</td></tr>
+<tr><td class="lineindex_color">672</td><td class="codestring">A error has occured&#46; Check your source&#46;\n</td><td class="linetype">String</td><td class="linenum">146</td></tr>
+<tr><td class="lineindex_color">673</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">146</td></tr>
+<tr><td class="lineindex_color">674</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">147</td></tr>
+<tr><td class="lineindex_color">675</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">149</td></tr>
+<tr><td class="lineindex_color">676</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">149</td></tr>
+<tr><td class="lineindex_color">677</td><td class="codestring">\n&lt;/table&gt;&lt;/body&gt;&lt;/html&gt;</td><td class="linetype">String</td><td class="linenum">149</td></tr>
+<tr><td class="lineindex_color">678</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">149</td></tr>
+<tr><td class="lineindex_color">679</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">680</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">681</td><td class="codetext">cout</td><td class="linetype">Id Token</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">682</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">683</td><td class="codetext">ofile</td><td class="linetype">Id Token</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">684</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">685</td><td class="codetext">str</td><td class="linetype">Id Token</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">686</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">687</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">688</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">689</td><td class="codestring">\n</td><td class="linetype">String</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">690</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">151</td></tr>
+<tr><td class="lineindex_color">691</td><td class="codekeyword">delete</b></td><td class="linetype">Keyword</td><td class="linenum">152</td></tr><tr><td class="lineindex_color">692</td><td class="codetext">scan</td><td class="linetype">Id Token</td><td class="linenum">152</td></tr>
+<tr><td class="lineindex_color">693</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">152</td></tr>
+<tr><td class="lineindex_color">694</td><td class="codekeyword">return</b></td><td class="linetype">Keyword</td><td class="linenum">153</td></tr><tr><td class="lineindex_color">695</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">153</td></tr>
+<tr><td class="lineindex_color">696</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">153</td></tr>
+<tr><td class="lineindex_color">697</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">154</td></tr>
+<tr><td class="lineindex_color">698</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">699</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">700</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">701</td><td class="codetext">urldecode</td><td class="linetype">Id Token</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">702</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">703</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">704</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">705</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">706</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">707</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">708</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">161</td></tr>
+<tr><td class="lineindex_color">709</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">162</td></tr>
+<tr><td class="lineindex_color">710</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">162</td></tr>
+<tr><td class="lineindex_color">711</td><td class="codetext">ostringstream</td><td class="linetype">Id Token</td><td class="linenum">162</td></tr>
+<tr><td class="lineindex_color">712</td><td class="codetext">stream</td><td class="linetype">Id Token</td><td class="linenum">162</td></tr>
+<tr><td class="lineindex_color">713</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">162</td></tr>
+<tr><td class="lineindex_color">714</td><td class="codekeyword">for</b></td><td class="linetype">Keyword</td><td class="linenum">163</td></tr><tr><td class="lineindex_color">715</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">716</td><td class="codekeyword">unsigned</b></td><td class="linetype">Keyword</td><td class="linenum">163</td></tr><tr><td class="lineindex_color">717</td><td class="codekeyword">int</b></td><td class="linetype">Keyword</td><td class="linenum">163</td></tr><tr><td class="lineindex_color">718</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">719</td><td class="codesymbol">=</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">720</td><td class="codedigit">0</td><td class="linetype">Digit</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">721</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">722</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">723</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">724</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">725</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">726</td><td class="codetext">length</td><td class="linetype">Id Token</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">727</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">728</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">729</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">730</td><td class="codesymbol">++</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">731</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">732</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">733</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">163</td></tr>
+<tr><td class="lineindex_color">734</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">164</td></tr><tr><td class="lineindex_color">735</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">736</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">737</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">738</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">739</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">740</td><td class="codesymbol">==</td><td class="linetype">Symbol</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">741</td><td class="codechar">+</td><td class="linetype">Character</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">742</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">743</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">164</td></tr>
+<tr><td class="lineindex_color">744</td><td class="codetext">stream</td><td class="linetype">Id Token</td><td class="linenum">165</td></tr>
+<tr><td class="lineindex_color">745</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">165</td></tr>
+<tr><td class="lineindex_color">746</td><td class="codestring"> </td><td class="linetype">String</td><td class="linenum">165</td></tr>
+<tr><td class="lineindex_color">747</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">165</td></tr>
+<tr><td class="lineindex_color">748</td><td class="codekeyword">continue</b></td><td class="linetype">Keyword</td><td class="linenum">166</td></tr><tr><td class="lineindex_color">749</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">166</td></tr>
+<tr><td class="lineindex_color">750</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">167</td></tr>
+<tr><td class="lineindex_color">751</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">168</td></tr><tr><td class="lineindex_color">752</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">753</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">754</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">755</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">756</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">757</td><td class="codesymbol">==</td><td class="linetype">Symbol</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">758</td><td class="codechar">%</td><td class="linetype">Character</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">759</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">760</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">168</td></tr>
+<tr><td class="lineindex_color">761</td><td class="codekeyword">if</b></td><td class="linetype">Keyword</td><td class="linenum">169</td></tr><tr><td class="lineindex_color">762</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">763</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">764</td><td class="codesymbol">+</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">765</td><td class="codedigit">2</td><td class="linetype">Digit</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">766</td><td class="codesymbol">&lt;</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">767</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">768</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">769</td><td class="codetext">length</td><td class="linetype">Id Token</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">770</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">771</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">772</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">773</td><td class="codesymbol">{</td><td class="linetype">Symbol</td><td class="linenum">169</td></tr>
+<tr><td class="lineindex_color">774</td><td class="codesymbol">++</td><td class="linetype">Symbol</td><td class="linenum">170</td></tr>
+<tr><td class="lineindex_color">775</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">170</td></tr>
+<tr><td class="lineindex_color">776</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">170</td></tr>
+<tr><td class="lineindex_color">777</td><td class="codetext">std</td><td class="linetype">Id Token</td><td class="linenum">171</td></tr>
+<tr><td class="lineindex_color">778</td><td class="codesymbol">::</td><td class="linetype">Symbol</td><td class="linenum">171</td></tr>
+<tr><td class="lineindex_color">779</td><td class="codetext">string</td><td class="linetype">Id Token</td><td class="linenum">171</td></tr>
+<tr><td class="lineindex_color">780</td><td class="codetext">test</td><td class="linetype">Id Token</td><td class="linenum">171</td></tr>
+<tr><td class="lineindex_color">781</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">171</td></tr>
+<tr><td class="lineindex_color">782</td><td class="codetext">test</td><td class="linetype">Id Token</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">783</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">784</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">785</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">786</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">787</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">788</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">172</td></tr>
+<tr><td class="lineindex_color">789</td><td class="codesymbol">++</td><td class="linetype">Symbol</td><td class="linenum">173</td></tr>
+<tr><td class="lineindex_color">790</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">173</td></tr>
+<tr><td class="lineindex_color">791</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">173</td></tr>
+<tr><td class="lineindex_color">792</td><td class="codetext">test</td><td class="linetype">Id Token</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">793</td><td class="codesymbol">+=</td><td class="linetype">Symbol</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">794</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">795</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">796</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">797</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">798</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">174</td></tr>
+<tr><td class="lineindex_color">799</td><td class="codekeyword">int</b></td><td class="linetype">Keyword</td><td class="linenum">175</td></tr><tr><td class="lineindex_color">800</td><td class="codetext">char_value</td><td class="linetype">Id Token</td><td class="linenum">175</td></tr>
+<tr><td class="lineindex_color">801</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">175</td></tr>
+<tr><td class="lineindex_color">802</td><td class="codetext">sscanf</td><td class="linetype">Id Token</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">803</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">804</td><td class="codetext">test</td><td class="linetype">Id Token</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">805</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">806</td><td class="codetext">c_str</td><td class="linetype">Id Token</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">807</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">808</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">809</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">810</td><td class="codestring">%x</td><td class="linetype">String</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">811</td><td class="codesymbol">,</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">812</td><td class="codesymbol">&</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">813</td><td class="codetext">char_value</td><td class="linetype">Id Token</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">814</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">815</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">176</td></tr>
+<tr><td class="lineindex_color">816</td><td class="codetext">stream</td><td class="linetype">Id Token</td><td class="linenum">177</td></tr>
+<tr><td class="lineindex_color">817</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">177</td></tr>
+<tr><td class="lineindex_color">818</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">177</td></tr>
+<tr><td class="lineindex_color">819</td><td class="codekeyword">char</b></td><td class="linetype">Keyword</td><td class="linenum">177</td></tr><tr><td class="lineindex_color">820</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">177</td></tr>
+<tr><td class="lineindex_color">821</td><td class="codetext">char_value</td><td class="linetype">Id Token</td><td class="linenum">177</td></tr>
+<tr><td class="lineindex_color">822</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">177</td></tr>
+<tr><td class="lineindex_color">823</td><td class="codekeyword">continue</b></td><td class="linetype">Keyword</td><td class="linenum">178</td></tr><tr><td class="lineindex_color">824</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">178</td></tr>
+<tr><td class="lineindex_color">825</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">179</td></tr>
+<tr><td class="lineindex_color">826</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">180</td></tr>
+<tr><td class="lineindex_color">827</td><td class="codetext">stream</td><td class="linetype">Id Token</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">828</td><td class="codesymbol">&lt;&lt;</td><td class="linetype">Symbol</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">829</td><td class="codetext">text</td><td class="linetype">Id Token</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">830</td><td class="codesymbol">[</td><td class="linetype">Symbol</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">831</td><td class="codetext">i</td><td class="linetype">Id Token</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">832</td><td class="codesymbol">]</td><td class="linetype">Symbol</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">833</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">181</td></tr>
+<tr><td class="lineindex_color">834</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">182</td></tr>
+<tr><td class="lineindex_color">835</td><td class="codekeyword">return</b></td><td class="linetype">Keyword</td><td class="linenum">183</td></tr><tr><td class="lineindex_color">836</td><td class="codetext">stream</td><td class="linetype">Id Token</td><td class="linenum">183</td></tr>
+<tr><td class="lineindex_color">837</td><td class="codesymbol">&#46;</td><td class="linetype">Symbol</td><td class="linenum">183</td></tr>
+<tr><td class="lineindex_color">838</td><td class="codetext">str</td><td class="linetype">Id Token</td><td class="linenum">183</td></tr>
+<tr><td class="lineindex_color">839</td><td class="codesymbol">&#40;</td><td class="linetype">Symbol</td><td class="linenum">183</td></tr>
+<tr><td class="lineindex_color">840</td><td class="codesymbol">&#41;</td><td class="linetype">Symbol</td><td class="linenum">183</td></tr>
+<tr><td class="lineindex_color">841</td><td class="codesymbol">&#59;</td><td class="linetype">Symbol</td><td class="linenum">183</td></tr>
+<tr><td class="lineindex_color">842</td><td class="codesymbol">}</td><td class="linetype">Symbol</td><td class="linenum">184</td></tr>
+
+</table></body></html>
