@@ -1,0 +1,13 @@
+Ever since I got my first computer a Nintendo Entertainment System, I have been fascinated with software. Now many years later software runs the world. Everything from your microwave to your smart phone contains computers. My first desktop computer I got in the 6th grade, it was a 486 DX2 66 MHZ Packard Bell. I first got my feet wet with programming with Visual Basic 3.0. 
+
+Programming to me is an art form. Instead of drawing with pencils or painting with a brush I use my thoughts to create code that makes the computer do different things. Coming up with new algorithms is like a form of mathematical poetry that flows from one's mind. Programming gives me a purpose in life and a reason to continue studying, reading and learning. 
+
+I learned to program through trial and error experiences. I read a lot of books and practiced what I read. It took a lot of effort to be able just to open up an IDE and start programming off the top of my head. I have done a lot of projects and learned a lot from them. A lot of the time the purpose of these projects was to learn and not exactly to make a program for other people to use. It takes the experience to be a good programmer, and I did not like school so I would just come up with projects to help me understand certain concepts and ideas. 
+
+Writing software makes me happy. It is a great stress reliever when you get to work on something that is fun versus for work or school. It makes it easier to code when you enjoy the project you are working on. 
+
+All in all, programming is something very fun and exciting. There is always something new to learn, and some books to read seems endless. It makes life interesting when your learning new things and creating programs that use these technologies. I would recommend to anyone to learn to code. It may be difficult at first, but like anything worthwhile, it is worth the effort. 
+
+Keep coding, 
+
+- Jared Bruni
