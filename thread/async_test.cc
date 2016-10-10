@@ -38,7 +38,7 @@ int wait_for_any(std::vector<std::future<T>> &v, std::chrono::steady_clock::dura
     using namespace std::chrono;
     
     while(1) {
-        for(int i = 0; i != v.size(); ++i) {
+        for(unsigned int i = 0; i != v.size(); ++i) {
             if(!v[i].valid()) continue;
             switch(v[i].wait_for(seconds{0})) {
                 case future_status::ready:
