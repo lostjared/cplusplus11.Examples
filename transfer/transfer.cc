@@ -46,7 +46,7 @@ void listen_at(std::string user_ip, int sock_id) {
             std::string file_path=buffer;
             delete [] buffer;
             mut.unlock();
-            if(file_path.find("\\") != -1) {
+            if(file_path.find("\\") != std::string::npos) {
                 mut.lock();
                 std::cout << "User: " << user_ip << " Sent illegal filename..\n";
                 mut.unlock();
@@ -111,7 +111,7 @@ void read_file(std::string ip, int port, std::string file_path) {
         while((rd_bytes = sock.Read((char*)buffer,packet_size)) != 0) {
             fs.write(buffer, rd_bytes);
             total += rd_bytes;
-            if(total > file_size) break;
+            if(total > (unsigned long)file_size) break;
         }
         fs.close();
         sock.closeSocket();
