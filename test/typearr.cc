@@ -33,7 +33,7 @@ namespace mx {
             return *this;
         }
         
-        L &value() const { return arr_index; }
+        L &value() { return arr_index; }
         size_t size() { return sizeof(L)/sizeof(S); }
 
     protected:
@@ -49,7 +49,7 @@ namespace mx {
     template<typename S, typename L>
     std::ostream &operator<<(std::ostream &out, TypeArray<S,L> &t) {
         out << "array { ";
-        for(int i = 0; i < t.size(); ++i)
+        for(unsigned int i = 0; i < t.size(); ++i)
             out << std::setw(10) << static_cast<L>(t[i]) << " ";
         out << " }\n Large value: " << std::setw(15) << t.value() << "\n";
         return out;
