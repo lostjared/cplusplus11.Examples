@@ -1,7 +1,8 @@
-CXX=c++
 FLAGS=-Wall -std=c++11  
 
-all:
+all: regex-test
+
+regex-test: regex_test.cc
 	$(CXX) regex_test.cc -o regex-test $(FLAGS)
 
 clean:
