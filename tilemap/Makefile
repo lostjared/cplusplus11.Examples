@@ -1,3 +1,10 @@
 CXX=c++
-all:
-	$(CXX)  main.cpp -o test -std=c++11  
+
+
+
+all: tile-test
+
+tile-test: main.cpp
+	$(CXX)  main.cpp -o tile-test -std=c++11  
+clean:
+	rm -f tile-test
