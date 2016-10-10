@@ -44,7 +44,7 @@ namespace list {
 
     FileList fillList(std::string name) {
         FileList f(name);
-        return std::move(f);
+        return f;
     }
     
 }
