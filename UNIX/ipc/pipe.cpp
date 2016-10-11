@@ -2,6 +2,8 @@
 #include<unistd.h>
 #include<errno.h>
 #include<cstring>
+#include<sys/wait.h>
+#include<signal.h>
 
 void error(const std::string &text);
 
