@@ -6,6 +6,7 @@ all:
 	make -C getopt/
 	make -C info/
 	make -C io/
+	make -C ipc/
 	make -C login/
 	make -C memory/
 	make -C pthread/
@@ -24,6 +25,7 @@ clean:
 	make -C info/ clean
 	make -C getopt/ clean
 	make -C io/ clean
+	make -C ipc/ clean
 	make -C login/ clean
 	make -C memory/ clean
 	make -C pthread/ clean
