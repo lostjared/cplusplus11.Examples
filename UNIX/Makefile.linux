@@ -7,7 +7,7 @@ all:
 	make -C getopt/
 	make -C info/
 	make -C io/
-	make -C ipc/
+	make -C ipc/ -f Makefile.linux
 	make -C login/
 	make -C memory/
 	make -C notify/ -f Makefile.linux
