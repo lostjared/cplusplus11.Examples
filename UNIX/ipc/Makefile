@@ -1,4 +1,4 @@
-CXX_FLAGS=-std=c++11
+CXX_FLAGS=-std=c++11 -Wall
 
 all: popen-test pipe-test
 
