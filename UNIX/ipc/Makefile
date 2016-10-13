@@ -12,10 +12,10 @@ pipe-test: pipe.cpp
 #sysvmsgq-ls: sysvmsgq_ls.cpp
 #	$(CXX) $(CXX_FLAGS) sysvmsgq_ls.cpp -o sysvmsgq-ls
 
-sysv-sm-read: sysv_sm_read.cpp
+sysv-sm-read: sysv_sm_read.cpp sysv_sem_binary.hpp sysv_sm.hpp
 	$(CXX) $(CXX_FLAGS) sysv_sm_read.cpp -o sysv-sm-read
 
-sysv-sm-write: sysv_sm_write.cpp
+sysv-sm-write: sysv_sm_write.cpp sysv_sem_binary.hpp sysv_sm.hpp
 	$(CXX) $(CXX_FLAGS) sysv_sm_write.cpp -o sysv-sm-write
 
 clean:
