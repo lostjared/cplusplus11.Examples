@@ -10,6 +10,11 @@ namespace mem {
     
     class MemFile {
     public:
+        MemFile() = default;
+        MemFile(const MemFile &f) = delete;
+        MemFile &operator=(const MemFile &f) = delete;
+        MemFile &operator=(MemFile &&f) = delete;
+        MemFile(MemFile &&f) = delete;
         
         bool open(const std::string &filename) {
             mode = 0;
@@ -66,7 +71,10 @@ namespace mem {
             }
         }
         
-        
+        void rewind() {
+            if(mode == 1)offset = 0;
+            else file.seekg(0, std::ios::beg);
+        }
         
         void close() {
             if(mode == 0) {
