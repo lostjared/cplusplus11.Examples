@@ -118,7 +118,7 @@ void *life(void *) {
 int main(int argc, char **argv) {
     
     while(1) {
-        pthread_t numDimensions[/*INFINITE but on comptuer */ NUM_DIMS];
+        pthread_t numDimensions[/*INFINITE but not on a comptuer */ NUM_DIMS];
     	int rt;
     
     	for(unsigned int i = 0; i < NUM_DIMS; ++i) {
