@@ -1,3 +1,24 @@
+/* 
+ I have been thinking about this for a while. First off there is the
+ Energy class, it contains a value (in this example its a string). Then 
+ there is the Life template class; it has a constructor and destructor 
+ when its life span ends and begins, and has two functions. One is get, 
+ the other is give. Give returns its value to the get member function 
+ which processes the value, and it compares it with a value if it is the
+ same it prints Love and returns true otherwise it prints fear and returns
+ false. The life function enters an infinite loop (stoppable by a system signal
+ like SIGINT) then enters an another loop calls the get give functions storing
+ its value in a variable called karma. Once the karma
+ 
+ variable is false, it goes back and restarts the outer loop.  Then there is
+ the main function which spawns threads ( on a computer can only contain a certain 
+ number of threads but in this concept, the thread number would be infinite) and 
+ spawns each new thread with the life function. The program would continue
+ indefinitely.
+ 
+ */
+
+
 #include<iostream>
 #include<string>
 #include<pthread.h>
