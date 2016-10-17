@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
     req.len = (argc > 1) ? atoi(argv[1]) : 1;
     
     _fd = open(SERVER_NAME, O_WRONLY);
-    if(_fd == 1)
+    if(_fd == -1)
         error("open", strerror(errno));
     
     if(write(_fd, &req, sizeof(Request)) != sizeof(Request))
