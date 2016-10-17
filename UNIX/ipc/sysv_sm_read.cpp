@@ -1,3 +1,12 @@
+
+/* Adapted from "the Linux Programming Interface"
+ Chapter 48 page 1005
+ 
+ I was not very familar with these topics so this is
+ more like the book than the others.
+ 
+ */
+
 #include<iostream>
 #include<string>
 #include<cstring>

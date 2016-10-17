@@ -1,6 +1,6 @@
 CXX_FLAGS=-std=c++11 -Wall
 
-all: popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write
+all: popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create
 
 
 popen-test: popen.cpp
@@ -17,5 +17,16 @@ sysv-sm-read: sysv_sm_read.cpp sysv_sem_binary.hpp sysv_sm.hpp
 
 sysv-sm-write: sysv_sm_write.cpp sysv_sem_binary.hpp sysv_sm.hpp
 	$(CXX) $(CXX_FLAGS) sysv_sm_write.cpp -o sysv-sm-write
+
+mqueue-send: mqueue-send.cpp
+	$(CXX) $(CXX_FLAGS) mqueue-send.cpp -o mqueue-send -lrt
+
+mqueue-recv: mqueue-recv.cpp
+	$(CXX) $(CXX_FLAGS) mqueue-recv.cpp -o mqueue-recv -lrt
+
+mqueue-unlink: mqueue-unlink.cpp
+	$(CXX) $(CXX_FLAGS) mqueue-unlink.cpp -o mqueue-unlink -lrt
+mqueue-create: mqueue-create.cpp
+	$(CXX) $(CXX_FLAGS) mqueue-create.cpp -o mqueue-create -lrt
 clean:
-	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write
+	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create
