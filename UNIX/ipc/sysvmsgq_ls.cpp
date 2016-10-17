@@ -2,6 +2,8 @@
 #include<sys/types.h>
 #include<sys/msg.h>
 #include<sys/ipc.h>
+#include<unistd.h>
+#include<cstdio>
 #include<cstring>
 #include<errno.h>
 #include<iomanip>
@@ -23,7 +25,7 @@ int main(int argc, char **argv) {
     std::cout << "Index     id       key      messages\n";
     
     for(i = 0; i < max; ++i) {
-        id_msq = msgctl(i, MSG_STAT, &ds);
+        id_msq = msgctl(i, MSGC_STAT, &ds);
         if(id_msq == -1) {
             if(errno != EINVAL && errno != EACCES)
                 std::cerr << "Error accessing queue..\n";

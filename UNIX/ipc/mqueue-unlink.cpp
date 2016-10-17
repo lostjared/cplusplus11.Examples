@@ -1,3 +1,6 @@
+/* Adapted from "the Linux Programming Interface"
+ Chapter 52
+ */
 #include<iostream>
 #include<mqueue.h>
 
