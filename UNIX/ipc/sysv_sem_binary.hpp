@@ -24,8 +24,8 @@ union semun {
 
 #endif
 
-bool semUndo = false;
-bool retry = true;
+static bool semUndo = false;
+static bool retry = true;
 
 int initSemAvailable(int sid, int snum) {
     union semun arg;
