@@ -1,6 +1,6 @@
 CXX_FLAGS=-std=c++11 -Wall
 
-all: popen-test pipe-test sysv-sm-read sysv-sm-write fifo-server fifo-client
+all: popen-test pipe-test sysv-sm-read sysv-sm-write fifo-server fifo-client posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post
 
 
 popen-test: popen.cpp
@@ -24,5 +24,16 @@ fifo-server: fifo-read.cpp
 fifo-client: fifo-write.cpp
 	$(CXX) $(CXX_FLAGS) fifo-write.cpp -o fifo-client
 
+posix-sem-create: posix-sem-create.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-create.cpp -o posix-sem-create
+
+posix-sem-unlink: posix-sem-unlink.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-unlink.cpp -o posix-sem-unlink
+
+posix-sem-post: posix-sem-post.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-post.cpp -o posix-sem-post
+posix-sem-wait: posix-sem-wait.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-wait.cpp -o posix-sem-wait
+
 clean:
-	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-write sysv-sm-read fifo-server fifo-client
+	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-write sysv-sm-read fifo-server fifo-client posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post
