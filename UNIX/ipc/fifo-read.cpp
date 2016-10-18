@@ -8,6 +8,7 @@
 #include<iostream>
 #include<sstream>
 
+
 void error(const std::string &func, const std::string &text);
 
 int main(int argc, char **argv) {

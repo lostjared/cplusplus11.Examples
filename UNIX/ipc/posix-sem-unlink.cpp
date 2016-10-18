@@ -1,8 +1,14 @@
+/*
+ Adapted from "the Linux Programming Interface"
+ Chapter 53
+ */
+
 #include<iostream>
 #include<unistd.h>
 #include<semaphore.h>
 #include<cstring>
 #include<errno.h>
+#include<fcntl.h>
 
 
 int main(int argc, char **argv) {

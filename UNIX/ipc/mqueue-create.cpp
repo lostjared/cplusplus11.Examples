@@ -1,5 +1,5 @@
 /* Adapted from "the Linux Programming Interface"
- Chapter 52
+ Chapter 53
  */
 #include<mqueue.h>
 #include<iostream>

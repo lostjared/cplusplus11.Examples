@@ -8,6 +8,7 @@
 #include<sys/types.h>
 #include<sys/stat.h>
 #include<fcntl.h>
+#include<signal.h>
 
 static const char *SERVER_NAME = "/tmp/seqnum_server";
 static const char *FIFO_NAME_TEMPLATE = "/tmp/seqnum_cl";
