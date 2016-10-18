@@ -9,14 +9,19 @@
 sem_t s;
 void error(const std::string &text);
 
-void *tfunction(void *) {
+void *tfunction(void *v) {
+    
     for(unsigned int i = 0; i < 1000; ++i) {
+        
         if(sem_wait(&s) == -1)
             error("sem_wait");
-        std::cout << "In loop: " << i << "\n";
+        
+        std::cout << "In loop: " << i << " " << (unsigned long)v << "\n";
+       
         if(sem_post(&s) == -1)
             error("sem_post");
     }
+    
     return 0;
 }
 
@@ -28,18 +33,23 @@ int main(int argc, char **argv) {
     }
     pthread_t thread1, thread2;
     int rt;
-    rt = pthread_create(&thread1, 0, tfunction, 0);
+    
+    rt = pthread_create(&thread1, 0, tfunction, (void*)1);
     if(rt != 0)
         error("pthread_create");
-    rt = pthread_create(&thread2, 0, tfunction, 0);
+    
+    rt = pthread_create(&thread2, 0, tfunction, (void*)2);
     if(rt != 0)
         error("pthread_create");
+    
     rt = pthread_join(thread1, 0);
     if(rt != 0)
         error("pthread_join");
+    
     rt = pthread_join(thread2, 0);
     if(rt != 0)
         error("pthread_join");
+    
     return EXIT_SUCCESS;
 }
 

@@ -1,6 +1,6 @@
 CXX_FLAGS=-std=c++11 -Wall
 
-all: popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create
+all: popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post posix-sem-thread
 
 
 popen-test: popen.cpp
@@ -28,5 +28,21 @@ mqueue-unlink: mqueue-unlink.cpp
 	$(CXX) $(CXX_FLAGS) mqueue-unlink.cpp -o mqueue-unlink -lrt
 mqueue-create: mqueue-create.cpp
 	$(CXX) $(CXX_FLAGS) mqueue-create.cpp -o mqueue-create -lrt
+
+posix-sem-create: posix-sem-create.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-create.cpp -o posix-sem-create -pthread
+
+posix-sem-unlink: posix-sem-unlink.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-unlink.cpp -o posix-sem-unlink -pthread
+
+posix-sem-post: posix-sem-post.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-post.cpp -o posix-sem-post  -pthread
+posix-sem-wait: posix-sem-wait.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-wait.cpp -o posix-sem-wait -pthread
+
+posix-sem-thread: posix-sem-thread.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-thread.cpp -o posix-sem-thread -pthread 
+
 clean:
-	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create
+	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post posix-sem-thread
+

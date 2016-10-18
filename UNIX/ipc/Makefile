@@ -1,6 +1,6 @@
 CXX_FLAGS=-std=c++11 -Wall
 
-all: popen-test pipe-test sysv-sm-read sysv-sm-write fifo-server fifo-client posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post
+all: popen-test pipe-test sysv-sm-read sysv-sm-write fifo-server fifo-client posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post posix-sem-thread
 
 
 popen-test: popen.cpp
@@ -25,15 +25,18 @@ fifo-client: fifo-write.cpp
 	$(CXX) $(CXX_FLAGS) fifo-write.cpp -o fifo-client
 
 posix-sem-create: posix-sem-create.cpp
-	$(CXX) $(CXX_FLAGS) posix-sem-create.cpp -o posix-sem-create
+	$(CXX) $(CXX_FLAGS) posix-sem-create.cpp -o posix-sem-create -pthread
 
 posix-sem-unlink: posix-sem-unlink.cpp
-	$(CXX) $(CXX_FLAGS) posix-sem-unlink.cpp -o posix-sem-unlink
+	$(CXX) $(CXX_FLAGS) posix-sem-unlink.cpp -o posix-sem-unlink -pthread
 
 posix-sem-post: posix-sem-post.cpp
-	$(CXX) $(CXX_FLAGS) posix-sem-post.cpp -o posix-sem-post
+	$(CXX) $(CXX_FLAGS) posix-sem-post.cpp -o posix-sem-post -pthread
 posix-sem-wait: posix-sem-wait.cpp
-	$(CXX) $(CXX_FLAGS) posix-sem-wait.cpp -o posix-sem-wait
+	$(CXX) $(CXX_FLAGS) posix-sem-wait.cpp -o posix-sem-wait  -pthread
+
+posix-sem-thread: posix-sem-thread.cpp
+	$(CXX) $(CXX_FLAGS) posix-sem-thread.cpp -o posix-sem-thread -pthread 
 
 clean:
-	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-write sysv-sm-read fifo-server fifo-client posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post
+	rm -f popen-test pipe-test sysvmsgq-ls sysv-sm-write sysv-sm-read fifo-server fifo-client posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post posix-sem-thread
