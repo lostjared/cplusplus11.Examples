@@ -43,6 +43,11 @@ int main(int argc, char **argv) {
         if(msync(addr, MEM_SIZE, MS_SYNC) == -1)
         	error("msync");
         std::cout << "Copied: " << argv[2] << " to shared memory\n";
+        
+        if(munmap(addr, 10) == -1)
+            error("mmunmap");
+        
+        
     }
     
     return EXIT_SUCCESS;
