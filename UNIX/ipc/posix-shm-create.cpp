@@ -1,9 +1,11 @@
 #include<sys/stat.h>
 #include<fcntl.H>
-#include<ssys/mman.h>
+#include<sys/mman.h>
 #include<unistd.h>
 #include<cstring>
 #include<errno.h>
+#include<string>
+#include<iostream>
 
 void error(const std::string &text);
 
