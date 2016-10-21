@@ -1,5 +1,5 @@
 #include<sys/stat.h>
-#include<fcntl.H>
+#include<fcntl.h>
 #include<sys/mman.h>
 #include<unistd.h>
 #include<cstring>
