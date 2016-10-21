@@ -1,6 +1,6 @@
 CXX_FLAGS=-std=c++11 -Wall
 
-all: popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post posix-sem-thread mmap-test posix-shm-create posix-shm-read posix-shm-write
+all: popen-test pipe-test sysvmsgq-ls sysv-sm-read sysv-sm-write mqueue-send mqueue-recv mqueue-unlink mqueue-create posix-sem-create posix-sem-unlink posix-sem-wait posix-sem-post posix-sem-thread mmap-test posix-shm-create posix-shm-read posix-shm-write posix-shm-unlink
 
 
 popen-test: popen.cpp
@@ -51,6 +51,9 @@ posix-shm-read: posix-shm-read.cpp
 	$(CXX) $(CXX_FLAGS) posix-shm-read.cpp -o posix-shm-read -pthread -lrt
 posix-shm-write: posix-shm-write.cpp
 	$(CXX) $(CXX_FLAGS) posix-shm-write.cpp -o posix-shm-write -pthread -lrt
+
+posix-shm-unlink: posix-shm-unlink.cpp
+	$(CXX) $(CXX_FLAGS) posix-shm-unlink.cpp -o posix-shm-unlink -lrt -pthread
 
 
 clean:

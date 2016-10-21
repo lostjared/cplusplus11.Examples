@@ -44,10 +44,6 @@ int main(int argc, char **argv) {
         	error("msync");
         std::cout << "Copied: " << argv[2] << " to shared memory\n";
         
-        if(munmap(addr, 10) == -1)
-            error("mmunmap");
-        
-        
     }
     
     return EXIT_SUCCESS;

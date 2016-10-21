@@ -20,7 +20,7 @@ int main(int argc, char **argv) {
     char *addr;
     
     if(argc != 3) {
-        std::cerr << "Error requires two arguments..\n";
+        std::cerr << "Error requires two arguments..\n" << argv[0] << " path string\n";
         exit(EXIT_FAILURE);
     }
     
