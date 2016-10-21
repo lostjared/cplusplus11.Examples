@@ -1,3 +1,6 @@
+/* Adapted from "the Linux Programming Interface"
+ Chapter 54
+ */
 #include<sys/stat.h>
 #include<fcntl.h>
 #include<sys/mman.h>

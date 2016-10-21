@@ -1,3 +1,6 @@
+/* Adapted from "the Linux Programming Interface"
+ Chapter 54
+ */
 #include<sys/stat.h>
 #include<fcntl.h>
 #include<sys/mman.h>
@@ -28,11 +31,13 @@ int main(int argc, char **argv) {
     }
     
     
-    _fd = shm_open(argv[1], O_CREAT, S_IRUSR | S_IWUSR);
+    _fd = shm_open(argv[1], O_CREAT | O_RDWR, S_IRUSR | S_IWUSR);
     
     if(_fd == -1)
         error("shm_open");
     
+    
+    std::cout << "Truncating to: " << size << "\n";
     
     if(ftruncate(_fd, size) == -1)
         error("ftruncate");
