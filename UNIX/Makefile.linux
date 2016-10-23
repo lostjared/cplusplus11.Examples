@@ -10,6 +10,7 @@ all:
 	make -C ipc/ -f Makefile.linux
 	make -C login/
 	make -C memory/
+	make -C network/ 
 	make -C notify/ -f Makefile.linux
 	make -C proc/ -f Makefile.linux
 	make -C pthread/
@@ -33,6 +34,7 @@ clean:
 	make -C ipc/ clean
 	make -C login/ clean
 	make -C memory/ clean
+	make -C network/ clean
 	make -C notify/ -f Makefile.linux clean 
 	make -C proc/ -f Makefile.linux clean
 	make -C pthread/ clean

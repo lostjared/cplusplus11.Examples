@@ -9,6 +9,7 @@ all:
 	make -C ipc/
 	make -C login/
 	make -C memory/
+	make -C network/
 	make -C pthread/
 	make -C setjmp/
 	make -C shared/
@@ -28,6 +29,7 @@ clean:
 	make -C ipc/ clean
 	make -C login/ clean
 	make -C memory/ clean
+	make -C network/ clean
 	make -C pthread/ clean
 	make -C setjmp/ clean
 	make -C shared/ clean
