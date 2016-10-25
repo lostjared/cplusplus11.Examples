@@ -1,3 +1,6 @@
+/* Adapted from "the Linux Programming Interface"
+ Chapter 57
+ */
 #include<iostream>
 #include<sys/socket.h>
 #include<sys/un.h>

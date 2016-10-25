@@ -1,3 +1,7 @@
+/* Adapted from "the Linux Programming Interface"
+ Chapter 57
+ */
+
 #include<iostream>
 #include<sys/un.h>
 #include<sys/socket.h>
@@ -9,7 +13,7 @@
 const char *SOCK_PATH = "/tmp/testsock";
 const int BUF_SIZE=256;
 
-void error(const std::string &text);
+void error(const std::string &text, bool err_no = true);
 
 int main() {
     
@@ -44,7 +48,7 @@ int main() {
         
         while((bytesRead = read(clientfd, buf, BUF_SIZE)) > 0)
             if(write(STDOUT_FILENO, buf, bytesRead) != bytesRead)
-                error("partial read/write");
+                error("partial read/write", false);
         
         if(bytesRead == -1)
             error("read");
@@ -55,7 +59,7 @@ int main() {
     return EXIT_SUCCESS;
 }
 
-void error(const std::string &text) {
-    std::cerr << "Error: " << strerror(errno) << "\n" << text << "\n";
-    exit(EXIT_FAILURE);
+void error(const std::string &text, bool err_no) {
+    std::cerr << "Error: " << text << "\n";
+    if(err_no) std::cerr << strerror(errno) << "\n";
 }
