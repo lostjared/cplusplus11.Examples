@@ -145,6 +145,10 @@ namespace net {
         return read(sockfd, buf, len);
     }
     
+    ssize_t Socket::sendString(const std::string &text) {
+        return send((void*)text.c_str(), text.length());
+    }
+    
     ssize_t Socket::send(void *buf, size_t len) {
         return write(sockfd, buf, len);
     }

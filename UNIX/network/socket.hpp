@@ -33,6 +33,7 @@ namespace net {
         std::string readLine(ssize_t &bytesRead);
         ssize_t receive(void *buf, size_t len);
         ssize_t send(void *buf, size_t len);
+        ssize_t sendString(const std::string &text);
         int closeSocket();
     private:
         int sockfd;
