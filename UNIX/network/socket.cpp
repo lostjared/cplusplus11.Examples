@@ -162,4 +162,10 @@ namespace net {
         Socket s(newsock);
         return s;
     }
+    
+    void ignorePipeSignal() {
+        if(signal(SIGPIPE, SIG_IGN) == SIG_ERR) {
+            std::cerr << "Error ignoring signal..\n";
+        }
+    }
 }

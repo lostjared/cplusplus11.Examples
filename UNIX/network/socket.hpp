@@ -40,6 +40,8 @@ namespace net {
         socklen_t addrlen;
         
     };
+    
+    void ignorePipeSignal();
 }
 
 

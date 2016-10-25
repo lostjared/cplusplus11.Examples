@@ -6,9 +6,10 @@
 
 int main(int argc, char **argv) {
     if(argc != 2) {
-        std::cerr << "Requires one argument.\n" << argv[0] << "hostname\n";
+        std::cerr << "Requires one argument.\n" << argv[0] << " hostname\n";
         exit(EXIT_FAILURE);
     }
+    net::ignorePipeSignal();
     net::Socket sock;
     if(sock.connectToHost(argv[1], "80", net::SocketType::STREAM) == -1) {
         std::cerr << "Could not connect to host.\n";
