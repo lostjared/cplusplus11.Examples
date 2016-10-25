@@ -6,7 +6,7 @@
 
 int main(int argc, char **argv) {
     if(argc != 2) {
-        std::cerr << "Requires two arguments.\n" << argv[0] << "hostname\n";
+        std::cerr << "Requires one argument.\n" << argv[0] << "hostname\n";
         exit(EXIT_FAILURE);
     }
     net::Socket sock;
