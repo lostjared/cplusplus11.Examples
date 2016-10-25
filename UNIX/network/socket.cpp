@@ -22,6 +22,7 @@ namespace net {
     
     void Socket::setSocket(const Socket &s) {
         sockfd = s.sockfd;
+        addrlen = s.addrlen;
     }
     
     int Socket::connectToHost(const std::string &host, const std::string &port, SocketType type) {
