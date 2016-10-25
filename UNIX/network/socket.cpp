@@ -7,6 +7,10 @@ namespace net {
         
     }
     
+    Socket::Socket(int fd) : sockfd(fd), addrlen(0) {
+        
+    }
+    
     Socket::Socket(const Socket &s) {
         setSocket(s);
     }
@@ -116,8 +120,8 @@ namespace net {
             ssize_t readVal = read(sockfd, &c, 1);
             if(readVal == 0 || readVal == -1) break;
             bytesRead++;
-            buf += c;
             if(c == '\n') break;
+            buf += c;
         }
         return bytesRead;
     }
@@ -130,8 +134,9 @@ namespace net {
             ssize_t readVal = read(sockfd, &c, 1);
             if(readVal == 0 || readVal == -1) break;
             bytesRead++;
-            stream << c;
             if(c == '\n') break;
+            stream << c;
+            
         }
         return stream.str();
     }
@@ -146,5 +151,11 @@ namespace net {
     
     int Socket::closeSocket() {
         return close(sockfd);
+    }
+    
+    Socket Socket::acceptSocket() {
+        int newsock = accept(sockfd, 0, 0);
+        Socket s(newsock);
+        return s;
     }
 }

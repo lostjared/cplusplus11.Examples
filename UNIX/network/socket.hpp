@@ -18,6 +18,7 @@ namespace net {
     class Socket {
     public:
         Socket();
+        Socket(int fd);
         Socket(const Socket &s);
         Socket(Socket &&s) = delete;
         Socket &operator=(const Socket &s);
@@ -27,6 +28,7 @@ namespace net {
         int listenAt(const std::string &port, SocketType type, int backlog);
         bool valid() const { return sockfd; }
         int &fd() { return sockfd; }
+        Socket acceptSocket();
         ssize_t readLine(std::string &buf);
         std::string readLine(ssize_t &bytesRead);
         ssize_t receive(void *buf, size_t len);
