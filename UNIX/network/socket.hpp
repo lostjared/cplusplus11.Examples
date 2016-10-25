@@ -26,7 +26,7 @@ namespace net {
         void setSocket(const Socket &s);
         int connectToHost(const std::string &host, const std::string &port, SocketType type);
         int listenAt(const std::string &port, SocketType type, int backlog);
-        bool valid() const { return sockfd; }
+        bool valid() const { return (sockfd >= 0); }
         int &fd() { return sockfd; }
         Socket acceptSocket();
         ssize_t readLine(std::string &buf);

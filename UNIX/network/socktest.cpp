@@ -17,9 +17,9 @@ int main(int argc, char **argv) {
     std::ostringstream stream;
     stream << "GET /index.html HTTP/1.0\n\n";
     sock.send((void *)stream.str().c_str(), stream.str().length());
-   
-    while(sock.valid()) {
-         std::string s;
+    // read rest of data
+    while(1) {
+        std::string s;
         if(sock.readLine(s) > 0) {
         	std::cout << s << "\n";
         } else break;
