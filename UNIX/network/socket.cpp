@@ -119,9 +119,9 @@ namespace net {
             char c;
             ssize_t readVal = read(sockfd, &c, 1);
             if(readVal == 0 || readVal == -1) break;
-            bytesRead++;
             if(c == '\n') break;
             buf += c;
+            bytesRead++;
         }
         return bytesRead;
     }
@@ -133,9 +133,9 @@ namespace net {
             char c;
             ssize_t readVal = read(sockfd, &c, 1);
             if(readVal == 0 || readVal == -1) break;
-            bytesRead++;
             if(c == '\n') break;
             stream << c;
+            bytesRead++;
             
         }
         return stream.str();
