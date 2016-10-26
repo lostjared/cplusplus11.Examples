@@ -5,8 +5,9 @@
 #include<iostream>
 #include<string>
 #include<unistd.h>
+#include<cstring>
 
-static volatile sig_atomic_t gotSignal;
+static volatile sig_atomic_t gotSignal = 0;
 
 int ttySetCbreak(int fd, termios *prevTermios) {
     
@@ -45,7 +46,7 @@ int main(int argc, char **argv) {
     if(sigaction(SIGIO, &sa, NULL) == -1)
         error("sigaction");
     
-	if(fcntl(STDIN_FILENO, F_SETOWN, getpid()) == -1)
+    if(fcntl(STDIN_FILENO, F_SETOWN, getpid()) == -1)
         error("fcntl F_SETOWN");
     
     int flags = fcntl(STDIN_FILENO, F_GETFL);
@@ -63,6 +64,7 @@ int main(int argc, char **argv) {
     char ch;
     
     for(complete = false, counter = 0; !complete; counter++) {
+        for(int j = 0; j < 100000000; ++j) continue;
         if(gotSignal) {
             gotSignal = 0;
             
