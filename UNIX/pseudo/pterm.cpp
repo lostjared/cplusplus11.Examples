@@ -1,3 +1,10 @@
+
+/* Adapted from "the Linux Programming Interface"
+ Chapter 64
+ 
+ 
+ */
+
 #include "pterm.hpp"
 
 static const int MAX_NAME=1000;

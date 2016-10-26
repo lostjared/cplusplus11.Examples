@@ -1,3 +1,9 @@
+/* Adapted from "the Linux Programming Interface"
+ 	Chapter 64
+
+ 
+*/
+
 #ifndef __TERMINAL__H__
 #define __TERMINAL__H__
 

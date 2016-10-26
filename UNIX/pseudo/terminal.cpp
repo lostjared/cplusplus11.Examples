@@ -1,3 +1,8 @@
+/* Adapted from "the Linux Programming Interface"
+ Chapter 64
+ 
+ 
+ */
 #include<iostream>
 #include<string>
 #include"pterm.hpp"
