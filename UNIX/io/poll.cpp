@@ -6,6 +6,7 @@
 #include<poll.h>
 #include<errno.h>
 #include<cstring>
+#include<sys/wait.h>
 
 void error(const std::string &text, bool err_no = true);
 
