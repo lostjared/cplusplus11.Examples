@@ -22,6 +22,7 @@ int main(int argc, char **argv) {
     switch((id = fork())) {
         case -1:
             std::cerr << "Error on fork..\n";
+            error("fork");
             break;
         case 0: {
             close(fds[0]);
