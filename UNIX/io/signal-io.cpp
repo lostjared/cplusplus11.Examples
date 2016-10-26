@@ -20,7 +20,7 @@ int ttySetCbreak(int fd, termios *prevTermios) {
     
     t.c_lflag &= ~(ICANON | ECHO);
     t.c_lflag |= ISIG;
-    t.c_lflag &= ~ICRNL;
+    t.c_iflag &= ~ICRNL;
     t.c_cc[VMIN] = 1;
     t.c_cc[VTIME] = 0;
     
