@@ -20,9 +20,9 @@ namespace net {
         Socket();
         Socket(int fd);
         Socket(const Socket &s);
-        Socket(Socket &&s) = delete;
+        Socket(Socket &&s);
         Socket &operator=(const Socket &s);
-        Socket &operator=(const Socket &&) = delete;
+        Socket &operator=(const Socket &&);
         void setSocket(const Socket &s);
         int connectToHost(const std::string &host, const std::string &port, SocketType type);
         int listenAt(const std::string &port, SocketType type, int backlog);

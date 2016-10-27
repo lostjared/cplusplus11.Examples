@@ -15,8 +15,19 @@ namespace net {
         setSocket(s);
     }
     
+    Socket::Socket(Socket &&s) {
+        sockfd = s.sockfd;
+        addrlen = s.addrlen;
+    }
+    
     Socket &Socket::operator=(const Socket &s) {
         setSocket(s);
+        return *this;
+    }
+    
+    Socket &Socket::operator=(const Socket &&s) {
+        sockfd = s.sockfd;
+        addrlen = s.addrlen;
         return *this;
     }
     
@@ -97,18 +108,16 @@ namespace net {
             close(sfd);
         }
         
+        
+        
         if(rp != NULL) {
             if(listen(sfd, backlog) == -1) {
                 freeaddrinfo(rt);
                 return -1;
             }
-        }
-
-        if(rp != NULL) {
             this->sockfd = sfd;
             this->addrlen = rp->ai_addrlen;
         }
-        
         freeaddrinfo(rt);
         return (rp == NULL) ? -1 : sfd;
     }
@@ -160,6 +169,7 @@ namespace net {
     
     Socket Socket::acceptSocket() {
         int newsock = accept(sockfd, 0, 0);
+        std::cout << "Socket: " << newsock << " accepted..\n";
         Socket s(newsock);
         return s;
     }
