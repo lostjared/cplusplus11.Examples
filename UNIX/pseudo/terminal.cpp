@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
         error("pty_Fork");
     if(cid == 0) {
         shell = getenv("SHELL");
-        if(shell == NULL | *shell == '\0')
+        if(shell == NULL || *shell == '\0')
             shell = "/bin/sh";
         
         execlp(shell, shell, (char*) NULL);
