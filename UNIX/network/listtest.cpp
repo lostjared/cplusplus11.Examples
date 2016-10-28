@@ -28,7 +28,6 @@ int main(int argc, char **argv) {
         int flags = fcntl(sp.fd(), F_GETFL);
         flags |= O_NONBLOCK;
         fcntl(sp.fd(), F_SETFL, flags);
-        
         std::cout << "Accepted connection\n";
         mut.lock();
         svec.push_back(sp);
@@ -44,12 +43,10 @@ void readAll() {
     pollfd pfd;
 	while(1) {
         mut.lock();
-        
         if(svec.size() == 0) {
             mut.unlock();
             continue;
         }
-        
          for(auto sock = svec.begin(); sock != svec.end(); ++sock) {
             pfd.fd = sock->fd();
             pfd.events = POLLIN;
@@ -81,7 +78,7 @@ void readAll() {
                     svec.erase(svec.begin()+i);
                     std::cout << "Broken pipe: " << svec[i].fd() << "\n";
                     continue;
-                } else if(rt_val == EINTR)
+                } else if(rt_val == EAGAIN)
                     continue;
             }
             messages.pop_front();
