@@ -34,7 +34,8 @@ int main(int argc, char **argv) {
             int len = strlen(buf);
             
             if(write(fds[1], buf, len) != len)
-                error("partial write", false);
+                std::cerr << "Error: partial write..\n";
+            
             _exit(0);
         }
             break;
