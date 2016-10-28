@@ -11,7 +11,6 @@ std::deque<std::string> messages;
 std::mutex mut;
 
 void readAll();
-void repeatAll();
 
 int main(int argc, char **argv) {
     net::ignorePipeSignal();
