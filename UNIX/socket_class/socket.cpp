@@ -3,11 +3,11 @@
 
 namespace net {
     
-    Socket::Socket() : sockfd(0), addrlen(0) {
+    Socket::Socket() : sockfd(0), addrlen(0), blocking(true) {
         
     }
     
-    Socket::Socket(int fd) : sockfd(fd), addrlen(0) {
+    Socket::Socket(int fd) : sockfd(fd), addrlen(0), blocking(true) {
         
     }
     
@@ -167,14 +167,16 @@ namespace net {
         return close(sockfd);
     }
     
-    Socket Socket::acceptSocket() {
+    int Socket::acceptSocket(Socket &s) {
         int newsock = accept(sockfd, 0, 0);
+        if(newsock == -1) return -1;
         std::cout << "Socket: " << newsock << " accepted..\n";
-        Socket s(newsock);
-        return s;
+        Socket sa(newsock);
+        s = sa;
+        return newsock;
     }
     
-    void Socket::removeBlocking() {
+    void Socket::setBlocking(bool state) {
         
         if(sockfd >= 0) {
             int flags = fcntl(sockfd, F_GETFL);
@@ -182,7 +184,12 @@ namespace net {
                 std::cerr << "Error getting flags for: " << sockfd << "\n";
                 return;
             }
-            if(fcntl(sockfd, F_SETFL, flags | O_NONBLOCK) == -1)
+            
+            if(state == true) flags &= ~O_NONBLOCK;
+            else flags |= O_NONBLOCK;
+            
+            blocking = state;
+            if(fcntl(sockfd, F_SETFL, flags) == -1)
                 std::cerr << "Error settings flags on: " << sockfd << "\n";
         }
     }

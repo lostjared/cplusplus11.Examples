@@ -24,8 +24,11 @@ int main(int argc, char **argv) {
     std::cout << "Entering loop for accept on "<< s.fd() << "..\n";
     while(1) {
         net::Socket sp;
-        sp = s.acceptSocket();
-        sp.removeBlocking();
+        int rt_val = s.acceptSocket(sp);
+        if(rt_val == -1)
+            std::cerr << "Error on accept..\n";
+        
+        sp.setBlocking(false);
         std::cout << "Accepted connection\n";
         mut.lock();
         svec.push_back(sp);

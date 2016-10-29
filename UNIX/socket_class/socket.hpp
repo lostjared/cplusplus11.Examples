@@ -32,17 +32,18 @@ namespace net {
         int listenAt(const std::string &port, SocketType type, int backlog);
         bool valid() const { return (sockfd >= 0); }
         int &fd() { return sockfd; }
-        Socket acceptSocket();
+        int acceptSocket(Socket &s);
         ssize_t readLine(std::string &buf);
         std::string readLine(ssize_t &bytesRead);
         ssize_t receive(void *buf, size_t len);
         ssize_t sendData(const void *buf, size_t len);
         ssize_t sendString(const std::string &text);
         int closeSocket();
-        void removeBlocking();
+        void setBlocking(bool state);
     private:
         int sockfd;
         socklen_t addrlen;
+        bool blocking;
         
     };
     
