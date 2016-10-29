@@ -13,6 +13,7 @@
 #include<cstring>
 #include<cstdio>
 #include<signal.h>
+#include<errno.h>
 
 namespace net {
     
