@@ -16,8 +16,7 @@ namespace net {
     }
     
     Socket::Socket(Socket &&s) {
-        sockfd = s.sockfd;
-        addrlen = s.addrlen;
+        setSocket(s);
     }
     
     Socket &Socket::operator=(const Socket &s) {
@@ -26,14 +25,14 @@ namespace net {
     }
     
     Socket &Socket::operator=(const Socket &&s) {
-        sockfd = s.sockfd;
-        addrlen = s.addrlen;
+        setSocket(s);
         return *this;
     }
     
     void Socket::setSocket(const Socket &s) {
         sockfd = s.sockfd;
         addrlen = s.addrlen;
+        blocking = s.blocking;
     }
     
     int Socket::connectToHost(const std::string &host, const std::string &port, SocketType type) {
