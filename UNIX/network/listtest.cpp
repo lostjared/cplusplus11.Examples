@@ -28,7 +28,7 @@ int main(int argc, char **argv) {
         if(rt_val == -1)
             std::cerr << "Error on accept..\n";
         
-        sp.setBlocking(false);
+        sp.setBlocking(false); // set accepted socket to non blocking
         std::cout << "Accepted connection\n";
         mut.lock();
         svec.push_back(sp);
@@ -55,6 +55,7 @@ void readAll() {
                 continue;
             }
             
+             // is there data to be read?
             if(pfd.revents & POLLIN) {
                 char buf[0xFF];
                 ssize_t bytesRead;
