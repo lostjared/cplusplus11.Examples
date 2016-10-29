@@ -71,11 +71,11 @@ void readAll() {
                 int rt_val;
                 std::cout << "Writing to: " << i->fd() << " with: " << messages[0].c_str()<< "\n";
                 rt_val = write(i->fd(), messages[0].c_str(), messages[0].length());
-                if(rt_val == EPIPE || rt_val == -1) {
+                if(rt_val == -1 && errno == EPIPE) {
                     svec.erase(i);
                     std::cout << "Broken pipe: " << i->fd() << "\n";
                     continue;
-                } else if(rt_val == EAGAIN)
+                } else if(rt_val == -1 && rt_val == EAGAIN)
                     continue;
             }
             messages.pop_front();
