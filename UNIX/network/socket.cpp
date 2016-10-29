@@ -174,9 +174,24 @@ namespace net {
         return s;
     }
     
+    void Socket::removeBlocking() {
+        
+        if(sockfd >= 0) {
+            int flags = fcntl(sockfd, F_GETFL);
+            if(flags == -1) {
+                std::cerr << "Error getting flags for: " << sockfd << "\n";
+                return;
+            }
+            if(fcntl(sockfd, F_SETFL, flags | O_NONBLOCK) == -1)
+                std::cerr << "Error settings flags on: " << sockfd << "\n";
+        }
+    }
+    
     void ignorePipeSignal() {
         if(signal(SIGPIPE, SIG_IGN) == SIG_ERR) {
             std::cerr << "Error ignoring signal..\n";
         }
     }
+    
+    
 }

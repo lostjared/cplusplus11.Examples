@@ -10,6 +10,9 @@
 #include<sstream>
 #include<unistd.h>
 #include<fcntl.h>
+#include<cstring>
+#include<cstdio>
+#include<signal.h>
 
 namespace net {
     
@@ -35,6 +38,7 @@ namespace net {
         ssize_t sendData(const void *buf, size_t len);
         ssize_t sendString(const std::string &text);
         int closeSocket();
+        void removeBlocking();
     private:
         int sockfd;
         socklen_t addrlen;

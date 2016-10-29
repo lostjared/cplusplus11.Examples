@@ -4,6 +4,7 @@
 #include<poll.h>
 #include<vector>
 #include<thread>
+#include<mutex>
 #include<deque>
 
 std::vector<net::Socket> svec;
@@ -24,15 +25,12 @@ int main(int argc, char **argv) {
     while(1) {
         net::Socket sp;
         sp = s.acceptSocket();
-        int flags = fcntl(sp.fd(), F_GETFL);
-        flags |= O_NONBLOCK;
-        fcntl(sp.fd(), F_SETFL, flags);
+        sp.removeBlocking();
         std::cout << "Accepted connection\n";
         mut.lock();
         svec.push_back(sp);
         mut.unlock();
     }
-    
     s.closeSocket();
     ra.join();
     return 0;
