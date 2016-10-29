@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
     char resp[BUF_SIZE];
     
     for(int i = 1; i < argc; ++i) {
-        size_t msg_len;
+        ssize_t msg_len;
         ssize_t bytesRead;
         msg_len = strlen(argv[i]);
         if(sendto(sockfd, argv[i], msg_len, 0, (sockaddr *)&saddr, sizeof(sockaddr_un)) != msg_len)
