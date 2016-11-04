@@ -6,8 +6,9 @@ You can find them here: https://www.youtube.com/playlist?list=PLUgo--lX2kmqPQ5C8
 I am just going through and writing stuff to help me remember and practice
 some of the new features of C++11. I will create a new repo for C++14.
 
-Most of the examples have a driver just to test the code. Do not do anything 
-useful except to demonstrate those specific features.
+Most of the examples do not do anything 
+useful except to demonstrate those specific features. Some of the examples solve problems
+like generating m3u playlist or outputting html for a cgi program.
 
 There is also a calculator for parsing expressions that is similar to
 the one from "The C++ Programming Language" 4th Edition. 
