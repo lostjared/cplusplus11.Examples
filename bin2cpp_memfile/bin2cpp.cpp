@@ -67,12 +67,16 @@ int main(int argc, char **argv) {
     file.seekg(0, std::ios::beg);
     outfile << "\nunsigned long " << filen << "_length = 0x" << std::hex << len << ";\n\n";
     outfile << "\nunsigned char " << filen << "[] = {\n";
+    unsigned long counter = 0;
     
     char buffer[1024];
     while(!file.eof()) {
         file.read((char*)buffer, 1024);
         for(unsigned int i = 0; i < file.gcount(); ++i) {
-            outfile << "0x" << std::hex << (unsigned int)(unsigned char)buffer[i] << ", \n";
+            outfile << "0x" << std::hex << (unsigned int)(unsigned char)buffer[i] << ", ";
+            ++counter;
+            if((counter%15) == 0) outfile << "\n";
+            
         }
     }
     file.close();

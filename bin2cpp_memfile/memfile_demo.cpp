@@ -1,12 +1,12 @@
 #include"memfile.hpp"
 #include<iostream>
-#include"memfile.hpp.h"
+#include"resource/resource.h"
 
 
 int main(int argc, char **argv) {
     mem::MemFile file, bfile;
     // open from exisiting file
-    if(!file.open("./memfile.hpp")) {
+    if(!file.open("./memfile_demo.cpp")) {
         std::cerr << "Could not open file: \n";
         exit(EXIT_FAILURE);
     }

@@ -71,6 +71,18 @@ namespace mem {
             }
         }
         
+        void seek_beg(unsigned long offset_) {
+            if(mode == 1) offset = offset_;
+            else
+            file.seekg(offset, std::ios::beg);
+        }
+        
+        void seek_cur(unsigned long offset_) {
+            if(mode == 1) offset += offset_;
+            else
+                file.seekg(offset, std::ios::cur);
+        }
+        
         void rewind() {
             if(mode == 1)offset = 0;
             else file.seekg(0, std::ios::beg);
