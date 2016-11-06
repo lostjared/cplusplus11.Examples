@@ -3,7 +3,17 @@
 #include<fstream>
 #include<cctype>
 
-std::string convertFilename(const std::string &text) {
+std::string convertFilename(const std::string &input) {
+    std::string fpath=input;
+    ssize_t pos = fpath.rfind("/");
+    std::string filename;
+    std::string text;
+    if(pos != std::string::npos) {
+        filename = fpath.substr(pos+1, fpath.length()-pos);
+        text = filename;
+    } else
+        text = input;
+    
     std::string temp;
     for(unsigned int i = 0; i < text.length(); ++i) {
         if(text[i] == '.' || temp[i] == ' ')
@@ -15,8 +25,8 @@ std::string convertFilename(const std::string &text) {
 }
 
 int main(int argc, char **argv) {
-    if(argc != 2) {
-        std::cerr << "Error requires one argument.\n" << argv[0] << " binarysource\n";
+    if(argc != 3) {
+        std::cerr << "Error requires two arguments.\n" << argv[0] << " binarysource outputfile\n";
         return 0;
     }
     std::fstream file;
@@ -25,7 +35,7 @@ int main(int argc, char **argv) {
         std::cerr << "Error opening file: " << argv[1] << "\n";
         return 0;
     }
-    std::string filename=argv[1];
+    std::string filename=argv[2];
     filename += ".h";
     
     std::fstream outfile;
@@ -43,7 +53,7 @@ int main(int argc, char **argv) {
     outfile << "\n";
     outfile << "\n\n#endif\n";
     std::string filename_;
-    filename_= argv[1];
+    filename_= argv[2];
     filename_+= ".cpp";
     outfile.close();
     outfile.open(filename_, std::ios::out);
