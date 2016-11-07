@@ -7,6 +7,17 @@
 #include<cstring>
 
 namespace mem {
+
+    
+    bool binOutputArray(const std::string &filename, const void *buf, unsigned long len) {
+        std::fstream file;
+        file.open(filename, std::ios::out | std::ios::binary);
+        if(!file.is_open()) return false;
+        file.write((char*)buf, len);
+        file.close();
+        return true;
+    }
+    
     
     class MemFile {
     public:
@@ -106,7 +117,6 @@ namespace mem {
         bool _open;
         int mode;
     };
-    
 }
 
 #endif

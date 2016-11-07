@@ -18,6 +18,9 @@ int main(int argc, char **argv) {
     }
     // close file
     file.close();
+    
+    mem::binOutputArray("file.txt", memfile_hpp, memfile_hpp_length);
+    
     // open memory
     if(!bfile.open(memfile_hpp, memfile_hpp_length)) {
         std::cerr << "Could not open byte stream..\n";
