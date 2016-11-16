@@ -53,11 +53,11 @@ int main(int argc, char **argv) {
     outfile << "#ifndef " << filen << "__H\n";
     outfile << "#define " << filen << "__H\n\n";
     if(arg_x == "cpp")
-    outfile << "#ifdef __cplusplus\n\nextern \"C\" {\n\n";
+    outfile << "#ifdef __cplusplus\nextern \"C\" {\n#endif\n\n";
     outfile << "extern unsigned char " << filen << "[];\n";
-    outfile << "extern unsigned long " << filen << "_length;\n";
+    outfile << "extern unsigned long " << filen << "_length;\n\n";
     if(arg_x == "cpp")
-    outfile << "\n}\n\n#endif\n\n";
+    outfile << "#ifdef __cplusplus\n}\n#endif\n";
     outfile << "\n";
     outfile << "\n\n#endif\n";
     std::string filename_;
