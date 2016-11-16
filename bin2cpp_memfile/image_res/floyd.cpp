@@ -1,4 +1,4 @@
-#include"floyd.h"
+#include"image_res/floyd.h"
 
 
 unsigned long floyd_jpg_length = 0x3b322;
