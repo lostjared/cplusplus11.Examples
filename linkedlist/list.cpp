@@ -78,6 +78,7 @@ bool List<T>::remove(int index) {
             } else {
                 delete node;
                 first.next = 0;
+                return true;
             }
         }
     }
