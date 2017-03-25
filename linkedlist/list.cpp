@@ -32,6 +32,9 @@ public:
     void add(const T &value);
     bool remove(int index);
     void release(Node<T> *n);
+    inline bool empty() const {
+        return (first.next == 0) ? true : false;
+    }
 };
 
 template<typename T>
@@ -68,11 +71,15 @@ bool List<T>::remove(int index) {
         node = first.next;
         if(first.next != 0) {
             node = first.next;
-            first.next = node->next;
-            delete node;
-            return true;
+            if(node->next != 0) {
+            	first.next = node->next;
+            	delete node;
+                return true;
+            } else {
+                delete node;
+                first.next = 0;
+            }
         }
-        
     }
     int count = 0;
     Node<T> *n, *prev;
@@ -112,5 +119,9 @@ int main() {
     echo_list(list);
     list.remove(1);
     echo_list(list);
+    List<std::string> list2;
+    list2.add("Hey");
+    list2.remove(0);
+    echo_list(list2);
     return 0;
 }
