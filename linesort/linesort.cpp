@@ -135,98 +135,109 @@ void inputText(std::vector<lex::Token> &tokens, std::string input_line) {
 int main() {
     bool active = true;
     while(active) {
-        std::cout << "> ";
-    	std::string input_line;
-        std::getline(std::cin, input_line);
-        std::istringstream stream(input_line);
-        lex::Scanner scan(stream);
-        std::vector<lex::Token> v;
-        while(scan.valid()) {
-            lex::Token s;
-            scan >> s;
-            v.push_back(s);
-        }
-        if(v.size()==0) continue;
-        std::string first_token;
-        first_token = v[0].getToken();
-        if(first_token == "quit") break;
-        else if(first_token == "list") {
-            for(auto i = lines.begin(); i != lines.end(); ++i) {
-                std::cout << i->index << ": " << i->text << "\n";
+        try {
+            std::cout << "> ";
+            std::string input_line;
+            std::getline(std::cin, input_line);
+            std::istringstream stream(input_line);
+            lex::Scanner scan(stream);
+            std::vector<lex::Token> v;
+            while(scan.valid()) {
+                lex::Token s;
+                scan >> s;
+                v.push_back(s);
             }
-            continue;
-        } else if (first_token == "save" && v.size()>=2) {
-            if(v[1].getTokenType() != lex::TOKEN_STRING) {
-                std::cerr << "Save requires string operand in quotes.\n";
-                continue;
-            }
-            std::string filename;
-            filename = v[1].getToken();
-            if(saveLineSource(filename)) {
-                std::cout << "Saved: " << filename << "\n";
-            }
-            continue;
-        } else if(first_token == "open" && v.size()>=2) {
-            if(v[1].getTokenType() != lex::TOKEN_STRING) {
-                std::cerr << "open requires string operand in quotes.\n";
-                continue;
-            }
-            std::string filename;
-            filename = v[1].getToken();
-            if(openLineSource(filename)) {
-                std::cout << "Loaded: " << filename << "\n";
-            }
-            continue;
-        } else if(first_token == "clear") {
-            if(!lines.empty()) {
-                lines.erase(lines.begin(), lines.end());
-            }
-            continue;
-        } else if(first_token == "remove" && v.size() >= 2) {
-            if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
-                std::cerr << "remove requires line number.\n";
-                continue;
-            }
-            std::string index;
-            index = v[1].getToken();
-            int in = atoi(index.c_str());
-            bool found = false;
-            for(unsigned int i = 0; i < lines.size(); ++i) {
-                if(lines[i].index == in) {
-                    lines.erase(lines.begin()+i);
-                    found = true;
-                    break;
+            if(v.size()==0) continue;
+            std::string first_token;
+            first_token = v[0].getToken();
+            if(first_token == "quit") break;
+            else if(first_token == "list") {
+                for(auto i = lines.begin(); i != lines.end(); ++i) {
+                    std::cout << i->index << ": " << i->text << "\n";
                 }
+                continue;
+            } else if (first_token == "save" && v.size()>=2) {
+                if(v[1].getTokenType() != lex::TOKEN_STRING) {
+                    std::cerr << "Save requires string operand in quotes.\n";
+                    continue;
+                }
+                std::string filename;
+                filename = v[1].getToken();
+                if(saveLineSource(filename)) {
+                    std::cout << "Saved: " << filename << "\n";
+                }
+                continue;
+            } else if(first_token == "open" && v.size()>=2) {
+                if(v[1].getTokenType() != lex::TOKEN_STRING) {
+                    std::cerr << "open requires string operand in quotes.\n";
+                    continue;
+                }
+                std::string filename;
+                filename = v[1].getToken();
+                if(openLineSource(filename)) {
+                    std::cout << "Loaded: " << filename << "\n";
+                }
+                continue;
+            } else if(first_token == "clear") {
+                if(!lines.empty()) {
+                    lines.erase(lines.begin(), lines.end());
+                }
+                continue;
+            } else if(first_token == "remove" && v.size() >= 2) {
+                if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
+                    std::cerr << "remove requires line number.\n";
+                    continue;
+                }
+                std::string index;
+                index = v[1].getToken();
+                int in = atoi(index.c_str());
+                bool found = false;
+                for(unsigned int i = 0; i < lines.size(); ++i) {
+                    if(lines[i].index == in) {
+                        lines.erase(lines.begin()+i);
+                        found = true;
+                        break;
+                    }
+                }
+                if(found == true)
+                    std::cout << "Line: " << in << " removed..\n";
+                else
+                    std::cerr << "Line: " << in << " not found..\n";
+                
+                continue;
+            } else if(first_token == "display" && v.size() >= 2) {
+                if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
+                    std::cerr << "display requires line number.\n";
+                    continue;
+                }
+                std::string index;
+                index = v[1].getToken();
+                bool found = false;
+                int in = atoi(index.c_str());
+                for(unsigned int i = 0; i < lines.size(); ++i) {
+                    if(lines[i].index == in) {
+                        std::cout << lines[i].index << " " << lines[i].text << "\n";
+                        found = true;
+                        break;
+                    }
+                }
+                if(found == false) {
+                    std::cerr << "Index: " << in << " not found!\n";
+                    continue;
+                }
+                continue;
             }
-            if(found == true)
-            	std::cout << "Line: " << in << " removed..\n";
-            else
-                std::cerr << "Line: " << in << " not found..\n";
+        	inputText(v, input_line);
+        }
+        catch(lex::Scanner_EOF) {
             
-            continue;
-        } else if(first_token == "display" && v.size() >= 2) {
-            if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
-                std::cerr << "display requires line number.\n";
-                continue;
-            }
-            std::string index;
-            index = v[1].getToken();
-            bool found = false;
-            int in = atoi(index.c_str());
-            for(unsigned int i = 0; i < lines.size(); ++i) {
-                if(lines[i].index == in) {
-                    std::cout << lines[i].index << " " << lines[i].text << "\n";
-                    found = true;
-                    break;
-                }
-            }
-            if(found == false) {
-                std::cerr << "Index: " << in << " not found!\n";
-                continue;
-            }
-            continue;
         }
-        inputText(v, input_line);
+        catch(lex::Scanner_Error) {
+            std::cerr << "Scanner Error has occured.\n";
+        }
+        catch(std::exception &e) {
+            std::cerr << "System Exception thrown: " << e.what() << "\n";
+        }
     }
-    return 0;
+    return EXIT_SUCCESS;
 }
