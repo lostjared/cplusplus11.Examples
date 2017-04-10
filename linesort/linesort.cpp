@@ -1,7 +1,8 @@
 /* 
  
- 
- Line Sort - Practice
+ Line Sort - Practice Project
+ written by Jared Bruni 
+ http://lostsidedead.com
  
  Enter digit then text like on old 8 bit machines
  
@@ -16,10 +17,13 @@
  > quit
  to exit
  
+ other commands:
+ 
  > save filename
  > open filename
  > clear
- > remove
+ > remove index
+ > dispaly index
  
  */
 
