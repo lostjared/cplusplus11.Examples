@@ -36,8 +36,6 @@
 #include "lexer.hpp"
 #include<sstream>
 
-void inputText(std::vector<lex::Token> &tokens, std::string text);
-
 class TextLine {
 public:
     TextLine(int index, std::string text) { this->index = index; this->text = text; }
@@ -56,6 +54,11 @@ public:
     int index;
     std::string text;
 };
+
+void inputText(std::vector<lex::Token> &tokens, std::string text);
+bool saveLineSource(const std::string &text);
+bool openLineSource(const std::string &text);
+void insertText(const TextLine &in);
 
 std::vector<TextLine> lines;
 
@@ -182,13 +185,19 @@ int main() {
             std::string index;
             index = v[1].getToken();
             int in = atoi(index.c_str());
+            bool found = false;
             for(unsigned int i = 0; i < lines.size(); ++i) {
                 if(lines[i].index == in) {
                     lines.erase(lines.begin()+i);
+                    found = true;
                     break;
                 }
             }
-            std::cout << "Line: " << in << " removed..\n";
+            if(found == true)
+            	std::cout << "Line: " << in << " removed..\n";
+            else
+                std::cerr << "Line: " << in << " not found..\n";
+            
             continue;
         } else if(first_token == "display" && v.size() >= 2) {
             if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
@@ -197,16 +206,21 @@ int main() {
             }
             std::string index;
             index = v[1].getToken();
+            bool found = false;
             int in = atoi(index.c_str());
             for(unsigned int i = 0; i < lines.size(); ++i) {
                 if(lines[i].index == in) {
                     std::cout << lines[i].index << " " << lines[i].text << "\n";
+                    found = true;
                     break;
                 }
             }
+            if(found == false) {
+                std::cerr << "Index: " << in << " not found!\n";
+                continue;
+            }
             continue;
         }
-        
         inputText(v, input_line);
     }
     return 0;
