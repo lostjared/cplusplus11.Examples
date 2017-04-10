@@ -238,6 +238,9 @@ int main() {
         catch(std::exception &e) {
             std::cerr << "System Exception thrown: " << e.what() << "\n";
         }
+        catch(...) {
+            std::cerr << "Unknown Exception thrown...\n";
+        }
     }
     return EXIT_SUCCESS;
 }
