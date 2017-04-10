@@ -171,13 +171,13 @@ int main() {
             }
             continue;
         } else if(first_token == "remove" && v.size() >= 2) {
+            if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
+                std::cerr << "remove requires line number.\n";
+                continue;
+            }
             std::string index;
             index = v[1].getToken();
             int in = atoi(index.c_str());
-            if(in <= 0) {
-                std::cerr << "Error: requires index.\n";
-                continue;
-            }
             for(unsigned int i = 0; i < lines.size(); ++i) {
                 if(lines[i].index == in) {
                     lines.erase(lines.begin()+i);
@@ -185,6 +185,21 @@ int main() {
                 }
             }
             std::cout << "Line: " << in << " removed..\n";
+            continue;
+        } else if(first_token == "display" && v.size() >= 2) {
+            if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
+                std::cerr << "display requires line number.\n";
+                continue;
+            }
+            std::string index;
+            index = v[1].getToken();
+            int in = atoi(index.c_str());
+            for(unsigned int i = 0; i < lines.size(); ++i) {
+                if(lines[i].index == in) {
+                    std::cout << lines[i].index << " " << lines[i].text << "\n";
+                    break;
+                }
+            }
             continue;
         }
         
