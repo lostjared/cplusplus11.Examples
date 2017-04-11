@@ -13,36 +13,21 @@ namespace interp {
     
     class TextLine {
     public:
-        TextLine() : index(0), text("") {}
-        TextLine(int index, std::string text) { this->index = index; this->text = text; }
-        TextLine(const TextLine &t) {
-            index = t.index;
-            text = t.text;
-        }
-        bool operator<(const TextLine &t) const {
-            return (index < t.index);
-        }
+        TextLine();
+        TextLine(int index, std::string text);
+        TextLine(const TextLine &t);
+        bool operator<(const TextLine &t) const;
+        bool operator==(const TextLine &t1) const;
+        TextLine &operator=(const TextLine &t);
         
-        bool operator==(const TextLine &t1) const {
-            return (index == t1.index);
-        }
-        TextLine &operator=(const TextLine &t) {
-            index = t.index;
-            text = t.text;
-            return *this;
-        }
         int index;
         std::string text;
     };
     
     class Code {
     public:
-        
         Code() {}
-        
-        void clear() {
-            
-        }
+        void clear();
     };
 
     void inputText(std::vector<lex::Token> &tokens, std::string text);
