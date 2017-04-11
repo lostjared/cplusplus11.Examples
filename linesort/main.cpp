@@ -51,8 +51,8 @@ std::unordered_map<std::string, Command> function_map = {
     { "save",Command(token::token_Save, 2) },
     { "open",Command(token::token_Open, 2) },
     { "clear",Command(token::token_Clear, 0) },
-    { "remove",Command(token::token_Remove, 2) },
-    {"display",Command(token::token_Display, 2) }
+    { "remove",Command(token::token_Remove, 1) },
+    {"display",Command(token::token_Display, 1) }
 };
 
 int main() {
