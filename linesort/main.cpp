@@ -30,10 +30,37 @@
  */
 
 #include"code.hpp"
+#include"function.hpp"
+#include<unordered_map>
+
+typedef void (*tokenFunc)(std::vector<lex::Token> &tokens);
+
+struct Command {
+    int args;
+    tokenFunc func;
+    Command() = default;
+    Command(tokenFunc ifunc, int iargs) {
+        args = iargs;
+        func = ifunc;
+    }
+};
+
+std::unordered_map<std::string, Command> function_map;
+
+void init_map() {
+    function_map["convert"] = Command(token::token_Convert, 1);
+    function_map["list"] = Command(token::token_List, 1);
+    function_map["save"] = Command(token::token_Save, 2);
+    function_map["open"] = Command(token::token_Open, 2);
+    function_map["clear"] = Command(token::token_Clear, 1);
+    function_map["remove"] = Command(token::token_Remove, 2);
+    function_map["display"] = Command(token::token_Display, 2);
+}
+
 
 int main() {
     bool active = true;
-    interp::Code code;
+    init_map();
     
     while(active) {
         try {
@@ -51,92 +78,18 @@ int main() {
             if(v.size()==0) continue;
             std::string first_token;
             first_token = v[0].getToken();
+            
             if(first_token == "quit") break;
-            else if(first_token == "list") {
-                for(auto i = interp::lines.begin(); i != interp::lines.end(); ++i) {
-                    std::cout << i->index << ": " << i->text << "\n";
-                }
-                continue;
-            } else if (first_token == "save" && v.size()>=2) {
-                if(v[1].getTokenType() != lex::TOKEN_STRING) {
-                    std::cerr << "Save requires string operand in quotes.\n";
-                    continue;
-                }
-                std::string filename;
-                filename = v[1].getToken();
-                if(interp::saveLineSource(filename)) {
-                    std::cout << "Saved: " << filename << "\n";
-                }
-                continue;
-            } else if(first_token == "open" && v.size()>=2) {
-                if(v[1].getTokenType() != lex::TOKEN_STRING) {
-                    std::cerr << "open requires string operand in quotes.\n";
-                    continue;
-                }
-                std::string filename;
-                filename = v[1].getToken();
-                if(interp::openLineSource(filename)) {
-                    std::cout << "Loaded: " << filename << "\n";
-                }
-                continue;
-            } else if(first_token == "clear") {
-                if(!interp::lines.empty()) {
-                    interp::lines.erase(interp::lines.begin(), interp::lines.end());
-                }
-                continue;
-            } else if(first_token == "remove" && v.size() >= 2) {
-                if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
-                    std::cerr << "remove requires line number.\n";
-                    continue;
-                }
-                std::string index;
-                index = v[1].getToken();
-                int in = atoi(index.c_str());
-                bool found = false;
-                for(unsigned int i = 0; i < interp::lines.size(); ++i) {
-                    if(interp::lines[i].index == in) {
-                        interp::lines.erase(interp::lines.begin()+i);
-                        found = true;
-                        break;
-                    }
-                }
-                if(found == true)
-                    std::cout << "Line: " << in << " removed..\n";
-                else
-                    std::cerr << "Line: " << in << " not found..\n";
-                
-                continue;
-            } else if(first_token == "display" && v.size() >= 2) {
-                if(v[1].getTokenType() != lex::TOKEN_DIGIT) {
-                    std::cerr << "display requires line number.\n";
-                    continue;
-                }
-                std::string index;
-                index = v[1].getToken();
-                bool found = false;
-                int in = atoi(index.c_str());
-                for(unsigned int i = 0; i < interp::lines.size(); ++i) {
-                    if(interp::lines[i].index == in) {
-                        std::cout << interp::lines[i].index << " " << interp::lines[i].text << "\n";
-                        found = true;
-                        break;
-                    }
-                }
-                if(found == false) {
-                    std::cerr << "Index: " << in << " not found!\n";
-                    continue;
-                }
-                continue;
-            } else if(first_token == "convert") {
-                code.clear();
-                for(unsigned int i = 0; i < interp::lines.size(); ++i) {
-                    if(procLine(interp::lines[i], code) == false)
-                        std::cerr << "Line: " << interp::lines[i].index << " contains errors.\n";
-                    
-                }
+            
+            auto rt = function_map.find(first_token);
+            if(rt == function_map.end()) {
+                interp::inputText(v, input_line);
                 continue;
             }
-            interp::inputText(v, input_line);
+            if(v.size() == rt->second.args) rt->second.func(v);
+            else {
+                std::cout << "Error " << first_token << " requires: " << rt->second.args << " arguments.\n";
+            }
         }
         catch(lex::Scanner_EOF) {
             
