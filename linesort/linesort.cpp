@@ -1,7 +1,7 @@
-/* 
+/*
  
  Line Sort - Practice Project
- written by Jared Bruni 
+ written by Jared Bruni
  http://lostsidedead.com
  
  Enter digit then text like on old 8 bit machines
@@ -24,6 +24,7 @@
  > clear
  > remove index
  > dispaly index
+ > convert
  
  */
 
@@ -267,7 +268,7 @@ int main() {
                 }
                 continue;
             }
-        	inputText(v, input_line);
+            inputText(v, input_line);
         }
         catch(lex::Scanner_EOF) {
             
