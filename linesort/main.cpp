@@ -45,23 +45,18 @@ struct Command {
     }
 };
 
-std::unordered_map<std::string, Command> function_map;
-
-void init_map() {
-    function_map["convert"] = Command(token::token_Convert, 1);
-    function_map["list"] = Command(token::token_List, 1);
-    function_map["save"] = Command(token::token_Save, 2);
-    function_map["open"] = Command(token::token_Open, 2);
-    function_map["clear"] = Command(token::token_Clear, 1);
-    function_map["remove"] = Command(token::token_Remove, 2);
-    function_map["display"] = Command(token::token_Display, 2);
-}
-
+std::unordered_map<std::string, Command> function_map = {
+    { "convert",Command(token::token_Convert, 1) },
+    { "list",Command(token::token_List, 1) },
+    { "save",Command(token::token_Save, 2) },
+    { "open",Command(token::token_Open, 2) },
+    { "clear",Command(token::token_Clear, 1) },
+    { "remove",Command(token::token_Remove, 2) },
+    {"display",Command(token::token_Display, 2) }
+};
 
 int main() {
     bool active = true;
-    init_map();
-    
     while(active) {
         try {
             std::cout << "> ";
