@@ -60,10 +60,21 @@ public:
     std::string text;
 };
 
+class Code {
+public:
+    
+    Code() {}
+    
+    void clear() {
+        
+    }
+};
+
 void inputText(std::vector<lex::Token> &tokens, std::string text);
 bool saveLineSource(const std::string &text);
 bool openLineSource(const std::string &text);
 void insertText(const TextLine &in);
+bool procLine(const TextLine &text, Code &code);
 
 std::vector<TextLine> lines;
 
@@ -132,8 +143,29 @@ void inputText(std::vector<lex::Token> &tokens, std::string input_line) {
     }
 }
 
+bool procLine(const TextLine &text, Code &code) {
+    std::istringstream input(text.text);
+    lex::Scanner scan(input);
+    std::vector<lex::Token> tokens;
+    while(scan.valid()) {
+        lex::Token token;
+        scan >> token;
+        tokens.push_back(token);
+    }
+    // for now output each token
+    std::cout << "code [" << text.text << "] = {\n";
+    for(unsigned int i = 0; i < tokens.size(); ++i) {
+        std::cout << tokens[i] << "\n";
+    }
+    std::cout << "};\n\n";
+    return true;
+}
+
+
 int main() {
     bool active = true;
+    Code code;
+    
     while(active) {
         try {
             std::cout << "> ";
@@ -224,6 +256,14 @@ int main() {
                 if(found == false) {
                     std::cerr << "Index: " << in << " not found!\n";
                     continue;
+                }
+                continue;
+            } else if(first_token == "convert") {
+                code.clear();
+                for(unsigned int i = 0; i < lines.size(); ++i) {
+                    if(procLine(lines[i], code) == false)
+                        std::cerr << "Line: " << lines[i].index << " contains errors.\n";
+                    
                 }
                 continue;
             }
