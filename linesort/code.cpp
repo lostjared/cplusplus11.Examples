@@ -113,7 +113,7 @@ namespace interp {
             tokens.push_back(token);
         }
         // for now output each token
-        std::cout << "Code [" << text.text << "] = {\n";
+        std::cout << "Code Line: ["<<text.index <<"] - [" << text.text << "] = {\n";
         for(unsigned int i = 0; i < tokens.size(); ++i) {
             std::cout << tokens[i] << "\n";
         }
