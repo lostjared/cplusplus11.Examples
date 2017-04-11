@@ -1,9 +1,14 @@
-CXX_FLAGS=-std=c++11
 
-all: testline
+CFLAGS=  -I.-O2 -std=c++11
+LDFLAGS=
+CPP_FILES := $(wildcard *.cpp)
+OBJ_FILES := $(addprefix ,$(notdir $(CPP_FILES:.cpp=.o)))
 
-testline: linesort.cpp
-	$(CXX) $(CXX_FLAGS) linesort.cpp -o testline
+%.o: %.cpp
+	$(CXX) $(CFLAGS) -c -o $@ $<
+  
+all: $(OBJ_FILES) 
+	$(CXX) $(OBJ_FILES)  -o ats-dbg  $(LDFLAGS)
+
 clean:
-	rm -f testline
-	
+	rm -f ats-dbg *.o 
