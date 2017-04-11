@@ -46,11 +46,11 @@ struct Command {
 };
 
 std::unordered_map<std::string, Command> function_map = {
-    { "convert",Command(token::token_Convert, 1) },
-    { "list",Command(token::token_List, 1) },
+    { "convert",Command(token::token_Convert, 0) },
+    { "list",Command(token::token_List, 0) },
     { "save",Command(token::token_Save, 2) },
     { "open",Command(token::token_Open, 2) },
-    { "clear",Command(token::token_Clear, 1) },
+    { "clear",Command(token::token_Clear, 0) },
     { "remove",Command(token::token_Remove, 2) },
     {"display",Command(token::token_Display, 2) }
 };
@@ -73,17 +73,18 @@ int main() {
             if(v.size()==0) continue;
             std::string first_token;
             first_token = v[0].getToken();
-            
             if(first_token == "quit") break;
-            
             auto rt = function_map.find(first_token);
             if(rt == function_map.end()) {
                 interp::inputText(v, input_line);
                 continue;
             }
-            if(v.size() == rt->second.args) rt->second.func(v);
+            
+            int token_count = v.size()-1;
+            
+            if(token_count == rt->second.args) rt->second.func(v);
             else {
-                std::cout << "Error " << first_token << " requires: " << rt->second.args << " arguments.\n";
+                std::cout << "Error " << first_token << " requires: " << rt->second.args << " arguments. You gave " << token_count << "\n";
             }
         }
         catch(lex::Scanner_EOF) {
