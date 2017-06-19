@@ -27,12 +27,11 @@ int main(int argc, char **argv) {
         std::cerr << "Should be 1-7\n";
         exit(1);
     }
-    unsigned char rot = static_cast<unsigned char>(r);
     std::bitset<8> before(value);
     std::cout << "Before: " << v << " = " << before << "\n";
     unsigned char left, right;
-    left = rol(value, rot);
-    right = ror(value, rot);
+    left = rol(value, r);
+    right = ror(value, r);
     std::bitset<8> after_ror(right), after_rol(left);
     std::cout << "ROR: " << static_cast<unsigned int>(right) << " = " << after_ror << "\n";
     std::cout << "ROL: " <<  static_cast<unsigned int>(left) << " = " << after_rol << "\n";
