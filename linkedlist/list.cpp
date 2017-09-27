@@ -7,7 +7,7 @@ template<typename T>
 class Node {
 public:
     T value;
-    Node *next;
+    Node<T> *next;
     Node();
     Node(const T &value);
 };
