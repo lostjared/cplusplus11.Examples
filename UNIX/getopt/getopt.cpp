@@ -1,13 +1,10 @@
 #include<iostream>
 #include<unistd.h>
 
-
 int main(int argc, char **argv) {
-    
     if(argc > 1) {
         int opt;
         std::cout << "Argument options...\n";
-        
         while((opt = getopt(argc, argv, "cxi:")) != -1) {
             switch(opt) {
                 case 'c':
@@ -19,10 +16,8 @@ int main(int argc, char **argv) {
                 case 'i':
                     std::cout << "i option: " << optarg << "\n";
                     break;
-                    
             }
         }
     }
-    
     return 0;
 }
