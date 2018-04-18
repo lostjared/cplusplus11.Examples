@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
                     break;
                 default:
                     std::cout << " use -c counter\n";
+                    exit(0);
                     break;
             }
         }
