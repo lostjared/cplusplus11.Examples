@@ -37,6 +37,9 @@ int main(int argc, char **argv) {
         std::cout << "Program exiting...\n";
         exit(EXIT_SUCCESS);
         
+    } else {
+        std::cerr << "Error requires filename...\n" << argv[0] << " filename\n";
+        exit(EXIT_FAILURE);
     }
     return 0;
 }
