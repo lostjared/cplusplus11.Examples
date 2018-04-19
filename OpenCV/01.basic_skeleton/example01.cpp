@@ -18,24 +18,25 @@ int main(int argc, char **argv) {
                     break;
             }
             
-            cv::VideoCapture cap(file_name);
-            if(!cap.isOpened()) {
-                std::cerr << "Error could not open file: " << file_name << "\n";
-                exit(EXIT_FAILURE);
-            }
-            cv::namedWindow("Example01");
-            while(1) {
-                cv::Mat frame;
-                if(!cap.read(frame)) {
-                    exit(0);
-                }
-                cv::imshow("Example01", frame);
-                char key = cv::waitKey(10);
-                if(key == 'q' || key == 'Q') break;
-            }
-            std::cout << "Program exiting...\n";
-            exit(EXIT_SUCCESS);
         }
+        cv::VideoCapture cap(file_name);
+        if(!cap.isOpened()) {
+            std::cerr << "Error could not open file: " << file_name << "\n";
+            exit(EXIT_FAILURE);
+        }
+        cv::namedWindow("Example01");
+        while(1) {
+            cv::Mat frame;
+            if(!cap.read(frame)) {
+                exit(0);
+            }
+            cv::imshow("Example01", frame);
+            char key = cv::waitKey(10);
+            if(key == 'q' || key == 'Q') break;
+        }
+        std::cout << "Program exiting...\n";
+        exit(EXIT_SUCCESS);
+        
     }
     return 0;
 }
