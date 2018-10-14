@@ -171,7 +171,7 @@ unsigned int timer_callback(unsigned int t) {
 void idle() {
     
     if(start == true) {
-        spin_x += 6.0f;
+        spin_x += 16.0f;
         dist -= 0.1f;
         if(dist <= -20.0f) {
             going = true;
@@ -180,7 +180,7 @@ void idle() {
     }
     else if(going == true) {
         dist += 0.01f;
-        spin_x -= 6.0f;
+        spin_x -= 16.0f;
         if(dist > 1.0f) {
             going = false;
             start = true;
@@ -353,14 +353,7 @@ void updateTexture(cv::Mat &frame, GLuint &tex) {
 }
 
 void  init() {
-    cap.open("fred.mp4");
-    if(!cap.isOpened()) {
-        std::cerr << "Error could not load video...\n";
-        exit(EXIT_FAILURE);
-    }
-    
     glClearDepth(1.0f);
-    
     glEnable(GL_DEPTH_TEST);
     resize(width, height);
     srand((unsigned int)time(0));
@@ -380,15 +373,24 @@ void clean() {
 int main(int argc, char **argv) {
     int cx = 0;
     int cy = 0;
-    if(argc == 4) {
+    if(argc == 4 || argc == 5) {
         filename = argv[1];
+        cap.open(filename);
+        if(!cap.isOpened()) {
+            std::cerr << "Error could not load video: " << filename << " ...\n";
+            exit(EXIT_FAILURE);
+        }
+        
         cx = atoi(argv[2]);
         cy = atoi(argv[3]);
         if(cx <= 0 || cy <= 0 ) {
             std::cerr << "Error must pass valid resolution\n";
             return -1;
         }
-    } else {
+        if(argc == 5)
+            filter_index = atoi(argv[4]);
+    }
+    else {
         std::cerr << "Requires:\nacid_cube filename width height\n";
         exit(EXIT_FAILURE);
     }
