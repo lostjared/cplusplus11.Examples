@@ -248,69 +248,75 @@ void renderIntro() {
      */
     
     cv::Mat frame;
-    if(cap.read(frame)) {
+    bool frame_read = cap.read(frame);
+    if(frame_read == false) {
+        cap.set(CV_CAP_PROP_POS_FRAMES,1);
+        frame_read = cap.read(frame);
+    }
+    
+    if(frame_read) {
         cv::Mat outframe;
         cv::flip(frame,outframe, 0);
         frame = outframe.clone();
         ac::draw_func[filter_index](frame);
         updateTexture(frame, logo_texture);
+        
+        /*
+         glBindTexture(GL_TEXTURE_2D, logo_texture);
+         glEnableClientState(GL_VERTEX_ARRAY);
+         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+         glVertexPointer(3, GL_FLOAT, 0, frontFace);
+         glTexCoordPointer(2, GL_FLOAT, 0, frontTexture);
+         glDrawArrays(GL_TRIANGLES, 0, 6);
+         glDisableClientState(GL_VERTEX_ARRAY);
+         glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+         */
+        
+        glEnable(GL_DEPTH_TEST);
+        glMatrixMode(GL_PROJECTION);
+        glLoadIdentity();
+        gluPerspective(45.0f, (float)(width/height), 0.1f, 300.0f);
+        glMatrixMode(GL_MODELVIEW);
+        glLoadIdentity();
+        glEnableClientState(GL_VERTEX_ARRAY);
+        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+        
+        glTranslatef(0.0f, 0.0f, dist);
+        switch(axis) {
+            case 0:
+                glRotatef(spin_x, 0.0f, 0.0f, 1.0f);
+                break;
+            case 1:
+                glRotatef(spin_x, 1.0f, 0.0f, 0.0f);
+                break;
+            case 2:
+                glRotatef(spin_x, 1.0f, 1.0f, 0.0f);
+                break;
+            case 3:
+                glRotatef(spin_x, 1.0f, 1.0f, 1.0f);
+                break;
+        }
+        
+        /*
+         glTranslatef(0, 0, -4.0);
+         
+         glRotatef(intro_yRot, 0, 1, 0);
+         intro_yRot += 0.1f * dt;
+         if(intro_yRot > 360) {
+         intro_yRot = 1;
+         } else if(intro_yRot > 180) {
+         static float xRot = 0.0f;
+         xRot += 0.1f * dt;
+         glRotatef(xRot, 1, 0, 0);
+         }*/
+        
+        glVertexPointer(3, GL_FLOAT, 0, vertices);
+        glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
+        glBindTexture(GL_TEXTURE_2D, logo_texture);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        glDisableClientState(GL_VERTEX_ARRAY);
+        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
     }
-    
-    /*
-     glBindTexture(GL_TEXTURE_2D, logo_texture);
-     glEnableClientState(GL_VERTEX_ARRAY);
-     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-     glVertexPointer(3, GL_FLOAT, 0, frontFace);
-     glTexCoordPointer(2, GL_FLOAT, 0, frontTexture);
-     glDrawArrays(GL_TRIANGLES, 0, 6);
-     glDisableClientState(GL_VERTEX_ARRAY);
-     glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-     */
-    
-    glEnable(GL_DEPTH_TEST);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45.0f, (float)(width/height), 0.1f, 300.0f);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    
-    glTranslatef(0.0f, 0.0f, dist);
-    switch(axis) {
-        case 0:
-            glRotatef(spin_x, 0.0f, 0.0f, 1.0f);
-            break;
-        case 1:
-            glRotatef(spin_x, 1.0f, 0.0f, 0.0f);
-            break;
-        case 2:
-            glRotatef(spin_x, 1.0f, 1.0f, 0.0f);
-            break;
-        case 3:
-            glRotatef(spin_x, 1.0f, 1.0f, 1.0f);
-            break;
-    }
-    
-    /*
-     glTranslatef(0, 0, -4.0);
-     
-     glRotatef(intro_yRot, 0, 1, 0);
-     intro_yRot += 0.1f * dt;
-     if(intro_yRot > 360) {
-     intro_yRot = 1;
-     } else if(intro_yRot > 180) {
-     static float xRot = 0.0f;
-     xRot += 0.1f * dt;
-     glRotatef(xRot, 1, 0, 0);
-     }*/
-    
-    glVertexPointer(3, GL_FLOAT, 0, vertices);
-    glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
-    glBindTexture(GL_TEXTURE_2D, logo_texture);
-    glDrawArrays(GL_TRIANGLES, 0, 36);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 void render() {
@@ -380,7 +386,6 @@ int main(int argc, char **argv) {
             std::cerr << "Error could not load video: " << filename << " ...\n";
             exit(EXIT_FAILURE);
         }
-        
         cx = atoi(argv[2]);
         cy = atoi(argv[3]);
         if(cx <= 0 || cy <= 0 ) {

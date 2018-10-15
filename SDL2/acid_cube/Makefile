@@ -1,4 +1,4 @@
-CFLAGS= -std=c++11 -O3 `pkg-config glew --cflags` `pkg-config sdl2 --cflags` `pkg-config acidcam --cflags` `pkg-config opencv --cflags`
+CFLAGS= -std=c++11 -O3 `pkg-config glew sdl2 acidcam opencv --cflags`
 LDADD = `pkg-config glew sdl2 opencv acidcam --libs` -framework OpenGL
 
 CPP_FILES := $(wildcard *.cpp)
@@ -11,4 +11,7 @@ all: $(OBJ_FILES)
 	$(CXX) $(OBJ_FILES)  -o acid_cube  $(LDADD)
 
 clean:
-	rm -f *.o
+	rm -f *.o ./acid_cube
+
+install:
+	cp acid_cube /usr/local/bin
