@@ -16,7 +16,7 @@ float dist = -3.0;
 int axis = 0;
 bool start = true, going = false;
 bool start_wait = false;
-
+int filter_mode = 0;
 
 enum class ProgramMode { CAMERA, VIDEO };
 ProgramMode prog_mode = ProgramMode::VIDEO;
@@ -169,6 +169,11 @@ unsigned int timer_callback(unsigned int t) {
         start_wait = true;
     }
     
+    if(MX_i::PollController(MX_i::B_2)) {
+        filter_mode = (filter_mode == 0) ? 1 : 0;
+    }
+    
+    
     return t;
 }
 
@@ -278,7 +283,7 @@ void renderIntro() {
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
-        if(prog_mode == ProgramMode::VIDEO) {
+        if(filter_mode == 0) {
             glTranslatef(0.0f, 0.0f, dist);
             switch(axis) {
                 case 0:
@@ -295,7 +300,7 @@ void renderIntro() {
                     break;
             }
         }
-        else {
+        else if(filter_mode == 1) {
             glTranslatef(0, 0, -4.0);
             glRotatef(intro_yRot, 0, 1, 0);
             intro_yRot += 0.1f * dt;
@@ -307,7 +312,6 @@ void renderIntro() {
                 glRotatef(xRot, 1, 0, 0);
             }
         }
-        
         glVertexPointer(3, GL_FLOAT, 0, vertices);
         glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
         glBindTexture(GL_TEXTURE_2D, logo_texture);
@@ -377,38 +381,79 @@ void clean() {
 int main(int argc, char **argv) {
     int cx = 0;
     int cy = 0;
+    int opt = 0;
+    int v_w = 320;
+    int v_h = 240;
     
-    if(argc == 4 || argc == 5) {
-        if(std::string(argv[1]) == "webcam") {
-            prog_mode = ProgramMode::CAMERA;
-            cap.open(0);
-            if(!cap.isOpened()) {
-                std::cerr << "Could not open webcam 0\n";
-                exit(EXIT_FAILURE);
-            }
-            cap.set(CV_CAP_PROP_FRAME_WIDTH, 320);
-            cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240);
-        } else {
-            prog_mode = ProgramMode::VIDEO;
-            filename = argv[1];
-            cap.open(filename);
+    while((opt = getopt(argc, argv, "W:H:w:h:f:i:vcCS")) != -1) {
+        switch(opt) {
+            case 'w':
+                cx = atoi(optarg);
+                if(cx < 128) {
+                    std::cerr << "Error invalid width..\n";
+                    exit(EXIT_FAILURE);
+                }
+                break;
+            case 'h':
+                cy = atoi(optarg);
+                if(cy < 128) {
+                    std::cerr << "Error invalid width..\n";
+                    exit(EXIT_FAILURE);
+                }
+                break;
+            case 'f':
+                filter_index = atoi(optarg);
+                if(filter_index < 0 || filter_index > ac::draw_max-6) {
+                    std::cerr << "Error invalid filter number...\n";
+                    exit(EXIT_FAILURE);
+                }
+                break;
+            case 'i':
+                filename = optarg;
+                break;
+            case 'c':
+                prog_mode = ProgramMode::CAMERA;
+                break;
+            case 'v':
+                prog_mode = ProgramMode::VIDEO;
+                break;
+            case 'S':
+                filter_mode = 0;
+                break;
+            case 'C':
+                filter_mode = 1;
+                break;
+            case 'W':
+                v_w = atoi(optarg);
+                break;
+            case 'H':
+                v_h = atoi(optarg);
+                break;
         }
+    }
+    if(prog_mode == ProgramMode::CAMERA) {
+        cap.open(0);
+        if(!cap.isOpened()) {
+            std::cerr << "Could not open webcam 0\n";
+            exit(EXIT_FAILURE);
+        }
+    } else if(prog_mode == ProgramMode::VIDEO) {
+        cap.open(filename);
         if(!cap.isOpened()) {
             std::cerr << "Error could not load video: " << filename << " ...\n";
             exit(EXIT_FAILURE);
         }
-        cx = atoi(argv[2]);
-        cy = atoi(argv[3]);
-        if(cx <= 0 || cy <= 0 ) {
-            std::cerr << "Error must pass valid resolution\n";
-            return -1;
-        }
-        if(argc == 5)
-            filter_index = atoi(argv[4]);
     }
     else {
-        std::cerr << "Requires:\nacid_cube filename width height\n";
+        std::cerr << "Requires:\nacid_cube -i filename -w width -h height";
         exit(EXIT_FAILURE);
+    }
+    cap.set(CV_CAP_PROP_FRAME_WIDTH, v_w);
+    cap.set(CV_CAP_PROP_FRAME_HEIGHT, v_h);
+    
+    if(cx <= 0 || cy <= 0 ) {
+        std::cerr << "Error must pass valid resolution\n";
+        return -1;
     }
     
     MX_i::Init(&argc, argv, cx, cy);
