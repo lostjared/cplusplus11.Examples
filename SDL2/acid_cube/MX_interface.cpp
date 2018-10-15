@@ -40,7 +40,7 @@ namespace MX_i {
         SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
         
         
-        window = SDL_CreateWindow("CubeApp", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, view_w, view_h, SDL_WINDOW_OPENGL);
+        window = SDL_CreateWindow("Acid Cube", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, view_w, view_h, SDL_WINDOW_OPENGL);
         
         glcontext = SDL_GL_CreateContext(window);
         glewExperimental = GL_TRUE;
