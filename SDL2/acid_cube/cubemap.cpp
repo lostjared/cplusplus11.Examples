@@ -11,12 +11,15 @@
 GLuint textures[10];
 GLuint background_texture;
 GLuint logo_texture;
-
 float spin_x = 0, spin_y = 0, spin_z = 0;
 float dist = -3.0;
 int axis = 0;
 bool start = true, going = false;
 bool start_wait = false;
+
+
+enum class ProgramMode { CAMERA, VIDEO };
+ProgramMode prog_mode = ProgramMode::VIDEO;
 
 void updateTexture(cv::Mat &frame, GLuint &tex);
 void genTextureFromFrame(cv::Mat &frame, GLuint &tex);
@@ -136,6 +139,7 @@ GLfloat texCoords[] = {
 
 GLfloat rot[4] = {0,-10,0,0};//{ -25, -20, 0, 0};
 int width=WIDTH, height=HEIGHT;
+float xRot = 1.0;
 
 
 cv::VideoCapture cap;
@@ -215,7 +219,7 @@ GLfloat frontTexture[] = {
 };
 
 
-static float intro_zPos = 0, intro_yRot = 0;
+float intro_zPos = 0, intro_yRot = 0;
 
 namespace cv {
     void applyColorMap(cv::_InputArray const&, cv::_OutputArray const&, int) {}
@@ -235,24 +239,16 @@ void renderIntro() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glEnable(GL_TEXTURE_2D);
-    /*
-     cv::Mat frame;
-     bool r = cap.read(frame);
-     if(r == false) {
-     cap.set(CV_CAP_PROP_POS_FRAMES, 1);
-     cap.read(frame);
-     }
-     cv::Mat outframe;
-     cv::flip(frame,outframe, 0);
-     frame = outframe.clone();
-     */
-    
     cv::Mat frame;
     bool frame_read = cap.read(frame);
-    if(frame_read == false) {
+    if(frame_read == false && prog_mode == ProgramMode::VIDEO) {
         cap.set(CV_CAP_PROP_POS_FRAMES,1);
         frame_read = cap.read(frame);
         std::cout << "video reset...\n";
+    }
+    if(frame_read == false && prog_mode == ProgramMode::CAMERA) {
+        std::cerr << "Could not read frame quitting...\n";
+        exit(EXIT_FAILURE);
     }
     
     if(frame_read) {
@@ -282,34 +278,35 @@ void renderIntro() {
         glEnableClientState(GL_VERTEX_ARRAY);
         glEnableClientState(GL_TEXTURE_COORD_ARRAY);
         
-        glTranslatef(0.0f, 0.0f, dist);
-        switch(axis) {
-            case 0:
-                glRotatef(spin_x, 0.0f, 0.0f, 1.0f);
-                break;
-            case 1:
-                glRotatef(spin_x, 1.0f, 0.0f, 0.0f);
-                break;
-            case 2:
-                glRotatef(spin_x, 1.0f, 1.0f, 0.0f);
-                break;
-            case 3:
-                glRotatef(spin_x, 1.0f, 1.0f, 1.0f);
-                break;
+        if(prog_mode == ProgramMode::VIDEO) {
+            glTranslatef(0.0f, 0.0f, dist);
+            switch(axis) {
+                case 0:
+                    glRotatef(spin_x, 0.0f, 0.0f, 1.0f);
+                    break;
+                case 1:
+                    glRotatef(spin_x, 1.0f, 0.0f, 0.0f);
+                    break;
+                case 2:
+                    glRotatef(spin_x, 1.0f, 1.0f, 0.0f);
+                    break;
+                case 3:
+                    glRotatef(spin_x, 1.0f, 1.0f, 1.0f);
+                    break;
+            }
         }
-        
-        /*
-         glTranslatef(0, 0, -4.0);
-         
-         glRotatef(intro_yRot, 0, 1, 0);
-         intro_yRot += 0.1f * dt;
-         if(intro_yRot > 360) {
-         intro_yRot = 1;
-         } else if(intro_yRot > 180) {
-         static float xRot = 0.0f;
-         xRot += 0.1f * dt;
-         glRotatef(xRot, 1, 0, 0);
-         }*/
+        else {
+            glTranslatef(0, 0, -4.0);
+            glRotatef(intro_yRot, 0, 1, 0);
+            intro_yRot += 0.1f * dt;
+            if(intro_yRot > 360) {
+                intro_yRot = 1;
+            } else if(intro_yRot > 180) {
+                static float xRot = 0.0f;
+                xRot += 0.1f * dt;
+                glRotatef(xRot, 1, 0, 0);
+            }
+        }
         
         glVertexPointer(3, GL_FLOAT, 0, vertices);
         glTexCoordPointer(2, GL_FLOAT, 0, texCoords);
@@ -380,9 +377,22 @@ void clean() {
 int main(int argc, char **argv) {
     int cx = 0;
     int cy = 0;
+    
     if(argc == 4 || argc == 5) {
-        filename = argv[1];
-        cap.open(filename);
+        if(std::string(argv[1]) == "webcam") {
+            prog_mode = ProgramMode::CAMERA;
+            cap.open(0);
+            if(!cap.isOpened()) {
+                std::cerr << "Could not open webcam 0\n";
+                exit(EXIT_FAILURE);
+            }
+            cap.set(CV_CAP_PROP_FRAME_WIDTH, 320);
+            cap.set(CV_CAP_PROP_FRAME_HEIGHT, 240);
+        } else {
+            prog_mode = ProgramMode::VIDEO;
+            filename = argv[1];
+            cap.open(filename);
+        }
         if(!cap.isOpened()) {
             std::cerr << "Error could not load video: " << filename << " ...\n";
             exit(EXIT_FAILURE);
