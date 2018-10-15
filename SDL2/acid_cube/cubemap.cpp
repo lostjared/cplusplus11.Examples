@@ -180,7 +180,7 @@ unsigned int timer_callback(unsigned int t) {
 void idle() {
     
     if(start_wait == true && start == true) {
-        spin_x += 16.0f;
+        spin_x += 12.0f;
         dist -= 0.1f;
         if(dist <= -20.0f) {
             going = true;
@@ -189,7 +189,7 @@ void idle() {
     }
     else if(going == true) {
         dist += 0.01f;
-        spin_x -= 16.0f;
+        spin_x -= 12.0f;
         if(dist > 1.0f) {
             going = false;
             start = true;
