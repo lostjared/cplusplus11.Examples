@@ -223,14 +223,7 @@ GLfloat frontTexture[] = {
     1, 1,
 };
 
-
 float intro_zPos = 0, intro_yRot = 0;
-
-namespace cv {
-    void applyColorMap(cv::_InputArray const&, cv::_OutputArray const&, int) {}
-}
-
-
 
 void renderIntro() {
     
