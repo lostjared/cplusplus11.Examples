@@ -1,5 +1,8 @@
 
 Press 'a' key to start animation
+
+Press 's' key to switch rotation mode
+
 program takes three arguments 
 
 program arguments
