@@ -1,3 +1,4 @@
+#define ACID_CUBE_VERSION "v1.0"
 #include<cstdio>
 #include<cstdlib>
 #include<ctime>
@@ -370,7 +371,7 @@ void clean() {
 }
 
 void output_info(std::string name) {
-    std::cout << name << " arguments:\n-w window width\n-h window height\n-W resized video width\n-H resized video height\n-f starting filter index\n-i filename\n-c web camera mode\n-v video file mode\n-S rotation mode spin\n-C rotation mode cube\n";
+    std::cout << name << " " << ACID_CUBE_VERSION << " arguments:\n-w window width\n-h window height\n-W resized video width\n-H resized video height\n-f starting filter index\n-i filename\n-c web camera mode\n-v video file mode\n-S rotation mode spin\n-C rotation mode cube\n";
 }
 
 int main(int argc, char **argv) {
