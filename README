@@ -1,38 +1,28 @@
-Jared Bruni's C++11 Examples 
+$ Jared Bruni's C++11 Examples 
 
-I have created a series of C++ Tutorials in video form on YouTube
-You can find them here: https://www.youtube.com/playlist?list=PLUgo--lX2kmqPQ5C8jRfy6RZVKHFqN7Zz
+This collection is my way of navigating through, and reinforcing my understanding of, C++11's new functionalities. I plan to establish a separate repository for C++14 enhancements.
 
-I am just going through and writing stuff to help me remember and practice
-some of the new features of C++11. I will create a new repo for C++14.
+The primary purpose of these examples is to showcase specific C++11 features rather than to provide practical utility. However, a few examples are designed to address real tasks, such as creating m3u playlists or generating HTML for CGI applications.
 
-Most of the examples do not do anything 
-useful except to demonstrate those specific features. Some of the examples solve problems
-like generating m3u playlist or outputting html for a cgi program.
+Included among the examples is a calculator that parses expressions, reminiscent of the one featured in "The C++ Programming Language" 4th Edition.
 
-There is also a calculator for parsing expressions that is similar to
-the one from "The C++ Programming Language" 4th Edition. 
+Compilation Instructions:
 
-To build from Makefiles use 
+For MacOS X:
 
-on MacOS X:
+    $ make
 
-$ make
+For Linux:
+  
+    $ make -f Makefile.linux
 
-on Linux:
+Compilation Note:
+Ensure your compiler is C++11 compatible. When using clang, for instance, compile a source file with:
 
-$ make -f Makefile.linux
+    clang++ -std=c++11 sourcefile.cc -o sourcefile
 
-Note:
-To compile make sure your compiler supports C++11 with clang I use:
-say for sourcefile.cc
+On Linux, opt for libstdc++ and use g++ version 4.8 or newer. Compiling any program requires just a single line:
 
-clang++ -std=c++11 sourcefile.cc -o sourcefile 
-
-For Linux use libstdc++ instead of libc++ and g++ 4.8 or greater
-Each program only requires one line to compile it. 
-
-g++ -std=c++11 sourcefile.cc -o sourcefile 
+    g++ -std=c++11 sourcefile.cc -o sourcefile
 
 - Jared Bruni
-
