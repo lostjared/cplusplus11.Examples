@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 
 // Energy type, contains the value
 template<typename T>
