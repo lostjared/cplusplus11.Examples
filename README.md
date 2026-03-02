@@ -1,5 +1,10 @@
 # Jared Bruni's C++11 Examples
 
+Newly generated website interface for these examples:
+
+https://lostsidedead.biz/cplusplus/11/
+
+
 This collection is my way of navigating through, and reinforcing my understanding of, C++11's new functionalities. I no longer plan to write a repository for C++14 as I have one for C++17.
 
 The primary purpose of these examples is to showcase specific C++11 features rather than to provide practical utility. However, a few examples are designed to address real tasks, such as creating m3u playlists or generating HTML for CGI applications.
