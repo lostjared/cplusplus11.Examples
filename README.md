@@ -24,6 +24,16 @@ cmake -S . -B build-cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build build-cmake -j$(nproc)
 ```
 
+SDL behavior with CMake:
+
+- SDL2 demos are built when the SDL2 package is found.
+- If SDL2 is not found, SDL-dependent demos are skipped automatically.
+- Legacy SDL1-only demo(s) are disabled by default. Enable them with:
+
+```bash
+cmake -S . -B build-cmake -DBUILD_LEGACY_SDL1_DEMOS=ON
+```
+
 Build with strict warnings:
 
 ```bash
