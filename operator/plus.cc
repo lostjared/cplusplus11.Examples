@@ -60,7 +60,7 @@ std::ostream &operator<<(std::ostream &out, const Text &t) {
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     // print some example strings out
     Text t("Hello");
     Text value;

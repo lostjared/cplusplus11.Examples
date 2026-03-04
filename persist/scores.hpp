@@ -163,7 +163,7 @@ public:
     Score &at(unsigned int pos) { return scores.get().at(pos); }
     int size() { return scores.get().size(); }
 
-    Score &highestScore() throw(ScoreException) {
+    Score &highestScore() {
     	if(scores.get().size() <= 0)
     		throw ScoreException();
     	return scores.get()[0];

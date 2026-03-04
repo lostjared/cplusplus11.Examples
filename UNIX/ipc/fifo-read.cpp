@@ -11,7 +11,7 @@
 
 void error(const std::string &func, const std::string &text);
 
-int main(int argc, char **argv) {
+int main(void) {
     
     int _fd, dum_fd, cli_fd;
     Request req;

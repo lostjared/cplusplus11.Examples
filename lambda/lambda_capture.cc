@@ -39,7 +39,7 @@ public:
     
 };
 
-int main(int argc, char **argv) {
+int main(void) {
     std::vector<std::string> v = { "test", "test two" };
     C c("test", v);
     c.procFunction();

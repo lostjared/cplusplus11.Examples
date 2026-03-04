@@ -52,7 +52,7 @@ private:
     std::string url_f, url_base;
 };
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         DownloadFile dl("index.php", "lostsidedead.com"), dl2("past.php", "lostsidedead.com");
         std::thread down(dl);

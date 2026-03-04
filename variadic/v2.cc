@@ -28,7 +28,7 @@ public:
     
 };
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         Test<Point> test1({0,0});
         Test<Point,Rect> test2({0,0}, {{0,0},{640,480}});

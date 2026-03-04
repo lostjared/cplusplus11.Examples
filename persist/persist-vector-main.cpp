@@ -40,7 +40,7 @@ void outputCustomItems(persist::Vector<std::string, CustomRead, CustomWrite> &cv
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     persist::Vector<Record> pv("file.txt", 100);
     outputItems(pv);
     persist::Vector<std::string, CustomRead, CustomWrite> cv("custom.txt", 100);

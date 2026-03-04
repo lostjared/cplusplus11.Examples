@@ -14,7 +14,7 @@ int main(int argc, char **argv) {
     
     char attr_list[LIST_SIZE], attr_value[LIST_SIZE];
     ssize_t list_len = 0, value_len = 0;
-    int cur_pos, i, z;
+    int cur_pos;
 #if defined(__APPLE__)
     list_len = listxattr(argv[1], attr_list, LIST_SIZE, XATTR_NOFOLLOW);
 #elif defined(__linux__)

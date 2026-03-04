@@ -9,7 +9,7 @@ void PrintPoint(struct Point *p) {
     std::cout << p->x << ":" << p->y << "\n";
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     struct Point *p;
     

@@ -29,7 +29,7 @@ auto Proc(Type1 type1, Type2 type2) -> decltype(type1*type2) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
 
 	
 	ObjectType otype, ctype;

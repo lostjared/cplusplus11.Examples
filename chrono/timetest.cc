@@ -16,7 +16,7 @@ void WasteTime() {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     using namespace std;
     auto n1 = chrono::high_resolution_clock::now();
     WasteTime<400, 400>();

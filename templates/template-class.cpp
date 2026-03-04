@@ -14,14 +14,14 @@ template<typename T = std::basic_string<char>, typename Stream =  std::basic_fst
 class SourceFile {
 public:
     SourceFile();
-    SourceFile(SourceFile<T> &t);
+    SourceFile(const SourceFile<T> &t);
     SourceFile<T> &operator=(const SourceFile<T> &t);
     SourceFile(SourceFile<T> &&t);
-    SourceFile<T> &operator=(const SourceFile<T> &&t);
+    SourceFile<T> &operator=(SourceFile<T> &&t);
     
     bool readFile(const T &path);
     T &operator[](unsigned int line);
-    const int size() const { return code.size(); }
+    std::size_t size() const { return code.size(); }
 private:
     std::vector<T> code;
     
@@ -32,7 +32,7 @@ SourceFile<T,Stream>::SourceFile() {
 }
 
 template<typename T, typename Stream>
-SourceFile<T,Stream>::SourceFile(SourceFile<T> &t) {
+SourceFile<T,Stream>::SourceFile(const SourceFile<T> &t) {
     code = t.code;
 }
 template<typename T, typename Stream>
@@ -45,10 +45,10 @@ SourceFile<T> &SourceFile<T,Stream>::operator=(const SourceFile<T> &t) {
 }
 template<typename T, typename Stream>
 SourceFile<T,Stream>::SourceFile(SourceFile<T> &&t) {
-    code = std::move(t);
+    code = std::move(t.code);
 }
 template<typename T, typename Stream>
-SourceFile<T> &SourceFile<T,Stream>::operator=(const SourceFile<T> &&t) {
+SourceFile<T> &SourceFile<T,Stream>::operator=(SourceFile<T> &&t) {
     code = std::move(t.code);
     return *this;
 }
@@ -69,7 +69,7 @@ bool SourceFile<T,Stream>::readFile(const T &path) {
 
 template<typename T, typename Stream>
 T &SourceFile<T,Stream>::operator[](unsigned int line) {
-    if(line >= 0 && line < code.size()) return code[line];
+    if(line < code.size()) return code[line];
     throw std::out_of_range("wrong index");
 }
 

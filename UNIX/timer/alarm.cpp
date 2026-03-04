@@ -6,12 +6,12 @@
 #include<errno.h>
 #include<cstring>
 
-void alarmHandler(int sig) {
+void alarmHandler(int ) {
     std::cout << "Got alarm..\n";
     exit(EXIT_SUCCESS);
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     struct sigaction sa;
     sigemptyset(&sa.sa_mask);

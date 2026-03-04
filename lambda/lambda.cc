@@ -54,7 +54,7 @@ char &O::operator[](int pos) noexcept {
 	return vec[pos];
 }
 
-int main(int argc, char **argv) {
+int main(void) {
 	std::cout << "Enter some text: ";
 	std::string str = "";
 	std::getline(std::cin, str);

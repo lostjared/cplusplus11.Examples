@@ -9,7 +9,7 @@ auto writeToOutput(std::string s) -> int try {
     return 1;
 }
 
-int main(int argc, char **argv) try {
+int main(void) try {
     std::cout << "Enter variable: ";
     std::string s;
     std::cin >> s;

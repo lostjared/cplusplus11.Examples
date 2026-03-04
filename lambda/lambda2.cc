@@ -3,7 +3,7 @@
 #include<vector>
 #include<algorithm>
 
-int main(int argc, char **argv) {
+int main(void) {
     std::vector<unsigned int> v = { 0, 4, 6, 24, 10, 7, 3, 1 };
     std::for_each(v.begin(), v.end(), [](unsigned int value) {
         std::cout << "Current Value is: " << value << "\n";

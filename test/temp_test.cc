@@ -33,7 +33,7 @@ namespace mx {
 }
 
 // simple test of template
-int main(int argc, char **argv) {
+int main(void) {
     mx::My_List<int,mx::My_ListContainer> list1({255, 1024, 2048, 4096});
     list1.print();
     return 0;

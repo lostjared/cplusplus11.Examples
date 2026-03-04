@@ -17,7 +17,7 @@
 #include<sys/time.h>
 
 
-void handler(int sig) {
+void handler(int ) {
     
 }
 

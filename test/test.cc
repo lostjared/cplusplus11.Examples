@@ -19,7 +19,7 @@ public:
 	void operator=(const Color &c);
     void operator=(std::initializer_list<unsigned char> list);
 	unsigned char &operator[](unsigned int offset);
-	const unsigned int color() const;
+	unsigned int color() const;
 	
 	void printColor(std::ostream &out);
 	void setColor(unsigned int color);
@@ -74,7 +74,7 @@ unsigned char &Color::operator[](unsigned int pos) {
 	return col.rgb[pos];
 }
 
-const unsigned int Color::color() const {
+unsigned int Color::color() const {
 	return col.color;
 }
 
@@ -93,7 +93,7 @@ std::ostream &operator<<(std::ostream &out, Color &c) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
 
 	Color color({0xFF,0xFF,0xFF, 0});
 	std::cout << "Value: " << color << " or " << std::ios::hex << color.color() << "\n";

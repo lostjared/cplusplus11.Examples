@@ -43,7 +43,7 @@ char *returnString(unsigned int size) {
 
 pthread_mutex_t mut = PTHREAD_MUTEX_INITIALIZER;
 
-void *thread_func(void *i) {
+void *thread_func(void *) {
     char *ptr = returnString(100);
     int rt_val;
     

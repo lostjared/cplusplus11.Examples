@@ -45,7 +45,7 @@ namespace m3u {
     
     bool isFileType(std::string fname, std::vector<std::string> &file_types) {
         for(unsigned int i = 0; i != file_types.size(); ++i) {
-            if(fname.find(file_types[i]) != -1)
+            if(fname.find(file_types[i]) != std::string::npos)
                 return true;
             
         }

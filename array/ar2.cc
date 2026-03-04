@@ -73,7 +73,7 @@ namespace mx {
     }
 
 }
-int main(int argc, char **argv) {
+int main(void) {
     using namespace mx;
     try {
         // 4 x 4 of type int

@@ -10,7 +10,7 @@
 
 void error(const std::string &text);
 
-int main(int argc, char **argv) {
+int main(void) {
     
     int max, i, id_msq;
     msqid_ds ds;

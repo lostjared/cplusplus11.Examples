@@ -3,7 +3,7 @@
 #include<string>
 #include<unistd.h>
 
-int main(int argc, char **argv) {
+int main(void) {
     char *pw = getpass("Enter password: ");
     std::string ent = getpass("Enter site: ");
     char *encrypted_start = crypt(pw, ent.c_str());

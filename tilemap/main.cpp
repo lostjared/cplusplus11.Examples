@@ -11,12 +11,12 @@
 
 class Bitmap {};
 
-void draw(int x, int y, mx::Tile<Bitmap> &b) {
+void draw(int x, int y, mx::Tile<Bitmap> &) {
     
     std::cout << "Draw at x,y " << x << ", " << y << "\n";
 }
 
-int main(int argc, const char * argv[])
+int main(int , const char * [])
 {
     try {
         

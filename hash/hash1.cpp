@@ -46,7 +46,7 @@ std::ostream &operator<<(std::ostream &out, const UserName &u) {
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::unordered_map<UserName,std::string, UserName_Hash, UserName_Compare> users;
     while(1) {

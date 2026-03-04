@@ -26,7 +26,7 @@ namespace driver {
     double val_log(double d) { return logf(d); }
     double val_tan(double d) { return tanf(d); }
     double val_rand(double d) { return std::rand()%static_cast<int>(d); }
-    double val_exit(double d) {
+    double val_exit(double ) {
         throw lex::Exit_Exception();
         return 0;
     }
@@ -72,7 +72,7 @@ namespace driver {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         driver::initFunctions();
         std::cout << "Enter Expression: \n";

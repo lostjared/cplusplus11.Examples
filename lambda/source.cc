@@ -58,7 +58,7 @@ T &Stack<T>::operator[](unsigned int pos) {
         throw BoundsException();
 }
 
-int main(int argc, char **argv) {
+int main(void) {
 
     Stack<unsigned int> stack1(10);
     try {

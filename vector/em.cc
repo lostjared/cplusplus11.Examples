@@ -48,7 +48,7 @@ std::ostream &operator<<(std::ostream &out, UserInfo &user) {
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::vector<UserInfo> v;
 

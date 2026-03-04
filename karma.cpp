@@ -81,7 +81,7 @@ public:
     Karma<std::string> karma; // karma type using std::string
 };
 // the main function
-int main(int argc, char **argv) {
+int main(void) {
     Life life;// life is created
     while(1) { // infinite loop
         std::cout << "New thought created..\n";

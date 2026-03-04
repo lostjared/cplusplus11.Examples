@@ -20,7 +20,7 @@ void ApplyFunction(Iter start, Iter stop, F f) {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     
     std::cout << "Enter string: ";

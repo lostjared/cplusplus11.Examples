@@ -64,7 +64,7 @@ private:
 };
 
 // entry point
-int main(int argc, char **argv) {
+int main(void) {
     try {
         Allocated_Array<int> arrSize(10);
         unsigned int array_size = arrSize.size();

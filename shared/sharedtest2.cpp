@@ -46,7 +46,7 @@ void printReversed(std::shared_ptr<StringPtr> v) {
 }
 
 // dummy main
-int main(int argc, char **argv) {
+int main(void) {
     std::cout << "Enter value: ";
     std::string s;
     std::getline(std::cin, s);

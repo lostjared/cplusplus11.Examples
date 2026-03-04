@@ -33,7 +33,7 @@ protected:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     using namespace std;
     
     std::cout << "Fill vector with values..\n";

@@ -3,7 +3,7 @@
 #include<string>
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::cout << "Enter IP Address: ";
     std::string ip;

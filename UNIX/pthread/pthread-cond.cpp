@@ -121,10 +121,10 @@ int main(int argc, char **argv) {
     
     int rt_val = 0;
     
-    for(unsigned int i = 0; i < total_threads; ++i) {
+    for(int i = 0; i < total_threads; ++i) {
         pthread_t id;
         int sleeptime;
-        STATE state;
+        STATE state = ALIVE;
         timeval t;
         gettimeofday(&t, 0);
         srand(time(0)*t.tv_sec*t.tv_usec);
@@ -148,7 +148,7 @@ int main(int argc, char **argv) {
                 error("pthread_cond_wait");
         }
         
-        for(unsigned int i = 0; i < total_threads; ++i) {
+        for(int i = 0; i < total_threads; ++i) {
             if(threads->State(i) == TERM) {
                 rt_val = pthread_join(threads->getId(i), 0);
                 if(rt_val != 0)

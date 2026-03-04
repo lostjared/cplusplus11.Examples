@@ -18,7 +18,7 @@
 
 void recursive_sleep(int seconds, long nanoseconds, struct timespec *t, struct timespec *remain);
 
-void handler(int sig) {
+void handler(int ) {
     
 }
 

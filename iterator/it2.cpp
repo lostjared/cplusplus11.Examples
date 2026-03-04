@@ -29,7 +29,7 @@ bool WriteVector(Iter start, Iter stop, std::string filename) {
     return true;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::cout << "Enter 4 values: ";
     std::vector<float> varr;
     

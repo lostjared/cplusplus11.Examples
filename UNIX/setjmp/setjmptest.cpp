@@ -18,7 +18,7 @@ int rtVal(int val) {
 }
 
 
-int main(int argc, char **argv) {
+int main(int argc, char **) {
     std::cout << "Pass no arguments to test longjmp pass at least 1 to complete function\nEnter test: ";
     switch(setjmp(j_val)) { // first call retuns 0 after that value passed to longjmp
         case 0: {

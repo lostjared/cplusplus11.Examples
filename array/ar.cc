@@ -24,7 +24,7 @@ T average(std::array<T, N> &a) {
     return t/N;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
 
     // seed the random number generator
     std::srand(static_cast<unsigned int>(std::time(0)));

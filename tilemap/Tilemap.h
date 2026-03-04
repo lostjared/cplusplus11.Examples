@@ -75,8 +75,8 @@ namespace mx {
             throw OutOfRange_Exception();
         }
         
-        const signed int width() const { return tile_w; }
-        const signed int height() const { return tile_h; }
+        signed int width() const { return tile_w; }
+        signed int height() const { return tile_h; }
         
         T **rootPtr() const { return tile_map; }
         

@@ -21,8 +21,8 @@ public:
         user_name = name;
         user_index = index;
     }
-    const int index() const { return user_index; }
-    const std::string name() const { return user_name; }
+    int index() const { return user_index; }
+    std::string name() const { return user_name; }
     
     bool operator<(const UserID &u) {
         if(user_name<u.user_name) return true;
@@ -71,7 +71,7 @@ private:
     std::unordered_map<UserID, std::string, UserID_Hash, UserID_Compare> map;
 };
 
-int main(int argc, char **argv) {
+int main(void) {
     Table hash_table;
     unsigned int id = static_cast<unsigned int>(time(0));
     for(;;) {

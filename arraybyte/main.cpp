@@ -8,7 +8,7 @@ void printOut(ArrayByte<T> &value) {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     unsigned int v = 0xFFFFFFFF;
     ArrayByte<unsigned int> value(v);
    

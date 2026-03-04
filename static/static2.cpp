@@ -20,7 +20,7 @@ int UserType::counter = 0;
 
 class Program {
 public:
-    static int main(int argc, char **argv) {
+    static int main(int, char **) {
         
         for(int i = 0; i < 10; ++i) {
             UserType type;

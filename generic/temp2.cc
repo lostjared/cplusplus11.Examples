@@ -101,7 +101,7 @@ namespace mx {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     using namespace mx;
     
     mx::Vec<float, 4> vec4,vec4_test,vec4_test2;

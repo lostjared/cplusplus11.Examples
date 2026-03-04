@@ -3,7 +3,7 @@
 
 int main(int argc, char **argv) {
     FileSort file_sort;
-    for(unsigned int i = 1; i < argc; ++i) {
+    for(int i = 1; i < argc; ++i) {
         file_sort.addFile(argv[i]);
     }
     

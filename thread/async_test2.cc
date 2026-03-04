@@ -15,7 +15,7 @@ int printOut(char c) {
     return num;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::future<int> printNum;
     std::cout << "+ for thread1\nx for thread2\n";
     printNum = std::async(printOut, '+');

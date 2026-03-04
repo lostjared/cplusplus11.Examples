@@ -22,7 +22,7 @@ namespace mx {
         Color(unsigned char,unsigned char,unsigned char,unsigned char);
         Color(unsigned int color);
         
-        const unsigned int value() const { return color_value; }
+        unsigned int value() const { return color_value; }
         unsigned char &operator[](unsigned int i) { return colors[i]; }
         
         bool operator==(const Color &c);
@@ -31,8 +31,8 @@ namespace mx {
         bool operator!=(const Color &c);
         Color &operator=(const Color &c);
         Color &operator=(unsigned int c);
-        const std::initializer_list<unsigned char> rgb() {
-            return {colors[0], colors[1], colors[2], colors[3]};
+        std::array<unsigned char, 4> rgb() const {
+            return {{colors[0], colors[1], colors[2], colors[3]}};
         }
         
     protected:
@@ -97,7 +97,7 @@ namespace mx {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     float alpha = 1.4f;
     // create a multidimensional array of mx::Color

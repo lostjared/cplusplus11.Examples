@@ -22,7 +22,7 @@ void printOptions(const int &i) {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::cout << "Mask #1: ";
     printOptions(OPTION_1 | OPTION_4);
     std::cout << "Mask #2: ";

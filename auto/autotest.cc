@@ -20,7 +20,7 @@ namespace driver {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     driver::main();
     return 0;
 }

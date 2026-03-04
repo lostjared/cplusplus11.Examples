@@ -33,7 +33,7 @@ protected:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     
     Container c = {0, 1, 2, 0, 4 , 25, 6};

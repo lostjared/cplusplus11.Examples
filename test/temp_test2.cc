@@ -29,7 +29,7 @@ public:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     UserName<std::string> name("Jared", "Bruni", "P");
     UserName<std::wstring> name2(L"Jared", L"Bruni", L"p");

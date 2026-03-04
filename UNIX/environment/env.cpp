@@ -1,7 +1,7 @@
 #include<iostream>
 #include<cstdlib>
 
-int main(int argc, char **argv) {
+int main(void) {
     
     
     std::cout << "Path: " << getenv("PATH") << "\n";

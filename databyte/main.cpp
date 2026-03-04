@@ -1,7 +1,7 @@
 #include<iostream>
 #include"databytes.hpp"
 
-int main(int argc, char **argv) {
+int main(void) {
     
     
     unsigned int index = 0xFFFFFFFF;

@@ -6,7 +6,7 @@ int averageNumbers(int *values, int s);
 void printAverage(int *values, int s);
 void calcAverage();
 
-int main(int argc, char **argv) {
+int main(void) {
     calcAverage();
     return 0;
 }
@@ -26,7 +26,7 @@ int averageNumbers(int *values, int s) {
 void printAverage(int *values, int s) {
     int total = averageNumbers(values, s);
     std::cout << "(";
-    for(unsigned int i = 0; i < s; ++i) {
+    for(int i = 0; i < s; ++i) {
         if(i == s-1) {
             std::cout << values[i];
         } else {

@@ -23,7 +23,7 @@ ScopedTime::~ScopedTime() {
     std::cout << "Object was alive for : " << std::chrono::duration_cast<std::chrono::nanoseconds>(now-time_start).count() << " nanoseconds\n";
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     // lets see how long these loops take.
     

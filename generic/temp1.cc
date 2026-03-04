@@ -92,7 +92,7 @@ void Matrix<T,R,C>::assign(const Matrix<T,R,C> &m) {
 
 
 
-int main (int argc, char **argv) {
+int main (int , char **) {
  
     Matrix<char, 10, 10> m1, m2;
 

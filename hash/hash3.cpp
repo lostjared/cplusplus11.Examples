@@ -36,7 +36,7 @@ std::ostream &operator<<(std::ostream &out, Variable &v) {
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::unordered_map<std::string, Variable> hashtable;
     

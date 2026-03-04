@@ -90,7 +90,7 @@ namespace mxl {
                 value=at(pos).getToken();
                 ++pos;
                 std::string addvalue=total_text+"."+id;
-                if(id.find(".") == -1) {
+                if(id.find(".") == std::string::npos) {
                     the_map[addvalue] = value;
                 } else {
                     the_map[id] = value;
@@ -111,7 +111,7 @@ namespace mxl {
             }
         }
         
-        void outputTokens(std::ostream &out) {
+        void outputTokens(std::ostream &) {
             for(auto &i : the_map) {
                 std::cout << i.first << " = " << i.second << "\n";
             }
@@ -173,12 +173,12 @@ namespace mxl {
         }
         SortedVector v = createListFromMap(tag);
         for(auto &i : v) {
-            int pos = i.first.rfind(".");
-            if(pos != -1) {
+            std::string::size_type pos = i.first.rfind(".");
+            if(pos != std::string::npos) {
                 std::string tag = i.first.substr(0, pos);
                 file << "tag \"" << tag << "\" { ";
                 pos = i.first.rfind(".");
-                if(pos != -1) {
+                if(pos != std::string::npos) {
                     std::string id = i.first.substr(pos+1, i.first.length()-pos);
                     file << "\"" << id << "\" = \"" << i.second << "\" }\n";
                 }

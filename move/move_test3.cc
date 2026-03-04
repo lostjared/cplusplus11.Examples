@@ -39,7 +39,7 @@ std::string Value::getKey(std::string one) {
     return values[one];
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::cout << "Filling map.\n";
     Value values;
     for(int i = 0; i < 25000; ++i) {

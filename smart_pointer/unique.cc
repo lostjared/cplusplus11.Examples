@@ -55,7 +55,7 @@ public:
              it.get()->proc();
         }
     }
-    const unsigned int size() { return filterType.size(); }
+    unsigned int size() const { return filterType.size(); }
     
 };
 
@@ -85,7 +85,7 @@ public:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     try {
         void *buffer = 0;

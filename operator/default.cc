@@ -18,7 +18,7 @@ namespace driver {
         StringValue(const StringValue &) = default;
         StringValue &operator=(const StringValue &) = delete;
         StringValue &operator=(StringValue &) = delete;
-        const int integer() const { return atoi(value.c_str()); }
+        int integer() const { return atoi(value.c_str()); }
         void *operator new(size_t size) = delete;
     protected:
         std::string value;
@@ -38,7 +38,7 @@ namespace driver {
     void output(const char *) = delete;
         
 }
-int main(int argc, char **argv) {
+int main(void) {
     using namespace driver;
 
     // uncomment and see it will error

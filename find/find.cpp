@@ -23,7 +23,7 @@ int main() {
     std::string text;
     std::cin >> text;
     
-    if(text.find("e") != -1) {
+    if(text.find("e") != std::string::npos) {
         std::cout << "You typed a e.\n";
     }
     else {

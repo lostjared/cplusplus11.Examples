@@ -4,19 +4,19 @@
 
 
 std::fstream file;
-std::vector<std::string> log;
+std::vector<std::string> log_entries;
 
 // using universal reference can either be T& or T&&
 // Note: Page 178 Effective Modern C++
 template<typename T>
 void LogToFile(T&& value) {
     file << value;
-    log.emplace_back(std::forward<T>(value));
+    log_entries.emplace_back(std::forward<T>(value));
 }
 
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     try {
         file.open("test.dat", std::ios::out);
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
         LogToFile("Using Universal Reference..\n");
         
         
-        for(auto &i : log) {
+        for(auto &i : log_entries) {
             std::cout << i;
         }
         

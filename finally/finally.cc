@@ -28,7 +28,7 @@ Final_release<F> finally(F f) {
 
 class TestException {};
 
-int main(int argc, char **argv) {
+int main(void) {
     
     try {
         auto final_release = finally([]() {

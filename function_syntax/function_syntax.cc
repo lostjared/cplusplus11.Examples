@@ -71,7 +71,7 @@ std::ostream &operator<<(std::ostream &out, cyObject::Color c) {
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     cxObject cx;
     cyObject cy;

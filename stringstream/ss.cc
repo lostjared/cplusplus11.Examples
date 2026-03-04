@@ -18,7 +18,7 @@ void out(const std::string &text) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     int x = 100;
     std::string text="hello world\n";
     std::ostringstream stream;

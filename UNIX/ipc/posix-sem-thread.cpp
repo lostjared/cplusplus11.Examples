@@ -26,7 +26,7 @@ void *tfunction(void *v) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     if(sem_init(&s, 0, 1) == -1) {
         std::cerr << "Error initializing semaphore: " << strerror(errno) << "\n";
         exit(EXIT_FAILURE);

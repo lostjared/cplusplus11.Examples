@@ -22,7 +22,7 @@ public:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
 
 	Object obj;
 	obj.update_func = [](){

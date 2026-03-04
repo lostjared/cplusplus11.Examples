@@ -21,7 +21,7 @@ public:
         code = t.code;
     }
     
-    SourceFile(const SourceFile<T> &&t) {
+    SourceFile(SourceFile<T> &&t) {
         code = std::move(t.code);
     }
     
@@ -31,7 +31,7 @@ public:
         return *this;
     }
     
-    SourceFile<T> &operator=(const SourceFile<T> &&t) {
+    SourceFile<T> &operator=(SourceFile<T> &&t) {
         code = std::move(t.code);
         return *this;
     }
@@ -49,11 +49,11 @@ public:
     }
     
     String &operator[](unsigned int pos) {
-        if(pos >= 0 && pos < code.size()) return code[pos];
+        if(pos < code.size()) return code[pos];
         throw std::out_of_range("Out of range for SourceFile::operator[]");
     }
     
-    const int size() const { return code.size(); }
+    std::size_t size() const { return code.size(); }
     
 private:
     std::vector<String> code;

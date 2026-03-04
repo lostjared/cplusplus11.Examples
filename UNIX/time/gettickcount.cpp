@@ -12,7 +12,7 @@ uint32_t getTickCount() {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     uint32_t stop = 0, diff = 0;
     std::cout << "Sleeping for 1 second..\n";
     uint32_t start = getTickCount();

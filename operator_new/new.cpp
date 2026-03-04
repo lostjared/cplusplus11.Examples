@@ -26,13 +26,14 @@ void checkIfEqual() {
     }
 }
     
-int main(int argc, char **argv) {
+int main(void) {
    
 
     int *x = new int;
     delete x;
     
-     std::string *s = new std::string();
+    std::string *s = new std::string();
+    delete s;
     
     checkIfEqual();
 

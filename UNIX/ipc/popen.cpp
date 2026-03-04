@@ -1,7 +1,7 @@
 #include<iostream>
 #include<cstdio>
 
-int main(int argc, char **argv) {
+int main(void) {
     
     FILE *fptr = popen("ps -A", "r");
     

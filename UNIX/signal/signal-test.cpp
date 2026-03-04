@@ -19,11 +19,11 @@ void writeOutput(const char *src) {
 }
 
 
-void handler(int s) {
+void handler(int ) {
     writeOutput(" Signal SIGINT caught\n");
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     if(signal(SIGINT, handler) == SIG_ERR) {
         std::cerr << "Error creating signal..\n";

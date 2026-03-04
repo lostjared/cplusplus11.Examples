@@ -2,7 +2,7 @@
 #include<set>
 #include<string>
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::cout << "input a series of integers terminate the loop by entering 0\n";
     // insert into set

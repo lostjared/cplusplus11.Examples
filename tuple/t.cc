@@ -25,7 +25,7 @@ std::tuple<std::string, int,std::string> grabPhoneNumber() {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     // grab phone number
     auto info = grabPhoneNumber();
     // print out data

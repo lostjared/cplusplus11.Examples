@@ -27,7 +27,7 @@ auto function_def(int x, int y) -> int {
 	return func_def(x,y);
 }
 
-auto main(int argc, char **argv) -> int {
+auto main(int , char **) -> int {
     std::cout << "Hello World\n";
     return 0;
 }

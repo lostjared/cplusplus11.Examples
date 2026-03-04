@@ -26,17 +26,20 @@ namespace mx {
         Point(const Point &p) {
             setPoint(p);
         }
-        
-        Point(Point &p) {
-            setPoint(p);
+
+        Point &operator=(const Point &p) {
+            if(this != &p) {
+                setPoint(p);
+            }
+            return *this;
         }
-        
-        T getX() { return xval; }
-        T getY() { return yval; }
+
+        T getX() const { return xval; }
+        T getY() const { return yval; }
         
     private:
         T xval, yval;
-        void setPoint(Point &p) {
+        void setPoint(const Point &p) {
             xval = p.xval;
             yval = p.yval;
         }
@@ -45,7 +48,7 @@ namespace mx {
     
     
     template<typename T>
-    std::ostream &operator<<(std::ostream &out, Point<T> &p) {
+    std::ostream &operator<<(std::ostream &out, const Point<T> &p) {
         out << "Point: " << p.getX() << " : " << p.getY() << " ";
         return out;
     }
@@ -114,7 +117,7 @@ namespace mx {
     };
 }
 
-int main(int argc, char **argv) {
+int main(int , char **argv) {
     
     try {
         mx::ThisProgram prog(argv[0]);

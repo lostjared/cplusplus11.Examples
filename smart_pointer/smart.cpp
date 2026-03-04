@@ -48,7 +48,7 @@ void testPointer() {
     
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     auto deleter = [](UserType<int> *type) {
         std::cout << "Deleting UserType for unique on destructor..\n";

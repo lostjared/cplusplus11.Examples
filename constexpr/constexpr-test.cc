@@ -29,7 +29,7 @@ constexpr int value=v.square(v1*v2);
 int arr[value];
 
 
-int main(int argc, char **argv) {
+int main(void) {
     // below would not pass static_assert
     // Con<std::string> v2;
     std::cout << " Size of array is: " << value << "\n";

@@ -18,7 +18,7 @@ std::bitset<N> reverse_value(std::bitset<N> &value) {
     return rev;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
    
     std::bitset<32> bit_value = 0x0F0F0F0F;
     std::bitset<32> rev_value;

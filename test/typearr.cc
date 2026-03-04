@@ -57,7 +57,7 @@ namespace mx {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     mx::TypeArray<unsigned char, unsigned int> typearr(0xFFFFFF);
     std::cout << typearr << "\n";
     mx::TypeArray<unsigned char, unsigned long long> longarr(0x0F0F0F0F0F0FL);

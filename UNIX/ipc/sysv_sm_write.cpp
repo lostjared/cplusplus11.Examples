@@ -17,7 +17,7 @@
 
 void error(const std::string &text);
 
-int main(int argc, char **argv) {
+int main(void) {
     
     int semid, shmid, bytes, xfrs;
     struct shmseg *s;

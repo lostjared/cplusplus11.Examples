@@ -42,7 +42,7 @@ namespace mx {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     
     using std::string;

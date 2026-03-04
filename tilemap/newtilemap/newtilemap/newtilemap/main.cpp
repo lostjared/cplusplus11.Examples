@@ -34,7 +34,7 @@ std::ostream &operator<<(std::ostream &out,tilemx::TileMatrix<T,W,H> &t) {
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     using namespace std::chrono;
     try {
         tilemx::TileMatrix<Graphic, videoSize_W, videoSize_H> matrix;
@@ -54,7 +54,7 @@ int main(int argc, char **argv) {
         
         high_resolution_clock::time_point stop = high_resolution_clock::now();
         std::cout << "Loop took: " << duration_cast<nanoseconds>(stop-start).count() << " nano seconds\n";
-        matrix.applyFunction([](tilemx::value_int x, tilemx::value_int y, tilemx::Tile<Graphic> &t) { t.value().graphic++; } );
+        matrix.applyFunction([](tilemx::value_int , tilemx::value_int , tilemx::Tile<Graphic> &t) { t.value().graphic++; } );
         std::cout << matrix << "\n";
     }
     catch(std::exception &e) {

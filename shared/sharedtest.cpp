@@ -12,7 +12,7 @@ public:
         std::cout << "Released: " << temp_text << "\n";
     }
     void lowerCase() {
-        for(int i = 0; i < temp_text.length(); ++i)
+        for(std::string::size_type i = 0; i < temp_text.length(); ++i)
             temp_text[i] = tolower(temp_text[i]);
     }
     std::string data() { return temp_text; }
@@ -27,7 +27,7 @@ bool checkIfQuit(std::shared_ptr<Item> &item) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     // will autorelease Item on destructor using shared_ptr
     std::vector<std::shared_ptr<Item>> items;
     while(1) {

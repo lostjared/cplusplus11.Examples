@@ -34,7 +34,8 @@ namespace lex {
     class Token {
     public:
         Token() {}
-        Token(std::string txt, Token_type t) : text(txt), type(t), line(0), offset(0) {}
+        Token(const Token &) = default;
+        Token(std::string txt, Token_type t) : line(0), offset(0), text(txt), type(t), keyword_type(-1), symbol_type(-1) {}
         std::string getToken() const { return text; }
         Token_type getType() const { return type; }
         
@@ -341,7 +342,6 @@ namespace lex {
                 tok += cc;
                 prev_cc = cc;
                 cc = getChar();
-                Token_type cur_Type = characterToType(cc);
                 if(prev_cc == '\\') {
                     cc = getChar();
                     ccType = characterToType(cc);

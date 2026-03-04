@@ -78,7 +78,7 @@ namespace db {
     void PhoneDB::saveRecords(std::string filename) {
         std::fstream file;
         file.open(filename, std::ios::out);
-        for(int i = 0; i < numbers.size(); ++i) {
+        for(std::size_t i = 0; i < numbers.size(); ++i) {
             file << numbers[i].first << "\n" << numbers[i].last << "\n" << numbers[i].number << "\n";
         }
         file.close();
@@ -88,7 +88,7 @@ namespace db {
     void PhoneDB::addRecord(std::string first, std::string last, std::string number) {
         PhoneRecord r(first,last,number);
         
-        for(int i = 0; i < numbers.size(); ++i)
+        for(std::size_t i = 0; i < numbers.size(); ++i)
             if(numbers[i].last==last && numbers[i].first==first) return;
         
         numbers.push_back(r);
@@ -100,7 +100,7 @@ namespace db {
     }
 
     bool PhoneDB::findByName(std::string first, std::string last, PhoneRecord &p) {
-        for(int i = 0; i < numbers.size(); ++i) {
+        for(std::size_t i = 0; i < numbers.size(); ++i) {
             if(numbers[i].last==last && numbers[i].first==first) {
                 p = numbers[i];
                 return true;

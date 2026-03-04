@@ -10,7 +10,7 @@ void _error(const std::string &text);
 
 pthread_t tid;
 
-void *threadfunc(void *v) {
+void *threadfunc(void *) {
     std::cout << "Hello Thread World...\n";
     if(pthread_equal(tid, pthread_self())) {
         std::cout << "Yeah its me..\n";

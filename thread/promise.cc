@@ -21,7 +21,7 @@ void procData(std::promise<std::string> &p) {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         std::promise<std::string> promise_value;
         std::thread thread1(procData, std::ref(promise_value));

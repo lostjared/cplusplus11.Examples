@@ -26,7 +26,7 @@ void cleanUp(void *i) {
         error("pthread_mutex_unlock");
 }
 
-void *thread_func(void *i) {
+void *thread_func(void *) {
     int rt_val;
     void *buffer = NULL;
     
@@ -48,7 +48,7 @@ void *thread_func(void *i) {
     return NULL;
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char **) {
     
     pthread_t id;
     void *return_buffer = NULL;

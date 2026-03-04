@@ -25,7 +25,7 @@ public:
 };
 
 
-int main(int argc, char **argv)
+int main(void)
 {
     std::cout << "start.\n";
     Background back(0), back2(1);

@@ -24,14 +24,14 @@ unsigned int StringOutput::count = 0;
 
 
 std::ostream &operator<<(std::ostream &out, const StringOutput &sout) {
-    if(sout.name.find("\n") == -1)
+    if(sout.name.find("\n") == std::string::npos)
     sout.name += "\n"; //mutable so okay
     
     out << sout.name;
     return out;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::vector<StringOutput> vec_str;
     try {
         std::string value;

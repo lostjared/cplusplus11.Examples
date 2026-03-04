@@ -26,7 +26,7 @@ void SayHello(T &t) {
     t.say(" Hello World");
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     space1::Jared jared1;
     space2::Jared jared2;
     SayHello(jared1);

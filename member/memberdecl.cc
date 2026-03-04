@@ -21,7 +21,7 @@ public:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     MemberDecl m;
     m.Func();
     return 0;

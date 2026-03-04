@@ -18,12 +18,12 @@ protected:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     FilterContainer f;
-    int selfAlpha = f.addFilter( [](unsigned char *pixels) {
+    int selfAlpha = f.addFilter( [](unsigned char *) {
         std::cout << "selfAlphaBlend..\n";
     });
-    int diamond = f.addFilter( [] (unsigned char *pixels) {
+    int diamond = f.addFilter( [] (unsigned char *) {
         std::cout << "diamond Pattern\n";
     });
     

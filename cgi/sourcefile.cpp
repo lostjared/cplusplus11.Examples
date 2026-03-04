@@ -6,7 +6,7 @@
 
 std::string urldecode(std::string text);
 
-int main(int argc, char **argv) {
+int main(void) {
     std::cout << "Content-type: text/html\n\n";
     std::cout << "hello world\n";
     std::string txt="";
@@ -31,7 +31,7 @@ std::string urldecode(std::string text) {
                 test += text[i];
                 ++i;
                 test += text[i];
-                int char_value;
+                unsigned int char_value;
                 sscanf(test.c_str(), "%x", &char_value);
                 stream << (char)char_value;
                 continue;

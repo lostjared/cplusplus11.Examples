@@ -56,7 +56,7 @@ int wait_for_any(std::vector<std::future<T>> &v, std::chrono::steady_clock::dura
     return 0;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::vector<std::future<std::string>> v;
 

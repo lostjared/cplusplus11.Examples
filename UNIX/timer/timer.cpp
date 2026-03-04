@@ -9,11 +9,11 @@
 
 static volatile sig_atomic_t alarmSet = 0;
 
-void timerHandler(int sig) {
+void timerHandler(int ) {
     alarmSet = 1;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     struct itimerval time_val;
     int max_timeouts = 0;

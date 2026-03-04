@@ -23,7 +23,7 @@ protected:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
 
     VectorWrapper<std::string> wrap({"test ", "one", "two", "three"});
     for_each(wrap.cont().begin(), wrap.cont().end(), [](std::string s) {

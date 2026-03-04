@@ -22,7 +22,7 @@ bool convertText(std::string text, Values &v) {
     return true;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::string text;
     std::getline(std::cin, text);
     Values v;

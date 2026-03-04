@@ -57,7 +57,7 @@ Type factoryCreate(T &&type) {
 
 
 
-int main(int argc, char **argv) {
+int main(void) {
     Type type_value, other_type;
     other_type.createValues();
     type_value = factoryCreate(other_type);

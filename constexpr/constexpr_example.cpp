@@ -38,7 +38,7 @@ public:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     Tile<int, w, h> tiles;
     

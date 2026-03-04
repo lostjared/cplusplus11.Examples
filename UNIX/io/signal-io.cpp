@@ -33,11 +33,11 @@ int ttySetCbreak(int fd, termios *prevTermios) {
 
 void error(const std::string &text, bool e = true);
 
-void Ready(int s) {
+void Ready(int ) {
     gotSignal = 1;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     struct sigaction sa;
     sigemptyset(&sa.sa_mask);

@@ -7,7 +7,7 @@
 #include<errno.h>
 #include<ctime>
 
-int main(int argc, char **argv) {
+int main(void) {
     pid_t id;
     for(int i = 0; i < 4; ++i) {
         id = fork();

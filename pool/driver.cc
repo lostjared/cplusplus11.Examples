@@ -3,7 +3,7 @@
 #include<cstdlib>
 #include"memory.hpp"
 
-int main(int argc, char **argv) {
+int main(void) {
     pool::Alloc a; // scoped memory pool
     std::cout << "Allocating to Pool....\n";
     for(unsigned int i = 0; i < 100; ++i) {

@@ -48,7 +48,7 @@ std::ostream &operator<<(std::ostream &out, const User &u) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     try {
         Database d;

@@ -26,7 +26,7 @@ void fromHere() {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     space1::printString("Hello World #1");
     space2::printString("Hello World #2");

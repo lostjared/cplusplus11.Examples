@@ -21,6 +21,7 @@ namespace lex {
     class Token {
     public:
         Token() {}
+        Token(const Token &) = default;
         Token(std::string txt, Token_type t) : text(txt), type(t), line(0), offset(0) {}
         std::string getToken() const { return text; }
         Token_type getType() const { return type; }
@@ -275,7 +276,7 @@ namespace lex {
             token.setToken(tok, TOKEN_CHAR, soffset, sline);
          }
         
-        void GetStringToken(Token &token) {
+        void GetStringToken(Token &) {
             
         }
         

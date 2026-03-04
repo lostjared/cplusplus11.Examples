@@ -8,7 +8,7 @@
 #include<cstring>
 #include<fcntl.h>
 
-int main(int argc, char **argv) {
+int main(int , char **argv) {
     mqd_t mqd;
     mode_t perms;
     mq_attr attr;

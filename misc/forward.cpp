@@ -20,7 +20,7 @@ void fwd(Ts&&... params) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     std::vector<int> values = {4,5,6};
     auto init_list = {1, 2, 3};
     fwd(init_list); // initalizer list

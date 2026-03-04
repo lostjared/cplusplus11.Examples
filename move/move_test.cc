@@ -28,7 +28,7 @@ private:
     
 };
 
-int main(int argc, char **argv) {
+int main(void) {
     
     std::vector<std::string> vz;
     std::cout << "Filling vector..\n";

@@ -30,7 +30,7 @@ public:
 };
 
 
-int main(int argc, char **argv) {
+int main(void) {
     MyVector<std::string> v({"String 1", "Jared", "C++", "Cool"});
     std::vector<std::string> v2 {"Str1", "Str2", "Str3", "Str4"};
     v.printVector(std::cout);

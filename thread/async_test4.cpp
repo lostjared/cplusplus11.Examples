@@ -17,7 +17,7 @@ int getIntegerValue() {
     return x;
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
 
     std::future<int> f = std::async(getIntegerValue);

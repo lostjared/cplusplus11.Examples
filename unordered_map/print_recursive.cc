@@ -19,7 +19,7 @@ void PrintMap(std::unordered_map<std::string, std::string> &m, std::unordered_ma
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     std::unordered_map<std::string, std::string> test;
     for (auto s : { "String1", "String2", "Jared", "Adding Stuff", "To the Map" }) {
         std::ostringstream stream;

@@ -20,7 +20,7 @@ void SendHighScore(ScoreBoard &score) {
 
 
 
-int main(int argc, char **argv) {
+int main(void) {
 
     try {
     	ScoreBoard score_board; // Score Board encapsulation of high scores.

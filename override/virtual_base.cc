@@ -128,7 +128,7 @@ namespace ui {
 
 
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         
         ui::ToolButton button1("Hello world", 25, 25, 100, 100);

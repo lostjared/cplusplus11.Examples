@@ -34,7 +34,7 @@ namespace tilemx {
         TileRow(std::initializer_list<T> tiles) : row_value{tiles} {}
         T &row(value_int val) { return row_value[val]; }
         T &operator[](value_int val) { return row_value[val]; }
-        const int size() { return N; }
+        int size() const { return N; }
     protected:
         std::array<T,N> row_value;
     };
@@ -54,8 +54,8 @@ namespace tilemx {
             }
         }
         
-        const value_int offsetX() { return posX; }
-        const value_int offsetY() { return posY; }
+        value_int offsetX() const { return posX; }
+        value_int offsetY() const { return posY; }
         
         void initCoords(const value_int tSize) {
             applyFunction([&](const value_int x, const value_int y, Tile<T> &tile) { tile.x = x*tSize; tile.y = y*tSize; tile.w = tSize; tile.h = tSize; });

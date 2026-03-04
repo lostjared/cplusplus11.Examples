@@ -87,7 +87,6 @@ void outputToken(std::ostringstream &out, lex::Token &t) {
  \param argv argument values for main function
  */
 int main(int argc, char **argv) {
-    bool standard_output = false;
     char *data = 0;
     std::fstream ufile;
     
@@ -172,7 +171,7 @@ std::string urldecode(std::string text) {
                 test += text[i];
                 ++i;
                 test += text[i];
-                int char_value;
+                unsigned int char_value;
                 sscanf(test.c_str(), "%x", &char_value);
                 stream << (char)char_value;
                 continue;

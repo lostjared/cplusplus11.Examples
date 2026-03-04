@@ -3,7 +3,7 @@
 #include<unistd.h>
 #include<errno.h>
 
-void err(const char *e) {
+void err(const char *) {
     std::cerr << "Error: " << strerror(errno) << "\n";
     exit(EXIT_FAILURE);
 }

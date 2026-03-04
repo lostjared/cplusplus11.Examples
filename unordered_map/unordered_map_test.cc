@@ -35,7 +35,7 @@ void output_map(std::unordered_map<std::string, Id> &m) {
     for_each(m.begin(), m.end(), print);
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         std::unordered_map<std::string, Id> user_map;
         for(std::string s : {"Jared", "Test", "Key"}) {

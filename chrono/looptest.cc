@@ -45,7 +45,7 @@ namespace arrTest {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     arrTest::MultiArray<int, 1000, 1000> arr;
     
     arr.XFirst();

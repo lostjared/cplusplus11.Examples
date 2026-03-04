@@ -84,7 +84,7 @@ std::ostream &operator<<(std::ostream &out, Color &c) {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     
     try {
         SymbolTable<std::string> st;

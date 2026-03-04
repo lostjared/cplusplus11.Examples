@@ -19,7 +19,7 @@ void background_Thread() {
     std::cout << "Woke up" << "\n";
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     for(unsigned int i = 0; i < 10; ++i) {
         std::thread t(background_Thread);

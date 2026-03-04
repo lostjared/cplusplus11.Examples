@@ -4,7 +4,7 @@
 #include<random>
 #include<ctime>
 
-int main(int argc, char **argv) {
+int main(void) {
     
     unsigned int i = 0;
     std::default_random_engine dre(static_cast<int>(std::time(0)));

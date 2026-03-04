@@ -3,7 +3,7 @@
 #include<unistd.h>
 
 
-void *threadFunction(void *v) {
+void *threadFunction(void *) {
     for(unsigned int i = 0; i < 100; ++i)
     	std::cout << "Hello World\n";
     

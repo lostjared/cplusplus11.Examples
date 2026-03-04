@@ -10,7 +10,7 @@
 
 void error(const std::string &text, bool err_no = true);
 
-int main(int argc, char **argv) {
+int main(void) {
 
     pollfd pfd;
     int fds[2];

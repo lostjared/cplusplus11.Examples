@@ -15,7 +15,7 @@ public:
     bool procSearch() {
         std::string temp_text=lower(txt);
         for(auto &s : search) {
-            if(temp_text.find(lower(s)) != -1){
+            if(temp_text.find(lower(s)) != std::string::npos){
                 std::cout << "Token found: " << s << "\n";
                 return true;
             }
@@ -48,7 +48,7 @@ void output(std::ostream &out, bool b) {
     else out << "No match\n";
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     try {
         // search with Regex (better)

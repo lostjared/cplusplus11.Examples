@@ -28,7 +28,7 @@ namespace game {
             return tile_matrix[x][y];
         }
         // load tile matrix
-        void loadTiles(std::string fileName) {
+        void loadTiles(std::string ) {
             for(int x = 0; x < w; ++x) {
                 for(int y = 0; y < h; ++y)
                     tile_matrix[x][y] = 1+rand()%255;

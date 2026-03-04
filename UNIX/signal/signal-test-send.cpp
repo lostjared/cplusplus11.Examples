@@ -12,12 +12,12 @@ void writeOutput(const char *src) {
 }
 
 
-void handler(int s) {
+void handler(int ) {
     writeOutput(" Signal SIGINT caught exiting process\n");
     exit(0);
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     pid_t id = fork();
     if(id == 0) {
     

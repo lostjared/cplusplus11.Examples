@@ -7,7 +7,7 @@ class Object {
         std::cout << text;
     }
 public:
-    static int main(int argc, char **argv) {
+    static int main(int, char **) {
         std::cout << "Hello world OO-style\n";
         Object o;
         o.say("Hello world from Object.\n");

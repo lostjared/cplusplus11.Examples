@@ -50,7 +50,7 @@ namespace list {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     list::FileList f = list::fillList("move_test2.cc");
     f.output_list();
     return 0;

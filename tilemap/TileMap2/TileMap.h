@@ -41,9 +41,9 @@ namespace grid {
     class TileMap {
     public:
         
-        TileMap() : tile_width{0}, tile_height{0}, grid(nullptr), scroll_x(0), scroll_y(0) {}
+        TileMap() : tile_width{0}, tile_height{0}, scroll_x(0), scroll_y(0), grid(nullptr) {}
         
-        TileMap(signed int width, signed int height) : grid(nullptr), scroll_x(0), scroll_y(0) {
+        TileMap(signed int width, signed int height) : tile_width(0), tile_height(0), scroll_x(0), scroll_y(0), grid(nullptr) {
             initToSize(width, height);
             tile_width = width;
             tile_height = height;
@@ -87,7 +87,7 @@ namespace grid {
         }
         // range checked array access
         GridType &operator()(unsigned int pos_x, unsigned int pos_y) {
-            if(pos_x >= 0 && pos_x < tile_width && pos_y >= 0 && pos_y < tile_height)
+            if(pos_x < static_cast<unsigned int>(tile_width) && pos_y < static_cast<unsigned int>(tile_height))
             return grid[pos_x][pos_y].type;
             
             throw OutOfRange();
@@ -97,8 +97,8 @@ namespace grid {
             return grid[pos_x][pos_y];
         }
         
-        const signed int width() const { return tile_width; }
-        const signed int height() const { return tile_height; }
+        signed int width() const { return tile_width; }
+        signed int height() const { return tile_height; }
         
         
         template<typename F>

@@ -6,7 +6,7 @@
 class TestProgram {
     
 public:
-    static int main(int argc, char **argv) {
+    static int main(int, char **) {
         TestProgram program;
         program.print("Hello World\n");
         return 0;

@@ -7,7 +7,7 @@ void output(const char *src) {
     write(1, src, strlen(src));
 }
 
-void handler(int sig) {
+void handler(int ) {
     output(" Caught SIGINT in Handler...\n");
 }
 

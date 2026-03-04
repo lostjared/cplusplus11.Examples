@@ -69,7 +69,7 @@ protected:
 // it will ask for input than each time it
 // ends and starts over the list gets longer
 
-int main(int argc, char **argv)
+int main(void)
 {
     PersistVector<std::string> p("test.txt");
     std::cout << "Enter input: ";

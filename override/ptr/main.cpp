@@ -16,7 +16,7 @@ public:
     }
 };
 
-int main(int argc, char **argV) {
+int main(void) {
     
     std::unique_ptr<X> x(new X());
     std::unique_ptr<X> xx(new XX()); // pass XX to X*

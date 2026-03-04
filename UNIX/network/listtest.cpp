@@ -13,7 +13,7 @@ std::mutex mut;
 
 void readAll();
 
-int main(int argc, char **argv) {
+int main(void) {
     net::ignorePipeSignal();
     net::Socket s;
     if(s.listenAt("5002", net::SocketType::STREAM, 5) == -1) {

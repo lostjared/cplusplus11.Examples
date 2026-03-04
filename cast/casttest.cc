@@ -17,7 +17,7 @@ class Modify {
 public:
     virtual ~Modify() { }
     Modify(char *temp) {
-        strncpy(temp, "value", 5);
+        strncpy(temp, "value", 6);
         this->temp = temp;
     }
     void output() {
@@ -63,7 +63,7 @@ void castTest(Modify &m) {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     
     const char *text = new char [6];
 

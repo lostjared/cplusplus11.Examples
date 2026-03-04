@@ -29,7 +29,7 @@ namespace mx {
 }
 
 
-int main(int argc, char **argv) {
+int main(void) {
     try {
         std::string temp = "from Jared";
         mx::printf("Hello world %s %d : %d\n Test.\n",temp,640, 480);

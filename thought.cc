@@ -46,7 +46,7 @@ void change(Thought<T> &t) {
     std::cout << "Karma returns: " << t.str() << "\n";
 }
 
-int main(int argc, char **argv)
+int main(void)
 {
     Thought<std::string> thought;
     while (get(give(thought))) change(thought);

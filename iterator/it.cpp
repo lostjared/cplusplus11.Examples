@@ -56,7 +56,7 @@ void PushList(C &c, std::initializer_list<T> t) {
     }
 }
 
-int main(int argc, char **argv) {
+int main(void) {
     std::vector<std::string> v{"String One", "String Two", "String Three", "Temporary ", "Value 1"};
     EchoAll(v.begin(), v.end()); // Print forward
     EchoAll(v.rbegin(), v.rend()); // Print backwards

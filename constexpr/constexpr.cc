@@ -23,7 +23,7 @@ public:
 };
 
 
-int main(int argc, char **argv)
+int main(void)
 {
     ArrTile<int, 400> arrTile;
     arrTile[0] = 0;
