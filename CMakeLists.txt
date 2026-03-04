@@ -14,6 +14,102 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
     )
 endif()
 
+# ---------------------------------------------------------------------------
+# Verify the compiler and standard library support C++11 headers/features
+# required by the examples.  Fail early with a clear message rather than
+# producing hundreds of cryptic errors.
+# ---------------------------------------------------------------------------
+include(CheckIncludeFileCXX)
+include(CheckCXXSourceCompiles)
+
+set(CPP11_REQUIRED_HEADERS
+    array
+    atomic
+    chrono
+    condition_variable
+    functional
+    future
+    initializer_list
+    memory
+    mutex
+    random
+    regex
+    thread
+    tuple
+    type_traits
+    typeindex
+    unordered_map
+    unordered_set
+)
+
+foreach(header IN LISTS CPP11_REQUIRED_HEADERS)
+    string(TOUPPER "${header}" header_upper)
+    string(REPLACE "/" "_" header_upper "${header_upper}")
+    set(var_name "HAS_CXX11_${header_upper}")
+    check_include_file_cxx("${header}" ${var_name})
+    if(NOT ${var_name})
+        message(FATAL_ERROR
+            "C++11 header <${header}> not found.\n"
+            "Your compiler or standard library is too old to build the examples.\n"
+            "Please use GCC >= 4.8, Clang >= 3.3, or MSVC >= 19.0.")
+    endif()
+endforeach()
+
+# Quick smoke-test that key C++11 language/library features actually work
+# (catches misconfigured toolchains that ship the headers but lack support).
+check_cxx_source_compiles("
+#include <array>
+#include <functional>
+#include <memory>
+#include <thread>
+#include <tuple>
+#include <type_traits>
+#include <unordered_map>
+
+auto lambda = [](int x) { return x * 2; };
+
+template<typename... Args>
+int variadic_sum(Args... args) { int sum = 0; for (auto v : {args...}) sum += v; return sum; }
+
+enum class Color { Red, Green, Blue };
+
+int main() {
+    // auto + initializer list
+    auto arr = std::array<int, 3>{{1, 2, 3}};
+    // lambda
+    std::function<int(int)> fn = lambda;
+    (void)fn(arr[0]);
+    // smart pointers
+    auto sp = std::make_shared<int>(42);
+    auto up = std::unique_ptr<int>(new int(7));
+    // tuple
+    auto t = std::make_tuple(1, 2.0, 'a');
+    (void)std::get<0>(t);
+    // unordered_map
+    std::unordered_map<int,int> m{{1,2}};
+    (void)m;
+    // type traits
+    static_assert(std::is_integral<int>::value, \"int must be integral\");
+    // range-based for
+    for (auto &v : arr) { (void)v; }
+    // variadic templates
+    (void)variadic_sum(1, 2, 3);
+    // scoped enum
+    Color c = Color::Red;
+    (void)c;
+    return 0;
+}
+" CXX11_FEATURES_WORK)
+
+if(NOT CXX11_FEATURES_WORK)
+    message(FATAL_ERROR
+        "C++11 feature smoke-test failed.\n"
+        "Your compiler claims C++11 support but key features do not compile.\n"
+        "Please use GCC >= 4.8, Clang >= 3.3, or MSVC >= 19.0.")
+endif()
+
+message(STATUS "C++11 standard library and language feature checks passed")
+
 find_package(Threads REQUIRED)
 find_library(CRYPT_LIBRARY crypt)
 find_package(SDL2 QUIET)
